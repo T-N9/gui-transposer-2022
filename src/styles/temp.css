@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  .lyric-input {
+    width: 100%;
+    background-color: aliceblue;
+    padding: 10px 5px;
+  }
+  
+  .lyric-board {
+    overflow: scroll;
+    padding: 20px;
+  }
+  
+  .lyric-genBtn {
+    display: table;
+    padding: 15px;
+    margin: auto;
+  }
+  
+  .detected-chords {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-weight: bold;
+  }
+  
+  .transposed-chords {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-weight: bold;
+  }
+  
+  .transposer {
+    background-color: aquamarine;
+    padding-bottom: 10px;
+  }
+  
+  .transposer .transpose-btn {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+  }
+  
+  .chord-item {
+    width: 100px;
+  }
+  
+  .chord {
+    display: inline-block;
+    background-color: brown;
+    color: white;
+    padding: 2px;
+  }
+  
+  .lyric-line {
+    margin : 10px 0;
+  }
+  
+  .chord-line {
+    background-color: antiquewhite;
+  }

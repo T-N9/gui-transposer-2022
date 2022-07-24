@@ -1,6 +1,7 @@
-// export const ChordRegexOp =
-// /[ABCDEFG] | [ABCDEFG] | [ABCDEFG]|[ABCDEFG]m | [ABCDEFG]m | [ABCDEFG]m|^[ABCDEFG]|^[ABCDEFG]m|[ABCDEFG]m|[ABCDEFG]/gm;
 export const ChordRegexOp = /\s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[ABCDEFG]m|\s[ABCDEFG]m\s|[ABCDEFG]m\s|\s[ABCDEFG]\s|[A-G]\s/g;
+
+// in-progress
+// \s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[A-G]m|\s[A-G]m\s|[A-G]m\s|\s[A-G]\s|[A-G]\s|[A-G]#\s|\s[A-G]#\s|[AFC]#m\s
 
 export const chords_Arr_i = [
   "C",

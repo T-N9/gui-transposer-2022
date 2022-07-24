@@ -1,2 +1,0 @@
-  // const ChordRegex =
-  //   /[A]m |[B]m |[E]m | [A]m | [B]m | [E]m | [A]m| [B]m| [E]m|^[A]m|^[B]m|^[E]m|[C] | [C] |^[C]|[A] | [A] |^[A]|[B] | [B] |^[B]|[D] | [D] |^[D]|[E] | [E] |^[E]|[F] | [F] |^[F]|[G] | [G] |^[G]|[ABCDEFG]/gm;
