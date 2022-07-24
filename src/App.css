@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.lyric-input {
+  width: 100%;
+  background-color: aliceblue;
+  padding: 10px 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.lyric-board {
+  overflow: scroll;
+  padding: 20px;
+}
+
+.lyric-genBtn {
+  display: table;
+  padding: 15px;
+  margin: auto;
+}
+
+.detected-chords {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 5px;
+  font-weight: bold;
+}
+
+.transposed-chords {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.transposer {
+  background-color: aquamarine;
+  padding-bottom: 10px;
+}
+
+.transposer .transpose-btn {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.chord-item {
+  width: 100px;
+}
+
+.chord {
+  display: inline-block;
+  background-color: brown;
   color: white;
+  padding: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+.lyric-line {
+  margin : 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chord-line {
+  background-color: antiquewhite;
 }

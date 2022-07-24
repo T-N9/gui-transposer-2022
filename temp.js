@@ -1,134 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { uniq, last, indexOf } from "lodash";
-import parse from "html-react-parser";
+import { uniq } from "lodash";
+import parse from 'html-react-parser'
 
-import {
-  ChordRegexOp,
-  chords_Arr_i,
-  chords_Arr_ii,
-  chords_Arr_i_regex,
-  chords_Arr_ii_regex,
-  chords_Arr_Regex,
-} from "./constants";
-
-const LyricLine = ({
-  line,
-  lyricBoard,
-  transposeLvl,
-  detectedChords,
-  transposedChords,
-}) => {
-  const spacedLine = line + " ";
-  const [matchesPos, setMatchesPos] = useState([]);
-  const [locateChord, setLocateChord] = useState("");
-
-  useEffect(() => {
-    if (line.trim().length !== 0) {
-      let matches;
-      let matchesPosArr = [];
-      while ((matches = ChordRegexOp.exec(spacedLine)) !== null) {
-        // This is necessary to avoid infinite loops with zero-width matches
-        if (matches.index === ChordRegexOp.lastIndex) {
-          ChordRegexOp.lastIndex++;
-        }
-
-        // The result can be accessed through the `m`-variable.
-        matches.forEach((match, groupIndex) => {
-          matchesPosArr.push({
-            matchChord: match,
-            startPos: matches.index,
-            endPos: ChordRegexOp.lastIndex,
-          });
-        });
-      }
-      setMatchesPos(matchesPosArr);
-    }
-  }, [lyricBoard]);
-
-  useEffect(() => {
-    if (matchesPos.length > 0) {
-      let mergingLine = [];
-      let mappedChords = matchesPos.map((item, index) => {
-        if (transposeLvl === 0) {
-          if (index === 0) {
-            mergingLine.push(
-              spacedLine.replace(
-                item.matchChord,
-                `<span class="chord">${item.matchChord.trim()}</span>`
-              )
-            );
-            return spacedLine.replace(
-              item.matchChord,
-              `<span class="chord">${item.matchChord.trim()}</span>`
-            );
-          } else {
-            // console.log({mergedLINE :mergingLine[index-1]});
-            mergingLine.push(
-              mergingLine[index - 1].replace(
-                item.matchChord,
-                `<span class="chord">${item.matchChord.trim()}</span>`
-              )
-            );
-            return mergingLine[index - 1].replace(
-              item.matchChord,
-              `<span class="chord">${item.matchChord.trim()}</span>`
-            );
-          }
-        } else {
-          let chordInLine = item.matchChord.trim();
-          let transposedChordInLine = transposedChords[detectedChords.indexOf(chordInLine)]
-          if (index === 0) {
-            mergingLine.push(
-              spacedLine.replace(
-                item.matchChord,
-                `<span class="chord">${transposedChordInLine}</span>`
-              )
-            );
-            return spacedLine.replace(
-              item.matchChord,
-              `<span class="chord">${transposedChordInLine}</span>`
-            );
-          } else {
-            // console.log({mergedLINE :mergingLine[index-1]});
-            mergingLine.push(
-              mergingLine[index - 1].replace(
-                item.matchChord,
-                `<span class="chord">${transposedChordInLine}</span>`
-              )
-            );
-            return mergingLine[index - 1].replace(
-              item.matchChord,
-              `<span class="chord">${transposedChordInLine}</span>`
-            );
-          }
-        }
-      });
-
-      setLocateChord(last(mappedChords));
-    }
-  }, [matchesPos, transposeLvl, transposedChords]);
-
-  // matchesPos.length >0 && console.log({matchesPos})
-  // console.log({locateChord})
-  return (
-    <>
-      {line.trim().length !== 0 && (
-        <div className={`lyric-line ${matchesPos.length > 0 && "chord-line"}`}>
-          {matchesPos.length > 0 ? parse(locateChord) : line}
-        </div>
-      )}
-    </>
-  );
-};
+import { ChordRegexOp, chords_Arr_i, chords_Arr_ii, chords_Arr_i_regex, chords_Arr_ii_regex , chords_Arr_Regex } from "./constants";
 
 const App = () => {
-  const [inputLyric, setInputLyric] = useState("");
-  const [lyricBoard, setLyricBoard] = useState([]);
+
+  const [lyricBoard, setLyricBoard] = useState("");
   const [detectedChords, setDetectedChords] = useState([]);
   const [transposedChords, setTransposedChords] = useState([]);
   const [transposeLvl, setTransposeLvl] = useState(0);
   const [matchesPos, setMatchesPos] = useState([]);
+
+  // Alternative syntax using ChordRegExp constructor
+  // const ChordRegex = new ChordRegExp('[A]m |[B]m |[E]m | [A]m | [B]m | [E]m | [A]m| [B]m| [E]m|^[A]m|^[B]m|^[E]m', 'gm')
 
   useEffect(() => {
     let matches;
@@ -160,13 +46,11 @@ const App = () => {
     setDetectedChords(uniq(detectedChordsArr));
   }, [lyricBoard]);
 
-  console.log({ matchesPos, detectedChords, transposedChords });
+  console.log({ matchesPos, detectedChords ,transposedChords });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const linedLyric = inputLyric.split(/\r?\n/);
-    // console.log(linedLyric);
-    setLyricBoard(linedLyric);
+
     // console.log({ detectedChords });
   };
 
@@ -262,7 +146,39 @@ const App = () => {
       });
     }
     setTransposedChords(transposedChordArr);
+
+
+    // detectedChords.map((chord, index) => {
+    //   // let currentChord= chords_Arr_Regex.filter((item) => {
+    //   //   return chord === item.chord;
+    //   // })
+
+
+
+
+    //   console.log({currentChord})
+    //   currentChord.length > 0 && setLyricBoard(lyricBoard.replace(currentChord[0].regex , transposedChordArr[index]))
+    // });
+
   }, [transposeLvl]);
+
+  let tempLyricBoard = lyricBoard;
+  useEffect(() => {
+    
+    transposeLvl !== 0 && matchesPos.map((item) => {
+      detectedChords.map((chord, index)=> {
+        if (item.matchChord.trim() === chord) {
+          let replacedChord = item.matchChord.replace(item.matchChord.trim(), transposedChords[index]);
+          console.log(replacedChord)
+          tempLyricBoard = lyricBoard.replace(item.matchChord , replacedChord)
+          return replacedChord;
+        }
+      });
+
+    });
+    setLyricBoard(tempLyricBoard)
+  }, [transposeLvl, transposedChords])
+
 
   const handleTransposeUp = () => {
     setTransposeLvl((prev) => prev + 1);
@@ -277,9 +193,9 @@ const App = () => {
       <form onSubmit={handleSubmit}>
         <textarea
           className="lyric-input"
-          value={inputLyric}
+          value={lyricBoard}
           onChange={(e) => {
-            setInputLyric(e.target.value);
+            setLyricBoard(e.target.value);
           }}
           name=""
           id=""
@@ -316,24 +232,23 @@ const App = () => {
       </section>
 
       {/* <pre className="lyric-board">{parse(lyricBoard.replace(/Em/g, `<span class='chord'>Em</span>`))}</pre> */}
-      <pre className="lyric-board">
-        {/* {console.log({ lyricBoard })} */}
-        {lyricBoard.length > 0 &&
-          lyricBoard.map((line, index) => {
-            return (
-              <LyricLine
-                key={index}
-                line={line}
-                lyricBoard={lyricBoard}
-                transposeLvl={transposeLvl}
-                detectedChords={detectedChords}
-                transposedChords={transposedChords}
-              />
-            );
-          })}
-      </pre>
+      <pre className="lyric-board">{parse(lyricBoard)}</pre>
     </>
   );
 };
 
 export default App;
+
+// useEffect(() => {
+//     let tempLyric = "";
+//     detectedChords.map((chord)=> {
+//       let tempChord = chords_Arr_Regex.filter((item) => {
+//         return item.chord === chord
+//       })
+
+//       tempChord.map((item) => {
+//         tempLyric = inputLyric.replace(item.regex, `<span class="chord">${chord}</span>`)
+//         setLyricBoard(tempLyric)
+//       });
+//     });
+//   }, [transposeLvl])
