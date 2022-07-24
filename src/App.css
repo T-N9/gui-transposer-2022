@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .highlight-chord {
+        @apply font-bold text-xs text-white bg-orange-400 inline-block p-[2px] leading-[1.1] rounded shadow;
+    }
+}

@@ -26,7 +26,7 @@ const LyricLine = ({
     return (
       <>
         {line.trim().length !== 0 && (
-          <div className={`lyric-line ${matchesPos.length > 0 && "chord-line"}`}>
+          <div className={`lyric-line ${matchesPos.length > 0 && "bg-gray-50"}`}>
             {matchesPos.length > 0 ? parse(locateChord) : line}
           </div>
         )}

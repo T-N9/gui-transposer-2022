@@ -7,14 +7,13 @@
   }
   
   .lyric-input {
-    width: 100%;
-    background-color: aliceblue;
-    padding: 10px 5px;
+    line-height:1.5;
+    word-spacing: 3.3px;
   }
   
   .lyric-board {
-    overflow: scroll;
-    padding: 20px;
+    line-height: 1;
+    word-spacing: 5.2px;
   }
   
   .lyric-genBtn {

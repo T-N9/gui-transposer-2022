@@ -45,24 +45,24 @@ const Hook = (
             mergingLine.push(
               spacedLine.replace(
                 item.matchChord,
-                `<span class="chord">${item.matchChord.trim()}</span>`
+                `<span class="highlight-chord">${item.matchChord.trim()}</span>`
               )
             );
             return spacedLine.replace(
               item.matchChord,
-              `<span class="chord">${item.matchChord.trim()}</span>`
+              `<span class="highlight-chord">${item.matchChord.trim()}</span>`
             );
           } else {
             // console.log({mergedLINE :mergingLine[index-1]});
             mergingLine.push(
               mergingLine[index - 1].replace(
                 item.matchChord,
-                `<span class="chord">${item.matchChord.trim()}</span>`
+                `<span class="highlight-chord">${item.matchChord.trim()}</span>`
               )
             );
             return mergingLine[index - 1].replace(
               item.matchChord,
-              `<span class="chord">${item.matchChord.trim()}</span>`
+              `<span class="highlight-chord">${item.matchChord.trim()}</span>`
             );
           }
         } else {
@@ -73,23 +73,23 @@ const Hook = (
             mergingLine.push(
               spacedLine.replace(
                 item.matchChord,
-                `<span class="chord">${transposedChordInLine}</span>`
+                `<span class="highlight-chord">${transposedChordInLine}</span>`
               )
             );
             return spacedLine.replace(
               item.matchChord,
-              `<span class="chord">${transposedChordInLine}</span>`
+              `<span class="highlight-chord">${transposedChordInLine}</span>`
             );
           } else {
             mergingLine.push(
               mergingLine[index - 1].replace(
                 item.matchChord,
-                `<span class="chord">${transposedChordInLine}</span>`
+                `<span class="highlight-chord">${transposedChordInLine}</span>`
               )
             );
             return mergingLine[index - 1].replace(
               item.matchChord,
-              `<span class="chord">${transposedChordInLine}</span>`
+              `<span class="highlight-chord">${transposedChordInLine}</span>`
             );
           }
         }
