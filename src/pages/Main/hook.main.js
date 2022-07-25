@@ -12,6 +12,7 @@ const Hook = () => {
     const [transposedChords, setTransposedChords] = useState([]);
     const [transposeLvl, setTransposeLvl] = useState(0);
     const [matchesPos, setMatchesPos] = useState([]);
+    const [editMode , setEditMode] = useState(true);
   
     useEffect(() => {
       let matches;
@@ -42,6 +43,7 @@ const Hook = () => {
       e.preventDefault();
       const linedLyric = inputLyric.split(/\r?\n/);
       setLyricBoard(linedLyric);
+      setEditMode(false);
     };
   
     const handleDownStrictLvl = (chordIndex, actionLvl) => {
@@ -130,12 +132,14 @@ const Hook = () => {
         transposeLvl,
         detectedChords,
         lyricBoard,
+        editMode,
         /* actions */
         setInputLyric,
         handleSubmit,
         setTransposeLvl,
         handleTransposeDown,
-        handleTransposeUp
+        handleTransposeUp,
+        setEditMode
     }
 }
 

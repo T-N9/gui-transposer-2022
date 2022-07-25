@@ -68,7 +68,7 @@ const Hook = (
         } else {
           let chordInLine = item.matchChord.trim();
           let transposedChordInLine =
-            transposedChords[detectedChords.indexOf(chordInLine)];
+            transposedChords[detectedChords.indexOf(chordInLine)] !== undefined && transposedChords[detectedChords.indexOf(chordInLine)];
           if (index === 0) {
             mergingLine.push(
               spacedLine.replace(
