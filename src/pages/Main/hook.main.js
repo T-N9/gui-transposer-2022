@@ -1,5 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { uniq } from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { setStartLoading, setStopLoading } from "../../store/mainGenSlice";
 
 /* Constants */
 import {
@@ -16,6 +18,9 @@ const Hook = () => {
   const [transposeLvl, setTransposeLvl] = useState(0);
   const [matchesPos, setMatchesPos] = useState([]);
   const [editMode, setEditMode] = useState(true);
+
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.mainGen)
 
   useEffect(() => {
     let matches;
@@ -74,6 +79,9 @@ const Hook = () => {
   // console.log({ matchesPos, detectedChords, transposedChords, lyricBoard });
 
   const handleSubmit = (e) => {
+
+    dispatch(setStartLoading())
+
     e.preventDefault();
     const linedLyric = inputLyric.split(/\r?\n/);
 
@@ -83,6 +91,10 @@ const Hook = () => {
 
     setLyricBoard(linedSpacedLyric);
     setEditMode(false);
+
+    setTimeout(() => {
+      dispatch(setStopLoading())
+    }, 1000);
   };
 
   const handleDownStrictLvl = (chordIndex, actionLvl) => {
@@ -127,6 +139,7 @@ const Hook = () => {
           );
           transposedChordArr.push(chords_Arr_ii[indexDown]);
         }
+        return true;
       });
     } else {
       detectedChords.map((chord) => {
@@ -151,10 +164,11 @@ const Hook = () => {
           );
           transposedChordArr.push(chords_Arr_ii[indexUp]);
         }
+        return true;
       });
     }
     setTransposedChords(transposedChordArr);
-  }, [transposeLvl]);
+  }, [transposeLvl, detectedChords]);
 
   const handleTransposeUp = () => {
     setTransposeLvl((prev) => prev + 1);
@@ -172,6 +186,8 @@ const Hook = () => {
     lyricBoard,
     editMode,
     textArea,
+    matchesPos,
+    loading,
     /* actions */
     setInputLyric,
     handleSubmit,

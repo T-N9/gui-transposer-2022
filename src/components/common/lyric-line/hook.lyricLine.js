@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { last } from "lodash";
 
 /* Constants */
@@ -46,7 +46,7 @@ const Hook = (
       setMatchesPos(matchesPosArr);
       setMatchParts(matchPartsArr);
     }
-  }, [lyricBoard]);
+  }, [lyricBoard, line, spacedLine]);
 
   useEffect(() => {
     if (matchesPos.length > 0) {
@@ -118,7 +118,7 @@ const Hook = (
 
       setLocatePart(mappedPart[0]);
     }
-  }, [matchesPos, matchParts, transposeLvl, transposedChords]);
+  }, [matchesPos, matchParts, transposeLvl, transposedChords, detectedChords, spacedLine]);
   matchParts.length > 0 && console.log({ matchParts, locatePart });
   return {
     locateChord,

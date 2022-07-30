@@ -1,8 +1,8 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
+import Loading from "react-loading-components";
 
 /* Components */
 import LyricLine from "../../components/common/lyric-line/LyricLine";
-import SongBuilder from "../../components/builder";
 
 /* Hook */
 import Hook from "./hook.main";
@@ -16,6 +16,7 @@ const Main = () => {
     lyricBoard,
     editMode,
     textArea,
+    loading,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -23,17 +24,16 @@ const Main = () => {
     handleTransposeDown,
     handleTransposeUp,
     setEditMode,
-    handleCombineKey
+    handleCombineKey,
   } = Hook();
 
   return (
     <main className="mt-12 mb-24 mx-5 lg:mx-0">
-      {/* <SongBuilder/> */}
       {(lyricBoard.length === 0 || editMode) && (
         <form className="container mx-auto" onSubmit={handleSubmit}>
           <div className="relative">
             <textarea
-              className="lyric-input w-full bg-blue-50 bg-opacity-50 p-5 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+              className="lyric-input w-full bg-blue-50 bg-opacity-50 p-2 md:p-5 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
               tabIndex={-1}
               value={inputLyric}
               onChange={(e) => {
@@ -45,9 +45,10 @@ const Main = () => {
               id=""
               cols="30"
               rows="10"
-            >
-            </textarea>
-            <span className="absolute -top-4 left-2 text-xs text-gray-400">Ctrl + SPACE = Tab</span>
+            ></textarea>
+            <span className="absolute -top-4 left-2 text-xs text-gray-400">
+              Ctrl + SPACE = Tab
+            </span>
           </div>
 
           <button className=" bg-blue-600 rounded-md text-white py-2 px-4 mx-auto table my-5">
@@ -58,7 +59,7 @@ const Main = () => {
 
       <section className="">
         <div className="flex container mx-auto justify-start gap-x-7 items-center">
-          <span>Chords :</span> 
+          <span>Chords :</span>
           {transposedChords.length > 0 && transposeLvl !== 0 ? (
             <div className=" flex text-xl gap-x-5 font-medium">
               {transposedChords.length > 0 &&
@@ -109,7 +110,17 @@ const Main = () => {
         </div>
       </section>
 
-      {lyricBoard.length > 0 && !editMode && (
+      {loading && (
+        <div className="container mx-auto h-96 w-full flex justify-center items-center">
+          <Loading
+            type="grid"
+            width={50}
+            height={50}
+            fill="#1aa7ec"
+          />
+        </div>
+      )}
+      {(!loading && lyricBoard.length > 0 && !editMode) && (
         <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 overflow-x-auto">
           <button
             onClick={() => setEditMode(true)}
