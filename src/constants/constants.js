@@ -1,4 +1,4 @@
-export const ChordRegexOp = /\s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[ABCDEFG]m|\s[ABCDEFG]m\s|[ABCDEFG]m\s|\s[ABCDEFG]\s|[A-G]\s/g;
+export const ChordRegexOp = /\s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[ABCDEFG]m|\s[ABCDEFG]m\s|[ABCDEFG]m\s|\s[ABCDEFG]\s|[A-G]\s/gm;
 
 // in-progress
 // \s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[A-G]m|\s[A-G]m\s|[A-G]m\s|\s[A-G]\s|[A-G]\s|[A-G]#\s|\s[A-G]#\s|[AFC]#m\s

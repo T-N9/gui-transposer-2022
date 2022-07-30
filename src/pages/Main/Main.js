@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 /* Components */
 import LyricLine from "../../components/common/lyric-line/LyricLine";
@@ -15,6 +15,7 @@ const Main = () => {
     detectedChords,
     lyricBoard,
     editMode,
+    textArea,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -22,6 +23,7 @@ const Main = () => {
     handleTransposeDown,
     handleTransposeUp,
     setEditMode,
+    handleCombineKey
   } = Hook();
 
   return (
@@ -29,18 +31,24 @@ const Main = () => {
       {/* <SongBuilder/> */}
       {(lyricBoard.length === 0 || editMode) && (
         <form className="container mx-auto" onSubmit={handleSubmit}>
-          <textarea
-            className="lyric-input w-full bg-blue-50 bg-opacity-50 p-5 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
-            tabIndex={-1}
-            value={inputLyric}
-            onChange={(e) => {
-              setInputLyric(e.target.value);
-            }}
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-          ></textarea>
+          <div className="relative">
+            <textarea
+              className="lyric-input w-full bg-blue-50 bg-opacity-50 p-5 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+              tabIndex={-1}
+              value={inputLyric}
+              onChange={(e) => {
+                setInputLyric(e.target.value);
+              }}
+              ref={textArea}
+              onKeyDown={(e) => handleCombineKey(e)}
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+            >
+            </textarea>
+            <span className="absolute -top-4 left-2 text-xs text-gray-400">Ctrl + SPACE = Tab</span>
+          </div>
 
           <button className=" bg-blue-600 rounded-md text-white py-2 px-4 mx-auto table my-5">
             Generate
@@ -49,21 +57,24 @@ const Main = () => {
       )}
 
       <section className="">
-        {transposedChords.length > 0 && transposeLvl !== 0 ? (
-          <div className="transposed-chords">
-            {transposedChords.length > 0 &&
-              transposedChords.map((chord) => {
-                return <p key={chord}>{chord}</p>;
-              })}
-          </div>
-        ) : (
-          <div className="detected-chords">
-            {detectedChords.length > 0 &&
-              detectedChords.map((chord) => {
-                return <p key={chord}>{chord}</p>;
-              })}
-          </div>
-        )}
+        <div className="flex container mx-auto justify-start gap-x-7 items-center">
+          <span>Chords :</span> 
+          {transposedChords.length > 0 && transposeLvl !== 0 ? (
+            <div className=" flex text-xl gap-x-5 font-medium">
+              {transposedChords.length > 0 &&
+                transposedChords.map((chord) => {
+                  return <p key={chord}>{chord}</p>;
+                })}
+            </div>
+          ) : (
+            <div className=" flex text-xl gap-x-5 font-medium">
+              {detectedChords.length > 0 &&
+                detectedChords.map((chord) => {
+                  return <p key={chord}>{chord}</p>;
+                })}
+            </div>
+          )}
+        </div>
 
         <div
           className={`mx-auto fixed bottom-5 left-1/2 transform -translate-x-1/2 inline-flex items-center justify-center gap-x-4 shadow-md px-5 py-3 rounded-lg bg-white ${
@@ -98,9 +109,12 @@ const Main = () => {
         </div>
       </section>
 
-      {(lyricBoard.length > 0 && !editMode) && (
+      {lyricBoard.length > 0 && !editMode && (
         <pre className="lyric-board container mx-auto font-primary p-5 overflow-x-scroll">
-          <button onClick={() => setEditMode(true)} className="float-right bg-blue-500 text-white py-1 px-2 rounded shadow text-sm">
+          <button
+            onClick={() => setEditMode(true)}
+            className="float-right bg-blue-500 text-white py-1 px-2 rounded shadow text-sm"
+          >
             Edit
           </button>
           {lyricBoard.length > 0 &&
