@@ -27,12 +27,14 @@ const Hook = () => {
       }
 
       matches.forEach((match, groupIndex) => {
-        detectedChordsArr.push(match.trim());
-        matchesPosArr.push({
-          matchChord: match,
-          startPos: matches.index,
-          endPos: ChordRegexOp.lastIndex,
-        });
+        if(match.length < 5) {
+          detectedChordsArr.push(match.trim());
+          matchesPosArr.push({
+            matchChord: match,
+            startPos: matches.index,
+            endPos: ChordRegexOp.lastIndex,
+          });
+        }
       });
     }
     setMatchesPos(matchesPosArr);
