@@ -110,7 +110,7 @@ const Main = () => {
       </section>
 
       {lyricBoard.length > 0 && !editMode && (
-        <pre className="lyric-board container mx-auto font-primary p-5 overflow-x-auto">
+        <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 overflow-x-auto">
           <button
             onClick={() => setEditMode(true)}
             className="float-right bg-blue-500 text-white py-1 px-2 rounded shadow text-sm"
