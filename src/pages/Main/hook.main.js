@@ -71,7 +71,7 @@ const Hook = () => {
             12 + (chords_Arr_i.indexOf(chord) + transposeLvl) ===
             chords_Arr_i.indexOf(chord)
           ) {
-            setTransposeLvl(-1);
+            setTransposeLvl(0);
           }
           if (chords_Arr_i.indexOf(chord) !== -1) {
             let indexDown = handleDownStrictLvl(
@@ -96,7 +96,7 @@ const Hook = () => {
             -(12 - (chords_Arr_i.indexOf(chord) + transposeLvl)) ===
             chords_Arr_i.indexOf(chord)
           ) {
-            setTransposeLvl(1);
+            setTransposeLvl(0);
           }
           if (chords_Arr_i.indexOf(chord) !== -1) {
             let indexUp = handleUpStrictLvl(

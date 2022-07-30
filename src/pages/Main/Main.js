@@ -2,6 +2,7 @@ import React from "react";
 
 /* Components */
 import LyricLine from "../../components/common/lyric-line/LyricLine";
+import SongBuilder from "../../components/builder";
 
 /* Hook */
 import Hook from "./hook.main";
@@ -24,11 +25,13 @@ const Main = () => {
   } = Hook();
 
   return (
-    <main className="my-12">
+    <main className="mt-12 mb-24 mx-5 lg:mx-0">
+      {/* <SongBuilder/> */}
       {(lyricBoard.length === 0 || editMode) && (
         <form className="container mx-auto" onSubmit={handleSubmit}>
           <textarea
-            className="lyric-input w-full bg-blue-50 bg-opacity-50 p-5"
+            className="lyric-input w-full bg-blue-50 bg-opacity-50 p-5 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+            tabIndex={-1}
             value={inputLyric}
             onChange={(e) => {
               setInputLyric(e.target.value);
