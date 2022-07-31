@@ -119,7 +119,7 @@ const Hook = (
       setLocatePart(mappedPart[0]);
     }
   }, [matchesPos, matchParts, transposeLvl, transposedChords, detectedChords, spacedLine]);
-  matchParts.length > 0 && console.log({ matchParts, locatePart });
+  // matchParts.length > 0 && console.log({ matchParts, locatePart });
   return {
     locateChord,
     matchesPos,

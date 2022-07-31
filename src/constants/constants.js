@@ -1,4 +1,4 @@
-export const ChordRegexOp = /\s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[ABCDEFG]m|\s[ABCDEFG]m\s|[ABCDEFG]m\s|\s[ABCDEFG]\s|[A-G]\s|\[Verse \d+\]|\[Chorus \d+\]|\[Chorus\]/gm;
+export const ChordRegexOp = /\s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[ABCDEFG]m|\s[ABCDEFG]m\s|[ABCDEFG]m\s|\s[ABCDEFG]\s|[A-G]\s|\[Verse \d+\]|\[Chorus \d+\]|\[Chorus\]|\[Verse\]|\[Intro\]/gm;
 
 // in-progress
 // \s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[A-G]m|\s[A-G]m\s|[A-G]m\s|\s[A-G]\s|[A-G]\s|[A-G]#\s|\s[A-G]#\s|[AFC]#m\s
@@ -32,6 +32,21 @@ export const chords_Arr_ii = [
   "Cm",
   "C#m",
 ];
+
+export const chords_Arr_iii = [
+    "A7",
+    "A#7",
+    "B7",
+    "C7",
+    "C#7",
+    "D7",
+    "D#7",
+    "E7",
+    "F7",
+    "F#7",
+    "G7",
+    "G#7"
+]
 
 export let chords_Arr_i_regex = [
     {

@@ -8,6 +8,7 @@ import {
   ChordRegexOp,
   chords_Arr_i,
   chords_Arr_ii,
+  chords_Arr_iii
 } from "../../constants/constants";
 
 const Hook = () => {
@@ -19,13 +20,15 @@ const Hook = () => {
   const [matchesPos, setMatchesPos] = useState([]);
   const [editMode, setEditMode] = useState(true);
 
+  const [formMessage, setFormMessage] = useState('');
+
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.mainGen)
 
   useEffect(() => {
     let matches;
     let detectedChordsArr = [];
-    let matchesPosArr = [];
+    let matchesPosArr = []; /* Temp array to store match positions */
     while ((matches = ChordRegexOp.exec(lyricBoard)) !== null) {
       if (matches.index === ChordRegexOp.lastIndex) {
         ChordRegexOp.lastIndex++;
@@ -42,6 +45,7 @@ const Hook = () => {
         }
       });
     }
+    
     setMatchesPos(matchesPosArr);
     setDetectedChords(uniq(detectedChordsArr));
   }, [lyricBoard]);
@@ -50,16 +54,15 @@ const Hook = () => {
   const [selection, setSelection] = useState();
 
   useEffect(() => {
+    /* Key combinations and cursor focus */
     if (!selection) return; // prevent running on start
     const { start, end } = selection;
     textArea.current.focus();
     textArea.current.setSelectionRange(start, end);
   }, [selection]);
 
-  useEffect(()=> {
-    window.scrollTo(0,document.body.scrollHeight);
-  },[])
   const handleCombineKey = (e) => {
+    /* Ctrl + SPACE = Tab */
     if (e.ctrlKey && e.which === 32) {
       const start = textArea.current.selectionStart;
       const end = textArea.current.selectionEnd;
@@ -79,24 +82,28 @@ const Hook = () => {
   // console.log({ matchesPos, detectedChords, transposedChords, lyricBoard });
 
   const handleSubmit = (e) => {
-
-    dispatch(setStartLoading())
-
     e.preventDefault();
-    const linedLyric = inputLyric.split(/\r?\n/);
-
-    const linedSpacedLyric = linedLyric.map((line) => {
-      return line + " ";
-    });
-
-    setLyricBoard(linedSpacedLyric);
-    setEditMode(false);
-
-    setTimeout(() => {
-      dispatch(setStopLoading())
-    }, 1000);
+    if(inputLyric.trim().length !== 0){
+      setFormMessage('')
+      dispatch(setStartLoading())
+      const linedLyric = inputLyric.split(/\r?\n/);
+  
+      const linedSpacedLyric = linedLyric.map((line) => {
+        return line + " ";
+      });
+  
+      setLyricBoard(linedSpacedLyric);
+      setEditMode(false);
+  
+      setTimeout(() => {
+        dispatch(setStopLoading())
+      }, 1000);
+    } else {
+      setFormMessage('*Please drop a fancy chord.')
+    }
   };
 
+  //#region calculating up,down array index of transposed chords from chord arrays i,ii
   const handleDownStrictLvl = (chordIndex, actionLvl) => {
     if (chordIndex + actionLvl >= 0) {
       return chordIndex + actionLvl;
@@ -112,9 +119,11 @@ const Hook = () => {
       return -(12 - (chordIndex + actionLvl));
     }
   };
+  //#endregion
 
+  //#region calculating transposed chords
   useEffect(() => {
-    let transposedChordArr = [];
+    let transposedChordArr = []; /* temporary array for transposed chords */
     if (transposeLvl <= -1) {
       detectedChords.map((chord) => {
         if (
@@ -170,6 +179,8 @@ const Hook = () => {
     setTransposedChords(transposedChordArr);
   }, [transposeLvl, detectedChords]);
 
+  //#endregion
+
   const handleTransposeUp = () => {
     setTransposeLvl((prev) => prev + 1);
   };
@@ -188,6 +199,7 @@ const Hook = () => {
     textArea,
     matchesPos,
     loading,
+    formMessage,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -196,6 +208,7 @@ const Hook = () => {
     handleTransposeUp,
     setEditMode,
     handleCombineKey,
+    setFormMessage
   };
 };
 
