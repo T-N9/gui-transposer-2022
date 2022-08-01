@@ -3,8 +3,8 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      // 'primary': ['Inter', 'sans-serif'],
-      'primary': ['Fira Mono', 'monospace']
+      'primary': ['Fira Mono', 'monospace'],
+      'secondary': ['Rubik', 'sans-serif']
     },
     extend: {
       colors: {

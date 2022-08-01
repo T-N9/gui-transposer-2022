@@ -11,7 +11,7 @@ const InputLyric = ({
 }) => {
   return (
     <>
-      <form className="container mx-auto" onSubmit={handleSubmit}>
+      <form className="container mx-auto p-0 md:p-5 md:px-48" onSubmit={handleSubmit}>
         <div className="relative">
           <textarea
             className="lyric-input w-full bg-blue-50 bg-opacity-50 p-2 md:p-5 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
