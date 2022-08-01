@@ -72,7 +72,7 @@ const Main = () => {
   };
 
   return (
-    <main className="container mx-auto">
+    <main className="container min-h-screen pb-20 lg:pb-10 px-3 pt-5">
       {(lyricBoard.length === 0 || editMode) && (
         <InputLyric
           inputLyric={inputLyric}

@@ -16,7 +16,7 @@ const LyricBoard = ({
 }) => {
   return (
     <div ref={printRef}>
-      <section className="py-7">
+      <section className="py-7 md:px-6 lg:px-10">
         {showLyricBoard && (
           <div className="flex flex-col container mx-auto justify-start gap-x-7 items-start font-secondary">
             <span>Chords :</span>
@@ -60,7 +60,7 @@ const LyricBoard = ({
         </div>
       )}
       {showLyricBoard && (
-        <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 md:px-48 overflow-x-auto">
+        <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 md:px-30 lg:px-48 overflow-x-auto">
           <div className="px-4 pb-5 shadow">
             {lyricBoard.length > 0 &&
               lyricBoard.map((line, index) => {
