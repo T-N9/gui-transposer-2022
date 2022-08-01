@@ -4,6 +4,7 @@ import html2canvas from "html2canvas";
 
 /* Components */
 import { InputLyric, LyricBoard } from "../../components/common";
+import { Switch } from "@headlessui/react";
 
 /* Icons */
 import {
@@ -13,8 +14,10 @@ import {
   PlusIcon,
   MinusIcon,
   MixerHorizontalIcon,
-  Cross1Icon
+  Cross1Icon,
 } from "@radix-ui/react-icons";
+
+import { SharpSymbol, FlatSymbol } from "../../assets";
 
 /* Hook */
 import Hook from "./hook.main";
@@ -45,6 +48,7 @@ const Main = () => {
   const printRef = useRef();
   const [isPrinting, setIsPrinting] = useState(false);
   const [isSetting, setIsSetting] = useState(true);
+  const [isFlat, setIsFlat] = useState(true);
 
   const showLyricBoard = !loading && lyricBoard.length > 0 && !editMode;
 
@@ -68,7 +72,7 @@ const Main = () => {
   };
 
   return (
-    <main className="mt-12 mb-24 mx-5 lg:mx-0">
+    <main className="container mx-auto">
       {(lyricBoard.length === 0 || editMode) && (
         <InputLyric
           inputLyric={inputLyric}
@@ -99,11 +103,33 @@ const Main = () => {
         <>
           {isSetting ? (
             <div className="bg-gray-100 fixed bottom-5 right-5 p-5 rounded shadow">
-              <button onClick={()=> setIsSetting(false)} className="absolute -top-3 right-0 bg-red-500 text-white text-lg p-1 rounded-full">
-                <Cross1Icon/>
+              <button
+                onClick={() => setIsSetting(false)}
+                className="absolute -top-3 right-0 bg-red-500 text-white text-lg p-1 rounded-full"
+              >
+                <Cross1Icon />
               </button>
               <div className="flex flex-col gap-y-3">
-                <div className="flex justify-between">
+                <div className="flex justify-center items-center">
+                  <span className="w-10 h-10 flex justify-center items-center"><img className="" src={FlatSymbol} alt="flat symbol" /></span>
+                  <Switch
+                    checked={isFlat}
+                    onChange={setIsFlat}
+                    className={`${
+                      !isFlat ? "bg-success" : "bg-info"
+                    } relative inline-flex h-6 w-11 items-center rounded-full`}
+                  >
+                    <span className="sr-only">Enable notifications</span>
+                    <span
+                      className={`${
+                        !isFlat ? "translate-x-6" : "translate-x-1"
+                      } inline-block h-4 w-4 transform transition-all rounded-full bg-white`}
+                    />
+                  </Switch>
+                  <span className="w-10 h-10 flex justify-center items-center"><img className="" src={SharpSymbol} alt="sharp symbol" /></span>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
                   <ReactToPrint
                     onBeforePrint={() => setIsPrinting(true)}
                     trigger={() => (
@@ -124,7 +150,7 @@ const Main = () => {
 
                   <button
                     onClick={() => setEditMode(true)}
-                    className="bg-blue-500 font-secondary flex text-white gap-x-2 py-2 px-2 rounded shadow text-sm"
+                    className="bg-blue-500 font-secondary flex justify-center text-white gap-x-2 py-2 px-2 rounded shadow text-sm"
                   >
                     Edit <Pencil1Icon />
                   </button>
@@ -164,7 +190,10 @@ const Main = () => {
               </div>
             </div>
           ) : (
-            <button className="bg-white border-2 border-blue-500 shadow-md text-blue-500 text-xl fixed bottom-5 right-5 p-3 rounded shadow" onClick={() => setIsSetting(true)}>
+            <button
+              className="bg-white border-2 border-blue-500 shadow-md text-blue-500 text-xl fixed bottom-5 right-5 p-3 rounded "
+              onClick={() => setIsSetting(true)}
+            >
               <MixerHorizontalIcon className="w-5 h-5" />
             </button>
           )}

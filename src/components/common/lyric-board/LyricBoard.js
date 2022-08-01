@@ -16,7 +16,7 @@ const LyricBoard = ({
 }) => {
   return (
     <div ref={printRef}>
-      <section className="">
+      <section className="py-7">
         {showLyricBoard && (
           <div className="flex flex-col container mx-auto justify-start gap-x-7 items-start font-secondary">
             <span>Chords :</span>
@@ -29,10 +29,10 @@ const LyricBoard = ({
                   transposedChords.map((chord, index) => {
                     return (
                       <div  key={chord}>
-                        <p className="text-red-400 min-w-[30px]">
+                        <p className="text-info min-w-[30px]">
                           {detectedChords[index]}
                         </p>
-                        <p className="text-blue-500 min-w-[30px]">
+                        <p className="text-danger min-w-[30px]">
                           {chord}
                         </p>
                       </div>
@@ -61,19 +61,21 @@ const LyricBoard = ({
       )}
       {showLyricBoard && (
         <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 md:px-48 overflow-x-auto">
-          {lyricBoard.length > 0 &&
-            lyricBoard.map((line, index) => {
-              return (
-                <LyricLine
-                  key={index}
-                  line={line}
-                  lyricBoard={lyricBoard}
-                  transposeLvl={transposeLvl}
-                  detectedChords={detectedChords}
-                  transposedChords={transposedChords}
-                />
-              );
-            })}
+          <div className="px-4 pb-5 shadow">
+            {lyricBoard.length > 0 &&
+              lyricBoard.map((line, index) => {
+                return (
+                  <LyricLine
+                    key={index}
+                    line={line}
+                    lyricBoard={lyricBoard}
+                    transposeLvl={transposeLvl}
+                    detectedChords={detectedChords}
+                    transposedChords={transposedChords}
+                  />
+                );
+              })}
+          </div>
         </pre>
       )}
     </div>

@@ -8,7 +8,8 @@ import {
   ChordRegexOp,
   chords_Arr_i,
   chords_Arr_ii,
-  chords_Arr_iii
+  chords_Arr_iii,
+  chords_Arr_i_sh
 } from "../../constants/constants";
 
 const Hook = () => {
@@ -156,6 +157,7 @@ const Hook = () => {
           );
           transposedChordArr.push(chords_Arr_iii[indexDown]);
         }
+
         return true;
       });
     } else {
