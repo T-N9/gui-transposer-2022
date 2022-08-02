@@ -10,17 +10,19 @@ const LyricLine = ({
   transposeLvl,
   detectedChords,
   transposedChords,
+  isFlat
 }) => {
   const { locateChord, matchesPos, locatePart, matchParts } = Hook(
     line,
     lyricBoard,
     transposeLvl,
     detectedChords,
-    transposedChords
+    transposedChords,
+    isFlat
   );
 
-  matchParts.length > 0 && console.log({ locatePart, matchParts });
-  console.log({locateChord})
+  // matchParts.length > 0 && console.log({ locatePart, matchParts });
+  // console.log({locateChord})
 
   return (
     <>

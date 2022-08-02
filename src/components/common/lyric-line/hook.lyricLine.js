@@ -4,12 +4,16 @@ import { last } from "lodash";
 /* Constants */
 import { ChordRegexOp } from "../../../constants/constants";
 
+/* Util */
+import { changeChordType, sharpToFlat, spacedSharpToFlat } from "../../../util/changeChordType";
+
 const Hook = (
   line,
   lyricBoard,
   transposeLvl,
   detectedChords,
-  transposedChords
+  transposedChords,
+  isFlat
 ) => {
   const spacedLine = line + " ";
   const [matchesPos, setMatchesPos] = useState([]);
@@ -52,57 +56,63 @@ const Hook = (
     if (matchesPos.length > 0) {
       let mergingLine = [];
       let mappedChords = matchesPos.map((item, index) => {
+        let spacedSharpChord = spacedSharpToFlat(item.matchChord);
+        let changedChordType = changeChordType(item.matchChord.trim(), isFlat);
         if (transposeLvl === 0) {
           if (index === 0) {
             mergingLine.push(
               spacedLine.replace(
                 item.matchChord,
-                `<span class="highlight-chord">${item.matchChord.trim()}</span>`
+                `<span class="highlight-chord">${changedChordType}</span>`
               )
             );
             return spacedLine.replace(
               item.matchChord,
-              `<span class="highlight-chord">${item.matchChord.trim()}</span>`
+              `<span class="highlight-chord">${changedChordType}</span>`
             );
           } else {
             mergingLine.push(
               mergingLine[index - 1].replace(
                 item.matchChord,
-                `<span class="highlight-chord">${item.matchChord.trim()}</span>`
+                `<span class="highlight-chord">${changedChordType}</span>`
               )
             );
             return mergingLine[index - 1].replace(
               item.matchChord,
-              `<span class="highlight-chord">${item.matchChord.trim()}</span>`
+              `<span class="highlight-chord">${changedChordType}</span>`
             );
           }
         } else {
           let chordInLine = item.matchChord.trim();
+          let sharpedChord = sharpToFlat(chordInLine)
           let transposedChordInLine =
-            transposedChords[detectedChords.indexOf(chordInLine)] !==
+            transposedChords[detectedChords.indexOf(sharpedChord)] !==
               undefined &&
-            transposedChords[detectedChords.indexOf(chordInLine)];
+            transposedChords[detectedChords.indexOf(sharpedChord)];
+
+          let changedChordType = changeChordType(transposedChordInLine , isFlat);
+          
           if (index === 0) {
             mergingLine.push(
               spacedLine.replace(
                 item.matchChord,
-                `<span class="highlight-chord">${transposedChordInLine}</span>`
+                `<span class="highlight-chord">${changedChordType}</span>`
               )
             );
             return spacedLine.replace(
               item.matchChord,
-              `<span class="highlight-chord">${transposedChordInLine}</span>`
+              `<span class="highlight-chord">${changedChordType}</span>`
             );
           } else {
             mergingLine.push(
               mergingLine[index - 1].replace(
                 item.matchChord,
-                `<span class="highlight-chord">${transposedChordInLine}</span>`
+                `<span class="highlight-chord">${changedChordType}</span>`
               )
             );
             return mergingLine[index - 1].replace(
               item.matchChord,
-              `<span class="highlight-chord">${transposedChordInLine}</span>`
+              `<span class="highlight-chord">${changedChordType}</span>`
             );
           }
         }
@@ -113,13 +123,13 @@ const Hook = (
 
     if (matchParts.length > 0) {
       let mappedPart = matchParts.map((item) => {
-        return `<span class="highlight-part">${item.matchChord.trim()}</span>`;
+        return `<span class="highlight-part cursor-pointer">${item.matchChord.trim()}</span>`;
       });
 
       setLocatePart(mappedPart[0]);
     }
-  }, [matchesPos, matchParts, transposeLvl, transposedChords, detectedChords, spacedLine]);
-  // matchParts.length > 0 && console.log({ matchParts, locatePart });
+  }, [matchesPos, matchParts, transposeLvl, transposedChords, detectedChords, spacedLine, isFlat]);
+
   return {
     locateChord,
     matchesPos,

@@ -34,6 +34,11 @@ const Main = () => {
     matchesPos,
     loading,
     formMessage,
+    printRef,
+    isFlat,
+    isPrinting,
+    isSetting,
+    showLyricBoard,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -43,14 +48,10 @@ const Main = () => {
     setEditMode,
     handleCombineKey,
     setFormMessage,
+    setIsFlat,
+    setIsPrinting,
+    setIsSetting
   } = Hook();
-
-  const printRef = useRef();
-  const [isPrinting, setIsPrinting] = useState(false);
-  const [isSetting, setIsSetting] = useState(true);
-  const [isFlat, setIsFlat] = useState(true);
-
-  const showLyricBoard = !loading && lyricBoard.length > 0 && !editMode;
 
   const handleDownloadImage = async () => {
     const element = printRef.current;
@@ -72,7 +73,7 @@ const Main = () => {
   };
 
   return (
-    <main className="container min-h-screen pb-20 lg:pb-10 px-3 pt-5">
+    <main className="container min-h-screen mx-auto pb-20 lg:pb-10 px-3 pt-5">
       {(lyricBoard.length === 0 || editMode) && (
         <InputLyric
           inputLyric={inputLyric}
@@ -94,6 +95,7 @@ const Main = () => {
           lyricBoard={lyricBoard}
           loading={loading}
           transposeLvl={transposeLvl}
+          isFlat = {isFlat}
           /* actions */
           showLyricBoard={showLyricBoard}
         />

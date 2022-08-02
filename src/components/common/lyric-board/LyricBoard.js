@@ -4,6 +4,9 @@ import Loading from "react-loading-components";
 /* Components */
 import LyricLine from "../lyric-line/LyricLine";
 
+/* Util */
+import { changeChordType } from "../../../util/changeChordType";
+
 const LyricBoard = ({
   printRef,
   detectedChords,
@@ -11,6 +14,7 @@ const LyricBoard = ({
   lyricBoard,
   loading,
   transposeLvl,
+  isFlat,
   /* actions */
   showLyricBoard,
 }) => {
@@ -30,10 +34,10 @@ const LyricBoard = ({
                     return (
                       <div  key={chord}>
                         <p className="text-info min-w-[30px]">
-                          {detectedChords[index]}
+                          {changeChordType(detectedChords[index], isFlat)}
                         </p>
                         <p className="text-danger min-w-[30px]">
-                          {chord}
+                          {changeChordType(chord, isFlat)}
                         </p>
                       </div>
                     );
@@ -44,7 +48,7 @@ const LyricBoard = ({
                 {detectedChords.map((chord) => {
                   return (
                     <p className="text-blue-500 min-w-[30px]" key={chord}>
-                      {chord}
+                      {changeChordType(chord, isFlat)}
                     </p>
                   );
                 })}
@@ -72,6 +76,7 @@ const LyricBoard = ({
                     transposeLvl={transposeLvl}
                     detectedChords={detectedChords}
                     transposedChords={transposedChords}
+                    isFlat = {isFlat}
                   />
                 );
               })}
