@@ -22,7 +22,7 @@ import {
 } from "../../constants/constants";
 
 /* Util */
-import { changeChordType, sharpToFlat } from "../../util/changeChordType";
+import { changeChordType, changeSharpToFlat } from "../../util/changeChordType";
 
 const Hook = () => {
   const [inputLyric, setInputLyric] = useState("");
@@ -60,7 +60,7 @@ const Hook = () => {
 
           // detectedChordsArr.push(changeChordType(trimmedMatch, isFlat));
 
-          let sharpedChord = sharpToFlat(trimmedMatch);
+          let sharpedChord = changeSharpToFlat(trimmedMatch);
           detectedChordsArr.push(sharpedChord);
           // detectedChordsArr.push(match.trim());
 

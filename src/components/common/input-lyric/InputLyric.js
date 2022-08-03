@@ -29,7 +29,7 @@ const InputLyric = ({
             placeholder="Type chords and lyric"
           ></textarea>
           <span className="absolute -top-4 left-2 text-xs text-gray-400">
-            Ctrl + SPACE = Tab
+            Ctrl + SPACE = Tab, at least a space between chords
           </span>
 
           {formMessage !== "" && (

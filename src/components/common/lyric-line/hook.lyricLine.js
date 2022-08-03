@@ -5,7 +5,7 @@ import { last } from "lodash";
 import { ChordRegexOp } from "../../../constants/constants";
 
 /* Util */
-import { changeChordType, sharpToFlat, spacedSharpToFlat } from "../../../util/changeChordType";
+import { changeChordType, changeSharpToFlat } from "../../../util/changeChordType";
 
 const Hook = (
   line,
@@ -56,7 +56,7 @@ const Hook = (
     if (matchesPos.length > 0) {
       let mergingLine = [];
       let mappedChords = matchesPos.map((item, index) => {
-        let spacedSharpChord = spacedSharpToFlat(item.matchChord);
+        let spacedSharpChord = changeSharpToFlat(item.matchChord);
         let changedChordType = changeChordType(item.matchChord.trim(), isFlat);
         if (transposeLvl === 0) {
           if (index === 0) {
@@ -84,7 +84,7 @@ const Hook = (
           }
         } else {
           let chordInLine = item.matchChord.trim();
-          let sharpedChord = sharpToFlat(chordInLine)
+          let sharpedChord = changeSharpToFlat(chordInLine)
           let transposedChordInLine =
             transposedChords[detectedChords.indexOf(sharpedChord)] !==
               undefined &&

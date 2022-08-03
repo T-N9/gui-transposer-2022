@@ -1,83 +1,79 @@
-const sharpRegex = /[A-G]#/g;
-const flatRegex = /[ABDEG]b/g;
-
-export const changeChordType = (chord, chooseFlat) => {
-  let isSharp = sharpRegex.test(chord);
-  let isFlat = flatRegex.test(chord);
-
-  if (chooseFlat) {
-    switch (chord) {
-      case "C#":
-        return "Db";
-      case "D#":
-        return "Eb";
-      case "F#":
-        return "Gb";
-      case "G#":
-        return "Ab";
-      case "A#":
-        return "Bb";
+export const changeSharpToFlat = (chord) => {
+  if(chord.slice(chord.length-1, chord.length === " ")){
+    switch (chord.slice(0, 1)) {
+      case "A":
+        return `Bb${chord.slice(2, chord.length)} `;
+      case "C":
+        return `Db${chord.slice(2, chord.length)} `;
+      case "D":
+        return `Eb${chord.slice(2, chord.length)} `;
+      case "F":
+        return `Gb${chord.slice(2, chord.length)} `;
+      case "G":
+        return `Ab${chord.slice(2, chord.length)} `;
+      default:
+        return chord;
+    }
+  }else if (chord.slice(1, 2) === "#") {
+    switch (chord.slice(0, 1)) {
+      case "A":
+        return `Bb${chord.slice(2, chord.length)}`;
+      case "C":
+        return `Db${chord.slice(2, chord.length)}`;
+      case "D":
+        return `Eb${chord.slice(2, chord.length)}`;
+      case "F":
+        return `Gb${chord.slice(2, chord.length)}`;
+      case "G":
+        return `Ab${chord.slice(2, chord.length)}`;
+      default:
+        return chord;
+    }
+  } else if(chord.slice(2, 3) === "#") {
+    switch (chord.slice(1, 2)) {
+      case "A":
+        return ` Bb${chord.slice(3, chord.length)}`;
+      case "C":
+        return ` Db${chord.slice(3, chord.length)}`;
+      case "D":
+        return ` Eb${chord.slice(3, chord.length)}`;
+      case "F":
+        return ` Gb${chord.slice(3, chord.length)}`;
+      case "G":
+        return ` Ab${chord.slice(3, chord.length)}`;
       default:
         return chord;
     }
   } else {
-    switch (chord) {
-      case "Db":
-        return "C#";
-      case "Eb":
-        return "D#";
-      case "Gb":
-        return "F#";
-      case "Ab":
-        return "G#";
-      case "Bb":
-        return "A#";
+    return chord;
+  }
+}
+
+export const changeFlatToSharp = (chord) => {
+  if (chord.slice(1, 2) === "b") {
+    switch (chord.slice(0, 1)) {
+      case "B":
+        return `A#${chord.slice(2, chord.length)}`;
+      case "D":
+        return `C#${chord.slice(2, chord.length)}`;
+      case "E":
+        return `D#${chord.slice(2, chord.length)}`;
+      case "G":
+        return `F#${chord.slice(2, chord.length)}`;
+      case "A":
+        return `G#${chord.slice(2, chord.length)}`;
       default:
         return chord;
     }
+  }else {
+    return chord;
   }
-};
+}
 
-export const sharpToFlat = (chord) => {
-  switch (chord) {
-    case "C#":
-      return "Db";
-    case "D#":
-      return "Eb";
-    case "F#":
-      return "Gb";
-    case "G#":
-      return "Ab";
-    case "A#":
-      return "Bb";
-    default:
-      return chord;
-  }
-};
-
-export const spacedSharpToFlat = (spacedChord) => {
-  switch (spacedChord) {
-    case " C#":
-      return " Db";
-    case " D#":
-      return " Eb";
-    case " F#":
-      return " Gb";
-    case " G#":
-      return " Ab";
-    case " A#":
-      return " Bb";
-    case "C# ":
-      return " Db ";
-    case "D# ":
-      return " Eb ";
-    case "F# ":
-      return " Gb ";
-    case "G# ":
-      return " Ab ";
-    case "A# ":
-      return " Bb ";
-    default:
-      return spacedChord;
+export const changeChordType = (chord, chooseFlat) => {
+  if(chooseFlat){
+    return changeSharpToFlat(chord);
+  } else {
+    return changeFlatToSharp(chord);
   }
 };

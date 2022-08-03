@@ -18,6 +18,7 @@ const LyricBoard = ({
   /* actions */
   showLyricBoard,
 }) => {
+
   return (
     <div ref={printRef}>
       <section className="py-7 md:px-6 lg:px-10">
