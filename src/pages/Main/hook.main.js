@@ -16,13 +16,18 @@ import {
   chords_Arr_i,
   chords_Arr_ii,
   chords_Arr_iii,
+  chords_Arr_iv,
   chords_Arr_i_sh,
   chords_Arr_ii_sh,
   chords_Arr_iii_sh,
+  chords_Arr_iv_sh
 } from "../../constants/constants";
 
 /* Util */
 import { changeChordType, changeSharpToFlat } from "../../util/changeChordType";
+
+/* Actions */
+import { sendSongInputLyric } from "../../store/currentSongInfoSlice";
 
 const Hook = () => {
   const [inputLyric, setInputLyric] = useState("");
@@ -46,6 +51,10 @@ const Hook = () => {
   const showLyricBoard = !loading && lyricBoard.length > 0 && !editMode;
 
   useEffect(() => {
+    isFlat ? dispatch(sendFlatType()) : dispatch(sendSharpType());
+  }, [isFlat])
+
+  useEffect(() => {
     let matches;
     let detectedChordsArr = [];
     let matchesPosArr = []; /* Temp array to store match positions */
@@ -55,7 +64,7 @@ const Hook = () => {
       }
 
       matches.forEach((match, groupIndex) => {
-        if (match.length < 5) {
+        if (match.length < 8) {
           let trimmedMatch = match.trim();
 
           // detectedChordsArr.push(changeChordType(trimmedMatch, isFlat));
@@ -78,7 +87,7 @@ const Hook = () => {
     dispatch(sendDetectedChords(uniq(detectedChordsArr)));
   }, [lyricBoard, isFlat]);
 
-  console.log({ detectedChords });
+  // console.log({ detectedChords });
 
   const textArea = useRef();
   const [selection, setSelection] = useState();
@@ -123,6 +132,8 @@ const Hook = () => {
       });
 
       setLyricBoard(linedSpacedLyric);
+      dispatch(sendSongInputLyric(linedSpacedLyric))
+
       setEditMode(false);
 
       setTimeout(() => {
@@ -191,6 +202,14 @@ const Hook = () => {
             transposedChordArr.push(chords_Arr_iii[indexDown]);
           }
 
+          if (chords_Arr_iv.indexOf(chord) !== -1) {
+            let indexDown = handleDownStrictLvl(
+              chords_Arr_iv.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_iv[indexDown]);
+          }
+
           return true;
         });
       } else {
@@ -223,6 +242,14 @@ const Hook = () => {
               transposeLvl
             );
             transposedChordArr.push(chords_Arr_iii[indexUp]);
+          }
+
+          if (chords_Arr_iv.indexOf(chord) !== -1) {
+            let indexUp = handleUpStrictLvl(
+              chords_Arr_iv.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_iv[indexUp]);
           }
           return true;
         });
@@ -263,6 +290,14 @@ const Hook = () => {
             transposedChordArr.push(chords_Arr_iii_sh[indexDown]);
           }
 
+          if (chords_Arr_iv_sh.indexOf(chord) !== -1) {
+            let indexDown = handleDownStrictLvl(
+              chords_Arr_iv_sh.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_iv_sh[indexDown]);
+          }
+
           return true;
         });
       } else {
@@ -296,12 +331,21 @@ const Hook = () => {
             );
             transposedChordArr.push(chords_Arr_iii[indexUp]);
           }
+
+          if (chords_Arr_iv.indexOf(chord) !== -1) {
+            let indexUp = handleUpStrictLvl(
+              chords_Arr_iv.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_iv[indexUp]);
+          }
           return true;
         });
       }
     }
 
     setTransposedChords(transposedChordArr);
+    dispatch(sendTransposedChords(transposedChordArr))
   }, [transposeLvl, detectedChords]);
 
   //#endregion

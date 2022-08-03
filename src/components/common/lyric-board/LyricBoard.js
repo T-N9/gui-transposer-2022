@@ -1,5 +1,6 @@
 import React from "react";
 import Loading from "react-loading-components";
+import { useSelector } from "react-redux";
 
 /* Components */
 import LyricLine from "../lyric-line/LyricLine";
@@ -18,10 +19,23 @@ const LyricBoard = ({
   /* actions */
   showLyricBoard,
 }) => {
+  const { songTitle, artistName } = useSelector(
+    (state) => state.currentSongInfo
+  );
 
   return (
     <div ref={printRef}>
       <section className="py-7 md:px-6 lg:px-10">
+        {showLyricBoard && (
+          <div className="mb-8 flex flex-col font-secondary border-solid border-dark border-l-4 pl-3">
+            <h1 className="text-2xl font-bold text-orange-400">{songTitle}</h1>
+
+            <p>
+              by <span className="text-dark font-bold">{artistName}</span>
+            </p>
+          </div>
+        )}
+
         {showLyricBoard && (
           <div className="flex flex-col container mx-auto justify-start gap-x-7 items-start font-secondary">
             <span>Chords :</span>
@@ -33,7 +47,7 @@ const LyricBoard = ({
                 {transposedChords.length > 0 &&
                   transposedChords.map((chord, index) => {
                     return (
-                      <div  key={chord}>
+                      <div key={chord}>
                         <p className="text-info min-w-[30px]">
                           {changeChordType(detectedChords[index], isFlat)}
                         </p>
@@ -66,7 +80,7 @@ const LyricBoard = ({
       )}
       {showLyricBoard && (
         <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 md:px-30 lg:px-48 overflow-x-auto">
-          <div className="px-4 pb-5 shadow">
+          <div className="px-4 pb-5 shadow lyric-bg">
             {lyricBoard.length > 0 &&
               lyricBoard.map((line, index) => {
                 return (
@@ -77,7 +91,7 @@ const LyricBoard = ({
                     transposeLvl={transposeLvl}
                     detectedChords={detectedChords}
                     transposedChords={transposedChords}
-                    isFlat = {isFlat}
+                    isFlat={isFlat}
                   />
                 );
               })}

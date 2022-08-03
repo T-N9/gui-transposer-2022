@@ -1,4 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+/* Hook */
+import Hook from "./hook.inputLyric";
 
 const InputLyric = ({
     inputLyric,
@@ -9,12 +13,37 @@ const InputLyric = ({
     handleSubmit,
     handleCombineKey,
 }) => {
+
+  const {
+    register,
+    errors,
+    /* action */
+    megaFormSubmit,
+  } = Hook(handleSubmit)
+
+  const { songTitle, artistName } = useSelector((state) => state.currentSongInfo);
+
   return (
     <>
-      <form className="container mt-5 mx-auto p-0 md:p-5 md:px-30 lg:px-48" onSubmit={handleSubmit}>
+      <form onSubmit={megaFormSubmit} className="container mt-5 mx-auto p-0 md:p-5 md:px-30 lg:px-48" >
+
+        <div className="mb-12 flex gap-3 items-center flex-wrap">
+          <div className="flex flex-col relative">
+            <label className="text-sm" htmlFor="song-title">Song title:</label>
+            <input className="primary-input" defaultValue={songTitle && songTitle} type="text" id="song-title" name="song-title" {...register("songTitle", { required: true })} />
+            {errors.songTitle && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
+          </div>
+
+          <div className="flex flex-col relative">
+            <label className="text-sm" htmlFor="artist-name">Artist name:</label>
+            <input className="primary-input" defaultValue={artistName && artistName} type="text" id="artist-name" name="artist-name" {...register("artistName", { required: true })} />
+            {errors.artistName && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
+          </div>
+        </div>
+
         <div className="relative">
           <textarea
-            className="lyric-input w-full bg-blue-50 bg-opacity-50 p-2 md:p-5 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+            className="lyric-input w-full bg-blue-50 bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
             tabIndex={-1}
             value={inputLyric}
             onChange={(e) => {

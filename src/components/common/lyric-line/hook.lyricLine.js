@@ -32,7 +32,7 @@ const Hook = (
         }
 
         matches.forEach((match, groupIndex) => {
-          if (match.length < 5) {
+          if (match.length < 8) {
             matchesPosArr.push({
               matchChord: match,
               startPos: matches.index,
@@ -58,6 +58,7 @@ const Hook = (
       let mappedChords = matchesPos.map((item, index) => {
         let spacedSharpChord = changeSharpToFlat(item.matchChord);
         let changedChordType = changeChordType(item.matchChord.trim(), isFlat);
+
         if (transposeLvl === 0) {
           if (index === 0) {
             mergingLine.push(
