@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { uniq } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+
+/* Actions */
 import {
   setStartLoading,
   setStopLoading,
@@ -9,6 +12,20 @@ import {
   sendFlatType,
   sendSharpType,
 } from "../../store/mainGenSlice";
+
+import {
+  sendSongTitle,
+  sendArtistName,
+  sendSongDetectedChords,
+  sendSongTransposedChords,
+  sendCapoFret,
+  sendSongKey,
+  sendSongTuning,
+  sendSongInputLyric,
+} from "../../store/currentSongInfoSlice";
+
+/* Data */
+import { boardList as boardListData } from "../../data/boardList";
 
 /* Constants */
 import {
@@ -20,14 +37,12 @@ import {
   chords_Arr_i_sh,
   chords_Arr_ii_sh,
   chords_Arr_iii_sh,
-  chords_Arr_iv_sh
+  chords_Arr_iv_sh,
 } from "../../constants/constants";
 
 /* Util */
 import { changeChordType, changeSharpToFlat } from "../../util/changeChordType";
-
-/* Actions */
-import { sendSongInputLyric } from "../../store/currentSongInfoSlice";
+import { manageBoardData } from "../../util/manageBoardData";
 
 const Hook = () => {
   const [inputLyric, setInputLyric] = useState("");
@@ -39,20 +54,34 @@ const Hook = () => {
   const [editMode, setEditMode] = useState(true);
 
   const [formMessage, setFormMessage] = useState("");
+  const [ currentBoard , setCurrentBoard ] = useState(null);
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.mainGen);
+  const { boardList } = useSelector((state) => state.boardList);
 
   const printRef = useRef();
   const [isPrinting, setIsPrinting] = useState(false);
   const [isSetting, setIsSetting] = useState(true);
   const [isFlat, setIsFlat] = useState(true);
 
+  const { boardId } = useParams();
+  // console.log({ boardId });
+
+  useEffect(() => {
+    let currentBoard = boardListData.filter((item) => {
+      return item.id === parseInt(boardId) 
+    });
+
+    currentBoard.length > 0 && setCurrentBoard(currentBoard[0]);
+
+  }, [boardId, dispatch])
+
   const showLyricBoard = !loading && lyricBoard.length > 0 && !editMode;
 
   useEffect(() => {
     isFlat ? dispatch(sendFlatType()) : dispatch(sendSharpType());
-  }, [isFlat])
+  }, [isFlat]);
 
   useEffect(() => {
     let matches;
@@ -64,7 +93,7 @@ const Hook = () => {
       }
 
       matches.forEach((match, groupIndex) => {
-        if (match.length < 8) {
+        if (match.length < 6) {
           let trimmedMatch = match.trim();
 
           // detectedChordsArr.push(changeChordType(trimmedMatch, isFlat));
@@ -132,7 +161,8 @@ const Hook = () => {
       });
 
       setLyricBoard(linedSpacedLyric);
-      dispatch(sendSongInputLyric(linedSpacedLyric))
+      dispatch(sendSongInputLyric(linedSpacedLyric));
+      console.log({ linedSpacedLyric });
 
       setEditMode(false);
 
@@ -345,7 +375,7 @@ const Hook = () => {
     }
 
     setTransposedChords(transposedChordArr);
-    dispatch(sendTransposedChords(transposedChordArr))
+    dispatch(sendTransposedChords(transposedChordArr));
   }, [transposeLvl, detectedChords]);
 
   //#endregion
@@ -374,6 +404,7 @@ const Hook = () => {
     isPrinting,
     isSetting,
     showLyricBoard,
+    currentBoard,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -386,6 +417,7 @@ const Hook = () => {
     setIsFlat,
     setIsPrinting,
     setIsSetting,
+    setCurrentBoard
   };
 };
 

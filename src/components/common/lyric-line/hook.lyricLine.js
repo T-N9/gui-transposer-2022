@@ -32,7 +32,7 @@ const Hook = (
         }
 
         matches.forEach((match, groupIndex) => {
-          if (match.length < 8) {
+          if (match.length < 6) {
             matchesPosArr.push({
               matchChord: match,
               startPos: matches.index,

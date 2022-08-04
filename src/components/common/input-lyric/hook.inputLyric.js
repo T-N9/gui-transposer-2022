@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 /* actions */
-import { sendSongTile , sendArtistName } from '../../../store/currentSongInfoSlice'
+import { sendSongTitle , sendArtistName } from '../../../store/currentSongInfoSlice'
 
-const Hook = (formSubmit) => {
+const Hook = (formSubmit, currentBoard) => {
 
   const dispatch = useDispatch();
 
@@ -13,23 +13,35 @@ const Hook = (formSubmit) => {
     register,
     handleSubmit,
     watch,
+    trigger,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  // useEffect(() => {
+  //   trigger("songTitle")
+  //   trigger("artistName")
+  // }, []);
 
   const onSubmit = (data, e) => {
     formSubmit(e);
     console.log({data})
 
-    dispatch(sendSongTile(data.songTitle));
+    dispatch(sendSongTitle(data.songTitle));
     dispatch(sendArtistName(data.artistName));
   };
 
   const megaFormSubmit = handleSubmit(onSubmit);
 
+  const currentInputtedLyric = currentBoard?.inputLyric?.join('\n');
+
   return {
     register,
     errors,
-
+    watch,
+    trigger,
+    setValue,
+    currentInputtedLyric,
     /* action */
     megaFormSubmit,
   };

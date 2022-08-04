@@ -13,7 +13,7 @@ export const currentSongInfoSlice = createSlice({
         inputLyric : []
     },
     reducers : {
-        sendSongTile : (state, action) => {
+        sendSongTitle : (state, action) => {
             state.songTitle = action.payload
         },
         sendArtistName : (state, action) => {
@@ -40,5 +40,5 @@ export const currentSongInfoSlice = createSlice({
     }
 })
 
-export const { sendSongTile, sendArtistName, sendSongDetectedChords, sendSongTransposedChords, sendCapoFret, sendSongKey, sendSongTuning, sendSongInputLyric } = currentSongInfoSlice.actions;
+export const { sendSongTitle, sendArtistName, sendSongDetectedChords, sendSongTransposedChords, sendCapoFret, sendSongKey, sendSongTuning, sendSongInputLyric } = currentSongInfoSlice.actions;
 export default currentSongInfoSlice.reducer;

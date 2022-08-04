@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { useSelector } from "react-redux";
 
 /* Hook */
@@ -8,6 +8,7 @@ const InputLyric = ({
     inputLyric,
     textArea,
     formMessage,
+    currentBoard,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -17,11 +18,21 @@ const InputLyric = ({
   const {
     register,
     errors,
+    watch,
+    trigger,
+    setValue,
+    currentInputtedLyric,
     /* action */
     megaFormSubmit,
-  } = Hook(handleSubmit)
+  } = Hook(handleSubmit, currentBoard)
 
   const { songTitle, artistName } = useSelector((state) => state.currentSongInfo);
+
+  useEffect(() => {
+    setValue("songTitle" , currentBoard?.songTitle)
+    setValue("artistName" , currentBoard?.artistName)
+    setInputLyric(currentInputtedLyric);
+  }, [currentInputtedLyric]);
 
   return (
     <>
@@ -30,13 +41,13 @@ const InputLyric = ({
         <div className="mb-12 flex gap-3 items-center flex-wrap">
           <div className="flex flex-col relative">
             <label className="text-sm" htmlFor="song-title">Song title:</label>
-            <input className="primary-input" defaultValue={songTitle && songTitle} type="text" id="song-title" name="song-title" {...register("songTitle", { required: true })} />
+            <input className="primary-input" defaultValue={currentBoard?.songTitle} type="text" id="song-title" name="song-title" {...register("songTitle", { required: true })} />
             {errors.songTitle && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
           </div>
 
           <div className="flex flex-col relative">
             <label className="text-sm" htmlFor="artist-name">Artist name:</label>
-            <input className="primary-input" defaultValue={artistName && artistName} type="text" id="artist-name" name="artist-name" {...register("artistName", { required: true })} />
+            <input className="primary-input" defaultValue={currentBoard?.artistName} type="text" id="artist-name" name="artist-name" {...register("artistName", { required: true })} />
             {errors.artistName && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
           </div>
         </div>

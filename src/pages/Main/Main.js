@@ -39,6 +39,7 @@ const Main = () => {
     isPrinting,
     isSetting,
     showLyricBoard,
+    currentBoard,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -50,7 +51,8 @@ const Main = () => {
     setFormMessage,
     setIsFlat,
     setIsPrinting,
-    setIsSetting
+    setIsSetting,
+    setCurrentBoard
   } = Hook();
 
   const handleDownloadImage = async () => {
@@ -79,6 +81,7 @@ const Main = () => {
           inputLyric={inputLyric}
           textArea={textArea}
           formMessage={formMessage}
+          currentBoard={currentBoard}
           /* actions */
           setInputLyric={setInputLyric}
           handleSubmit={handleSubmit}
