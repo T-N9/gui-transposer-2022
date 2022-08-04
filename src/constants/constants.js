@@ -2,8 +2,9 @@
 //   /\s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[ABCDEFG]m|\s[ABCDEFG]m\s|[ABCDEFG]m\s|\s[ABCDEFG]\s|[A-G]\s|\s[A-G]7|\s[A-G]7\s|[A-G]7\s|\s[ACDFG]#7|\s[ACDFG]#7\s|[ACDFG]#7\s|\[Verse \d+\]|\[Chorus \d+\]|\[Chorus\]|\[Verse\]|\[Intro\]/gm;
 
 export const ChordRegexOp =
-  /\s[ABDEG]bm|[ABDEG]bm\s|\s[ACDFG]#m|[ACDFG]#m\s|\s[ACDFG]#7|[ACDFG]#7\s|\s[A-G]m|[A-G]m\s|\s[A-G]#|[A-G]#\s|\s[ABDEG]b|[ABDEG]b\s|\s[A-G]add9|[A-G]add9\s|\s[A-G]7|[A-G]7\s|[A-G]\s|\s[A-G]\s|\[Verse \d+\]|\[Chorus \d+\]|\[Chorus\]|\[Verse\]|\[Intro\]|\[Instrumental\]/gm;
+  /\s[ABDEG]bm|[ABDEG]bm\s|\s[ACDFG]#m|[ACDFG]#m\s|\s[ACDFG]#7|[ACDFG]#7\s|\s[A-G]m|[A-G]m\s|\s[A-G]#|[A-G]#\s|\s[ABDEG]b|[ABDEG]b\s|\s[A-G]add9|[A-G]add9\s|\s[A-G]7|[A-G]7\s|[A-G]\s|\s[A-G]\s|\[Verse \d+\]|\[Chorus \d+\]|\[Chorus\]|\[Verse\]|\[Intro\]|\[Solo\]|\[Instrumental\]/gm;
 
+  // ^[A-G]\s|\n[A-G]\s
 // in-progress
 // \s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[A-G]m|\s[A-G]m\s|[A-G]m\s|\s[A-G]\s|[A-G]\s|[A-G]#\s|\s[A-G]#\s|[AFC]#m\s
 

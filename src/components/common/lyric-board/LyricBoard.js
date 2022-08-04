@@ -43,7 +43,7 @@ const LyricBoard = ({
               <span className="text-yellow-300">No chords detected.</span>
             )}
             {transposedChords.length > 0 && transposeLvl !== 0 ? (
-              <div className=" flex text-base gap-x-5 font-medium">
+              <div className=" flex flex-wrap text-base gap-x-5 font-medium">
                 {transposedChords.length > 0 &&
                   transposedChords.map((chord, index) => {
                     return (
@@ -59,7 +59,7 @@ const LyricBoard = ({
                   })}
               </div>
             ) : (
-              <div className=" flex text-base gap-x-5 font-medium">
+              <div className=" flex flex-wrap text-base gap-x-5 font-medium">
                 {detectedChords.map((chord) => {
                   return (
                     <p className="text-blue-500 min-w-[30px]" key={chord}>
@@ -80,7 +80,7 @@ const LyricBoard = ({
       )}
       {showLyricBoard && (
         <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 md:px-30 lg:px-48 overflow-x-auto">
-          <div className="px-4 pb-5 shadow lyric-bg">
+          <div className="px-0 md:px-4 pb-5 shadow lyric-bg">
             {lyricBoard.length > 0 &&
               lyricBoard.map((line, index) => {
                 return (

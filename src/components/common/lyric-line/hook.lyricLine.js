@@ -131,11 +131,14 @@ const Hook = (
     }
   }, [matchesPos, matchParts, transposeLvl, transposedChords, detectedChords, spacedLine, isFlat]);
 
+  const isChordLine = matchesPos.length > 0 && line.replace(/\s+/g, '').length < 10;
+
   return {
     locateChord,
     matchesPos,
     locatePart,
     matchParts,
+    isChordLine
   };
 };
 
