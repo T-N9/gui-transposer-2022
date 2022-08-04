@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import Loading from "react-loading-components";
 import { useSelector } from "react-redux";
 
@@ -22,10 +22,6 @@ const LyricBoard = ({
   const { songTitle, artistName } = useSelector(
     (state) => state.currentSongInfo
   );
-
-  const preRef = useRef();
-
-  console.log(preRef.scrollHeight)
 
   return (
     <div ref={printRef}>
@@ -83,7 +79,7 @@ const LyricBoard = ({
         </div>
       )}
       {showLyricBoard && (
-        <pre ref={preRef} className="lyric-board container mx-auto font-primary p-0 md:p-5 md:px-30 lg:px-48 overflow-x-auto">
+        <pre className="lyric-board container mx-auto font-primary p-0 md:p-5 md:px-30 lg:px-48 overflow-x-auto">
           <div className="px-0 md:px-4 pb-5 shadow lyric-bg">
             {lyricBoard.length > 0 &&
               lyricBoard.map((line, index) => {

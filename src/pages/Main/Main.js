@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect, Fragment } from "react";
 import ReactToPrint from "react-to-print";
 import html2canvas from "html2canvas";
 import * as Scroll from "react-scroll";
@@ -14,7 +14,7 @@ import {
 
 /* Components */
 import { InputLyric, LyricBoard } from "../../components/common";
-import { Switch } from "@headlessui/react";
+import { Switch, Listbox, Transition } from "@headlessui/react";
 
 /* Icons */
 import {
@@ -25,8 +25,9 @@ import {
   MinusIcon,
   MixerHorizontalIcon,
   Cross1Icon,
-  DoubleArrowDownIcon
-
+  DoubleArrowDownIcon,
+  CheckCircledIcon,
+  CaretSortIcon
 } from "@radix-ui/react-icons";
 
 import { SharpSymbol, FlatSymbol } from "../../assets";
@@ -85,9 +86,25 @@ const Main = () => {
       window.open(data);
     }
   };
+  const speedOfScroll = [
+    { id: 1, name: "100", speed: 50000 },
+    { id: 2, name: "200", speed: 60000 },
+    { id: 3, name: "300", speed: 70000 },
+    { id: 4, name: "400", speed: 80000 },
+    { id: 5, name: "500", speed: 90000 },
+    { id: 6, name: "600", speed: 100000 },
+    { id: 7, name: "700", speed: 110000 },
+    { id: 8, name: "800", speed: 500000 },
+  ];
+  const [selectedSpeed, setSelectedSpeed] = useState(speedOfScroll[0]);
+  const [scrollSpeed, setScrollSpeed] = useState(selectedSpeed.speed);
 
   let ScrollLink = Scroll.Link;
   let scrollSpy = Scroll.scrollSpy;
+
+  useEffect(() => {
+    setScrollSpeed(selectedSpeed.speed);
+  }, [selectedSpeed]);
 
   return (
     <>
@@ -133,6 +150,79 @@ const Main = () => {
                   <Cross1Icon />
                 </button>
                 <div className="flex flex-col gap-y-3">
+                  <div className="flex justify-between">
+                    <ScrollLink
+                      // activeClass={styles.nav_active}
+                      to={"bottom_point"}
+                      spy={true}
+                      duration={scrollSpeed}
+                      smooth={"linear"}
+                    >
+                      <button
+                        onClick={() => setIsSetting(false)}
+                        className="cursor-pointer border rounded-md bg-white shadow flex gap-x-1 p-2 justify-center items-center text-sm font-secondary text-info"
+                      >
+                        <DoubleArrowDownIcon />
+                        <span>Auto Scroll</span>
+                      </button>
+                    </ScrollLink>
+
+                    <Listbox value={selectedSpeed} onChange={setSelectedSpeed}>
+                      <div className="relative">
+                        <Listbox.Button className="relative w-full rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md cursor-pointer focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                          <span className="block truncate">
+                            {selectedSpeed.name}
+                          </span>
+                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                            <CaretSortIcon/>
+                          </span>
+                        </Listbox.Button>
+                        <Transition
+                          as={Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Listbox.Options className="absolute z-50 bottom-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            {speedOfScroll.map((speed, index) => (
+                              <Listbox.Option
+                                key={index}
+                                className={({ active }) =>
+                                  `relative select-none py-2 px-2 cursor-pointer ${
+                                    active
+                                      ? "bg-amber-100 text-amber-900"
+                                      : "text-gray-900"
+                                  }`
+                                }
+                                value={speed}
+                              >
+                                {({ selected }) => (
+                                  <>
+                                    <span
+                                      className={`block truncate ${
+                                        selected ? "font-medium" : "font-normal"
+                                      }`}
+                                    >
+                                      {speed.name}
+                                    </span>
+                                    {selected ? (
+                                      <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
+                                        <CheckCircledIcon
+                                          className="h-5 w-5"
+                                          aria-hidden="true"
+                                        />
+                                      </span>
+                                    ) : null}
+                                  </>
+                                )}
+                              </Listbox.Option>
+                            ))}
+                          </Listbox.Options>
+                        </Transition>
+                      </div>
+                    </Listbox>
+                  </div>
+
                   <div className="flex justify-center items-center">
                     <span className="w-10 h-10 flex justify-center items-center">
                       <img className="" src={FlatSymbol} alt="flat symbol" />
@@ -214,19 +304,6 @@ const Main = () => {
                       <PlusIcon />
                     </button>
                   </div>
-
-                  <ScrollLink
-                    // activeClass={styles.nav_active}
-                    to={"bottom_point"}
-                    spy={true}
-                    duration={100000}
-                    smooth={"linear"}
-                  >
-                    <button onClick={() => setIsSetting(false)} className="cursor-pointer border flex gap-x-1 p-2 justify-center items-center text-sm font-secondary">
-                      <DoubleArrowDownIcon/>
-                      <span>Auto Scroll</span>
-                    </button>
-                  </ScrollLink>
                 </div>
               </div>
             ) : (
