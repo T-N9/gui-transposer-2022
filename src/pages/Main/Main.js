@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Element,
 } from "react-scroll";
@@ -31,6 +30,8 @@ const Main = () => {
     isSetting,
     showLyricBoard,
     currentBoard,
+    selected,
+    speedOfScroll,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -44,11 +45,13 @@ const Main = () => {
     setIsPrinting,
     setIsSetting,
     // setCurrentBoard,
+    setSelected
   } = Hook();
 
   return (
     <>
       <main className="container min-h-screen mx-auto pb-20 lg:pb-10 px-3 pt-5">
+        {/* Input Board Data form */}
         {(lyricBoard.length === 0 || editMode) && (
           <InputLyric
             inputLyric={inputLyric}
@@ -61,8 +64,6 @@ const Main = () => {
             handleCombineKey={handleCombineKey}
           />
         )}
-
-        {/* <h1 onClick={scrollToBottom}>To Bottom</h1> */}
 
         {/* Print area */}
         <section>
@@ -88,6 +89,8 @@ const Main = () => {
                   printRef = {printRef}
                   detectedChords = {detectedChords}
                   transposeLvl = {transposeLvl}
+                  selected = {selected}
+                  speedOfScroll = {speedOfScroll}
                   /* actions */
                   setIsFlat={setIsFlat}
                   setIsSetting={setIsSetting}
@@ -96,6 +99,7 @@ const Main = () => {
                   setTransposeLvl = {setTransposeLvl}
                   handleTransposeDown = {handleTransposeDown}
                   handleTransposeUp = {handleTransposeUp}
+                  setSelected = {setSelected}
                 />
               </>
             ) : (

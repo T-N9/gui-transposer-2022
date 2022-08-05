@@ -25,6 +25,8 @@ const Setting = ({
     printRef ,
     detectedChords ,
     transposeLvl ,
+    selected,
+    speedOfScroll,
     /* actions */
     setIsFlat,
     setIsSetting,
@@ -32,18 +34,16 @@ const Setting = ({
     setIsPrinting,
     setTransposeLvl ,
     handleTransposeDown ,
-    handleTransposeUp 
+    handleTransposeUp,
+    setSelected
 }) => {
   const {
-    selected,
-    speedOfScroll,
     scrollSpeed,
     ScrollLink,
     /* actions */
-    setSelected,
     setScrollSpeed,
     handleDownloadImage,
-  } = Hook(printRef);
+  } = Hook(printRef, speedOfScroll, selected, setSelected);
 
   return (
     <div className="bg-gray-100 fixed bottom-5 right-5 p-5 rounded shadow">

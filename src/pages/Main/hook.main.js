@@ -12,10 +12,7 @@ import {
   sendFlatType,
   sendSharpType,
 } from "../../store/mainGenSlice";
-
-import {
-  sendSongInputLyric,
-} from "../../store/currentSongInfoSlice";
+import { sendSongInputLyric } from "../../store/currentSongInfoSlice";
 
 /* Data */
 import { boardList as boardListData } from "../../data/boardList";
@@ -36,7 +33,20 @@ import {
 /* Util */
 import { changeSharpToFlat } from "../../util/changeChordType";
 
+const speedOfScroll = [
+  { id: 1, name: "100", speed: 50000 },
+  { id: 2, name: "200", speed: 100000 },
+  { id: 3, name: "300", speed: 150000 },
+  { id: 4, name: "400", speed: 200000 },
+  { id: 5, name: "500", speed: 250000 },
+  { id: 6, name: "600", speed: 300000 },
+  { id: 7, name: "700", speed: 350000 },
+  { id: 8, name: "800", speed: 400000 },
+];
+
 const Hook = () => {
+  //#region - Declarations
+  /* Primary States */
   const [inputLyric, setInputLyric] = useState("");
   const [lyricBoard, setLyricBoard] = useState([]);
   const [detectedChords, setDetectedChords] = useState([]);
@@ -44,31 +54,35 @@ const Hook = () => {
   const [transposeLvl, setTransposeLvl] = useState(0);
   const [matchesPos, setMatchesPos] = useState([]);
   const [editMode, setEditMode] = useState(true);
-
   const [formMessage, setFormMessage] = useState("");
-  const [ currentBoard , setCurrentBoard ] = useState(null);
-
-  const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.mainGen);
-
+  const [currentBoard, setCurrentBoard] = useState(null);
   const printRef = useRef();
   const [isPrinting, setIsPrinting] = useState(false);
   const [isSetting, setIsSetting] = useState(true);
   const [isFlat, setIsFlat] = useState(true);
+  const [selection, setSelection] = useState(); /* Key combination  */
+  const [selected, setSelected] = useState(speedOfScroll[0].name);
 
+  /* Redux */
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.mainGen);
   const { boardId } = useParams();
-  // console.log({ boardId });
-
-  useEffect(() => {
-    let currentBoard = boardListData.filter((item) => {
-      return item.id === parseInt(boardId) 
-    });
-
-    currentBoard.length > 0 && setCurrentBoard(currentBoard[0]);
-
-  }, [boardId, dispatch])
 
   const showLyricBoard = !loading && lyricBoard.length > 0 && !editMode;
+  const textArea = useRef();
+
+  //#endregion
+
+  /**
+   *  useEffect functions
+   */
+  //#region
+  useEffect(() => {
+    let currentBoard = boardListData.filter((item) => {
+      return item.id === parseInt(boardId);
+    });
+    currentBoard.length > 0 && setCurrentBoard(currentBoard[0]);
+  }, [boardId, dispatch]);
 
   useEffect(() => {
     isFlat ? dispatch(sendFlatType()) : dispatch(sendSharpType());
@@ -86,12 +100,8 @@ const Hook = () => {
       matches.forEach((match, groupIndex) => {
         if (match.length < 6) {
           let trimmedMatch = match.trim();
-
-          // detectedChordsArr.push(changeChordType(trimmedMatch, isFlat));
-
           let sharpedChord = changeSharpToFlat(trimmedMatch);
           detectedChordsArr.push(sharpedChord);
-          // detectedChordsArr.push(match.trim());
 
           matchesPosArr.push({
             matchChord: match,
@@ -105,12 +115,7 @@ const Hook = () => {
     setMatchesPos(matchesPosArr);
     setDetectedChords(uniq(detectedChordsArr));
     dispatch(sendDetectedChords(uniq(detectedChordsArr)));
-  }, [lyricBoard, isFlat ,dispatch]);
-
-  // console.log({ detectedChords });
-
-  const textArea = useRef();
-  const [selection, setSelection] = useState();
+  }, [lyricBoard, isFlat, dispatch]);
 
   useEffect(() => {
     /* Key combinations and cursor focus */
@@ -119,69 +124,6 @@ const Hook = () => {
     textArea.current.focus();
     textArea.current.setSelectionRange(start, end);
   }, [selection]);
-
-  const handleCombineKey = (e) => {
-    /* Ctrl + SPACE = Tab */
-    if (e.ctrlKey && e.which === 32) {
-      const start = textArea.current.selectionStart;
-      const end = textArea.current.selectionEnd;
-
-      let spacedIndex =
-        inputLyric.slice(0, e.target.selectionStart) +
-        "    " +
-        inputLyric.slice(e.target.selectionStart);
-      setSelection({
-        start: start + 4,
-        end: end + 4,
-      });
-      setInputLyric(spacedIndex);
-    }
-  };
-
-  // console.log({ matchesPos, detectedChords, transposedChords, lyricBoard });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (inputLyric.trim().length !== 0) {
-      setFormMessage("");
-      dispatch(setStartLoading());
-      const linedLyric = inputLyric.split(/\r?\n/);
-
-      const linedSpacedLyric = linedLyric.map((line) => {
-        return line + " ";
-      });
-
-      setLyricBoard(linedSpacedLyric);
-      dispatch(sendSongInputLyric(linedSpacedLyric));
-      console.log({ linedSpacedLyric });
-
-      setEditMode(false);
-
-      setTimeout(() => {
-        dispatch(setStopLoading());
-      }, 1000);
-    } else {
-      setFormMessage("*Please drop a fancy chord.");
-    }
-  };
-
-  //#region calculating up,down array index of transposed chords from chord arrays i,ii
-  const handleDownStrictLvl = (chordIndex, actionLvl) => {
-    if (chordIndex + actionLvl >= 0) {
-      return chordIndex + actionLvl;
-    } else {
-      return 12 + (chordIndex + actionLvl);
-    }
-  };
-
-  const handleUpStrictLvl = (chordIndex, actionLvl) => {
-    if (chordIndex + actionLvl <= 11) {
-      return chordIndex + actionLvl;
-    } else {
-      return -(12 - (chordIndex + actionLvl));
-    }
-  };
-  //#endregion
 
   //#region calculating transposed chords
   useEffect(() => {
@@ -367,8 +309,75 @@ const Hook = () => {
 
     setTransposedChords(transposedChordArr);
     dispatch(sendTransposedChords(transposedChordArr));
-  }, [transposeLvl, detectedChords , dispatch, isFlat]);
+  }, [transposeLvl, detectedChords, dispatch, isFlat]);
 
+  //#endregion
+
+  //#endregion
+
+  /**
+   *  Associate functions
+   */
+  //#region
+  const handleCombineKey = (e) => {
+    /* Ctrl + SPACE = Tab */
+    if (e.ctrlKey && e.which === 32) {
+      const start = textArea.current.selectionStart;
+      const end = textArea.current.selectionEnd;
+
+      let spacedIndex =
+        inputLyric.slice(0, e.target.selectionStart) +
+        "    " +
+        inputLyric.slice(e.target.selectionStart);
+      setSelection({
+        start: start + 4,
+        end: end + 4,
+      });
+      setInputLyric(spacedIndex);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputLyric.trim().length !== 0) {
+      setFormMessage("");
+      dispatch(setStartLoading());
+      const linedLyric = inputLyric.split(/\r?\n/);
+
+      const linedSpacedLyric = linedLyric.map((line) => {
+        return line + " ";
+      });
+
+      setLyricBoard(linedSpacedLyric);
+      dispatch(sendSongInputLyric(linedSpacedLyric));
+      console.log({ linedSpacedLyric });
+
+      setEditMode(false);
+
+      setTimeout(() => {
+        dispatch(setStopLoading());
+      }, 1000);
+    } else {
+      setFormMessage("*Please drop a fancy chord.");
+    }
+  };
+
+  //#region calculating up,down array index of transposed chords from chord arrays i,ii
+  const handleDownStrictLvl = (chordIndex, actionLvl) => {
+    if (chordIndex + actionLvl >= 0) {
+      return chordIndex + actionLvl;
+    } else {
+      return 12 + (chordIndex + actionLvl);
+    }
+  };
+
+  const handleUpStrictLvl = (chordIndex, actionLvl) => {
+    if (chordIndex + actionLvl <= 11) {
+      return chordIndex + actionLvl;
+    } else {
+      return -(12 - (chordIndex + actionLvl));
+    }
+  };
   //#endregion
 
   const handleTransposeUp = () => {
@@ -378,6 +387,8 @@ const Hook = () => {
   const handleTransposeDown = () => {
     setTransposeLvl((prev) => prev - 1);
   };
+
+  //#endregion
 
   return {
     inputLyric,
@@ -396,6 +407,8 @@ const Hook = () => {
     isSetting,
     showLyricBoard,
     currentBoard,
+    selected,
+    speedOfScroll,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -408,7 +421,8 @@ const Hook = () => {
     setIsFlat,
     setIsPrinting,
     setIsSetting,
-    setCurrentBoard
+    setCurrentBoard,
+    setSelected
   };
 };
 
