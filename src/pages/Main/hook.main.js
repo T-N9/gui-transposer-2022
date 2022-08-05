@@ -14,13 +14,6 @@ import {
 } from "../../store/mainGenSlice";
 
 import {
-  sendSongTitle,
-  sendArtistName,
-  sendSongDetectedChords,
-  sendSongTransposedChords,
-  sendCapoFret,
-  sendSongKey,
-  sendSongTuning,
   sendSongInputLyric,
 } from "../../store/currentSongInfoSlice";
 
@@ -41,8 +34,7 @@ import {
 } from "../../constants/constants";
 
 /* Util */
-import { changeChordType, changeSharpToFlat } from "../../util/changeChordType";
-import { manageBoardData } from "../../util/manageBoardData";
+import { changeSharpToFlat } from "../../util/changeChordType";
 
 const Hook = () => {
   const [inputLyric, setInputLyric] = useState("");
@@ -58,7 +50,6 @@ const Hook = () => {
 
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.mainGen);
-  const { boardList } = useSelector((state) => state.boardList);
 
   const printRef = useRef();
   const [isPrinting, setIsPrinting] = useState(false);
@@ -81,7 +72,7 @@ const Hook = () => {
 
   useEffect(() => {
     isFlat ? dispatch(sendFlatType()) : dispatch(sendSharpType());
-  }, [isFlat]);
+  }, [isFlat, dispatch]);
 
   useEffect(() => {
     let matches;
@@ -114,7 +105,7 @@ const Hook = () => {
     setMatchesPos(matchesPosArr);
     setDetectedChords(uniq(detectedChordsArr));
     dispatch(sendDetectedChords(uniq(detectedChordsArr)));
-  }, [lyricBoard, isFlat]);
+  }, [lyricBoard, isFlat ,dispatch]);
 
   // console.log({ detectedChords });
 
@@ -376,7 +367,7 @@ const Hook = () => {
 
     setTransposedChords(transposedChordArr);
     dispatch(sendTransposedChords(transposedChordArr));
-  }, [transposeLvl, detectedChords]);
+  }, [transposeLvl, detectedChords , dispatch, isFlat]);
 
   //#endregion
 

@@ -1,5 +1,3 @@
-import React, { useEffect} from 'react';
-
 /* Data */
 import { boardList } from '../../data/boardList';
 
