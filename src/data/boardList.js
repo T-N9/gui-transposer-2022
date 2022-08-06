@@ -358,7 +358,7 @@ export const boardList = [
       "A part of me I've never seen. ",
       "    F                         C ",
       "You took my soul and wiped it clean. ",
-      "     F                      C       G/B ",
+      "     F                      C       G   ",
       "Our love was made for movie screens. ",
       "  ",
       "  ",
