@@ -10,7 +10,7 @@ export const currentSongInfoSlice = createSlice({
         capoFret : 0,
         key : '',
         tuning : '0',
-        inputLyric : []
+        songInputLyric : []
     },
     reducers : {
         sendSongTitle : (state, action) => {
@@ -35,7 +35,7 @@ export const currentSongInfoSlice = createSlice({
             state.key = action.payload
         },
         sendSongInputLyric : (state, action) => {
-            state.inputLyric = [...action.payload]
+            state.songInputLyric = [...action.payload]
         }
     }
 })
