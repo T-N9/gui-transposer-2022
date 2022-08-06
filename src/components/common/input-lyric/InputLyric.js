@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 /* Hook */
 import Hook from "./hook.inputLyric";
 
+/* Icons */
+import { DoubleArrowRightIcon } from "@radix-ui/react-icons";
+
 const InputLyric = ({
     inputLyric,
     textArea,
@@ -44,15 +47,21 @@ const InputLyric = ({
     <>
       <form onSubmit={megaFormSubmit} className="container mt-5 mx-auto p-0 md:p-5 md:px-30 lg:px-48" >
 
-        <div className="mb-12 flex gap-3 items-center flex-wrap">
+        <button type="submit" className="bg-white border-2 border-blue-600 shadow-lg w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] flex justify-center items-center font-bold text-blue-600 text-lg">
+          <span>
+            GO <DoubleArrowRightIcon className="w-10"/>
+          </span>
+        </button>
+
+        <div className="mb-12 flex gap-x-3 gap-y-5 items-center flex-wrap">
           <div className="flex flex-col relative">
-            <label className="text-sm" htmlFor="song-title">Song title:</label>
+            <label className="text-xs" htmlFor="song-title">Song title:</label>
             <input className="primary-input" defaultValue={formSongTitle} type="text" id="song-title" name="song-title" {...register("songTitle", { required: true })} />
             {errors.songTitle && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
           </div>
 
           <div className="flex flex-col relative">
-            <label className="text-sm" htmlFor="artist-name">Artist name:</label>
+            <label className="text-xs" htmlFor="artist-name">Artist name:</label>
             <input className="primary-input" defaultValue={formArtistName} type="text" id="artist-name" name="artist-name" {...register("artistName", { required: true })} />
             {errors.artistName && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
           </div>
@@ -75,7 +84,7 @@ const InputLyric = ({
             rows="10"
             placeholder="Type chords and lyric"
           ></textarea>
-          <span className="absolute -top-4 left-2 text-xs text-gray-400">
+          <span className="absolute hidden lg:block -top-4 left-2 text-xs text-gray-400">
             Ctrl + SPACE = Tab, at least a space between chords
           </span>
 

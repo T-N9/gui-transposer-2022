@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
+  animateScroll as scroll,
   Element,
 } from "react-scroll";
 
@@ -47,6 +48,10 @@ const Main = () => {
     // setCurrentBoard,
     setSelected
   } = Hook();
+
+  useEffect(() => {
+    scroll.scrollToTop();
+  }, []);
 
   return (
     <>

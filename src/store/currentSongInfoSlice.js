@@ -1,17 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+    songTitle : '',
+    artistName : '',
+    detectedChords : [],
+    transposedChords : [],
+    capoFret : 0,
+    key : '',
+    tuning : '0',
+    songInputLyric : []
+}
+
 export const currentSongInfoSlice = createSlice({
     name : 'currentSongInfo',
-    initialState : {
-        songTitle : '',
-        artistName : '',
-        detectedChords : [],
-        transposedChords : [],
-        capoFret : 0,
-        key : '',
-        tuning : '0',
-        songInputLyric : []
-    },
+    initialState,
     reducers : {
         sendSongTitle : (state, action) => {
             state.songTitle = action.payload
@@ -36,9 +38,12 @@ export const currentSongInfoSlice = createSlice({
         },
         sendSongInputLyric : (state, action) => {
             state.songInputLyric = [...action.payload]
+        },
+        resetSongInfo : () => {
+            return initialState
         }
     }
 })
 
-export const { sendSongTitle, sendArtistName, sendSongDetectedChords, sendSongTransposedChords, sendCapoFret, sendSongKey, sendSongTuning, sendSongInputLyric } = currentSongInfoSlice.actions;
+export const { sendSongTitle, sendArtistName, sendSongDetectedChords, sendSongTransposedChords, sendCapoFret, sendSongKey, sendSongTuning, sendSongInputLyric,resetSongInfo } = currentSongInfoSlice.actions;
 export default currentSongInfoSlice.reducer;
