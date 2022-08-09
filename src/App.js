@@ -9,6 +9,8 @@ import NavBar from "./components/common/nav-bar/NavBar";
 /* Pages */
 import { Main, Listing } from "./pages";
 
+import ChordDb from "./pages/ChordDb";
+
 const App = () => {
   return (
     <>
@@ -17,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Listing/>}/>
         <Route path="/boards/:boardId" element={<Main/>}/>
+        <Route path="/chords" element={<ChordDb/>}/>
       </Routes>
 
     </>

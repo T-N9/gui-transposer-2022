@@ -1,13 +1,15 @@
 import React from "react";
 import Chord from "@tombatossals/react-chords/lib/Chord";
 
-const MyChord = () => {
-  const chord = {
-    frets: [-1, 3, 2, 0, 1, 0],
-    fingers: [0, 3, 2, 0, 1, 0],
-    // barres: [0],
-    capo: false,
-  };
+import {  processPosition } from '../chordDB/src/tools'
+
+const MyChord = ({position, id}) => {
+  let tuning = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'];
+
+  let processedPos = processPosition(position,tuning);
+
+  console.log({id,processedPos});
+
   const instrument = {
     strings: 6,
     fretsOnChord: 4,
@@ -19,7 +21,7 @@ const MyChord = () => {
   };
   const lite = false;
   return <div className="chord-item">
-    <Chord chord={chord} instrument={instrument} lite={lite} />
+    <Chord chord={processedPos} instrument={instrument} lite={lite} />
   </div>;
 };
 
