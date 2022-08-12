@@ -28,6 +28,8 @@ import {
   chords_Arr_ii_sh,
   chords_Arr_iii_sh,
   chords_Arr_iv_sh,
+  chords_Arr_v,
+  chords_Arr_v_sh
 } from "../../constants/constants";
 
 /* Util */
@@ -99,7 +101,7 @@ const Hook = () => {
       }
 
       matches.forEach((match, groupIndex) => {
-        if (match.length < 6) {
+        // if (match.trim().length <=5) {
           let trimmedMatch = match.trim();
           let sharpedChord = changeSharpToFlat(trimmedMatch);
           detectedChordsArr.push(sharpedChord);
@@ -109,7 +111,7 @@ const Hook = () => {
             startPos: matches.index,
             endPos: ChordRegexOp.lastIndex,
           });
-        }
+        // }
       });
     }
 
@@ -174,6 +176,14 @@ const Hook = () => {
             transposedChordArr.push(chords_Arr_iv[indexDown]);
           }
 
+          if (chords_Arr_v.indexOf(chord) !== -1) {
+            let indexDown = handleDownStrictLvl(
+              chords_Arr_v.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_v[indexDown]);
+          }
+
           return true;
         });
       } else {
@@ -215,6 +225,15 @@ const Hook = () => {
             );
             transposedChordArr.push(chords_Arr_iv[indexUp]);
           }
+
+          if (chords_Arr_v.indexOf(chord) !== -1) {
+            let indexUp = handleUpStrictLvl(
+              chords_Arr_v.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_v[indexUp]);
+          }
+          
           return true;
         });
       }
@@ -262,6 +281,14 @@ const Hook = () => {
             transposedChordArr.push(chords_Arr_iv_sh[indexDown]);
           }
 
+          if (chords_Arr_v_sh.indexOf(chord) !== -1) {
+            let indexDown = handleDownStrictLvl(
+              chords_Arr_v_sh.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_v_sh[indexDown]);
+          }
+
           return true;
         });
       } else {
@@ -302,6 +329,14 @@ const Hook = () => {
               transposeLvl
             );
             transposedChordArr.push(chords_Arr_iv[indexUp]);
+          }
+
+          if (chords_Arr_v.indexOf(chord) !== -1) {
+            let indexUp = handleUpStrictLvl(
+              chords_Arr_v.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_v[indexUp]);
           }
           return true;
         });

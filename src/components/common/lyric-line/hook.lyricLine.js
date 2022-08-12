@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import { last } from "lodash";
 
 /* Constants */
-import { ChordRegexOp } from "../../../constants/constants";
+import { ChordRegexOp, PartRegexOp } from "../../../constants/constants";
 
 /* Util */
-import { changeChordType, changeSharpToFlat } from "../../../util/changeChordType";
+import {
+  changeChordType,
+  changeSharpToFlat,
+} from "../../../util/changeChordType";
 
 const Hook = (
   line,
@@ -24,33 +27,52 @@ const Hook = (
   useEffect(() => {
     if (line.trim().length !== 0) {
       let matches;
+      let parts;
       let matchesPosArr = [];
       let matchPartsArr = [];
+
       while ((matches = ChordRegexOp.exec(spacedLine)) !== null) {
         if (matches.index === ChordRegexOp.lastIndex) {
           ChordRegexOp.lastIndex++;
         }
 
         matches.forEach((match, groupIndex) => {
-          if (match.length < 6) {
-            matchesPosArr.push({
-              matchChord: match,
-              startPos: matches.index,
-              endPos: ChordRegexOp.lastIndex,
-            });
-          } else {
-            matchPartsArr.push({
-              matchChord: match,
-              startPos: matches.index,
-              endPos: ChordRegexOp.lastIndex,
-            });
-          }
+          // if (match.trim().length <=5) {
+          //   console.log({match})
+          matchesPosArr.push({
+            matchChord: match,
+            startPos: matches.index,
+            endPos: ChordRegexOp.lastIndex,
+          });
+          // } else {
+          // matchPartsArr.push({
+          //   matchChord: match,
+          //   startPos: matches.index,
+          //   endPos: ChordRegexOp.lastIndex,
+          // });
+          // }
+        });
+      }
+
+      while ((parts = PartRegexOp.exec(spacedLine)) !== null) {
+        if (parts.index === PartRegexOp.lastIndex) {
+          PartRegexOp.lastIndex++;
+        }
+
+        parts.forEach((match, groupIndex) => {
+          matchPartsArr.push({
+            matchPart: match,
+            startPos: parts.index,
+            endPos: PartRegexOp.lastIndex,
+          });
         });
       }
       setMatchesPos(matchesPosArr);
       setMatchParts(matchPartsArr);
     }
   }, [lyricBoard, line, spacedLine]);
+
+  console.log({matchParts})
 
   useEffect(() => {
     if (matchesPos.length > 0) {
@@ -85,14 +107,14 @@ const Hook = (
           }
         } else {
           let chordInLine = item.matchChord.trim();
-          let sharpedChord = changeSharpToFlat(chordInLine)
+          let sharpedChord = changeSharpToFlat(chordInLine);
           let transposedChordInLine =
             transposedChords[detectedChords.indexOf(sharpedChord)] !==
               undefined &&
             transposedChords[detectedChords.indexOf(sharpedChord)];
 
-          let changedChordType = changeChordType(transposedChordInLine , isFlat);
-          
+          let changedChordType = changeChordType(transposedChordInLine, isFlat);
+
           if (index === 0) {
             mergingLine.push(
               spacedLine.replace(
@@ -124,21 +146,31 @@ const Hook = (
 
     if (matchParts.length > 0) {
       let mappedPart = matchParts.map((item) => {
-        return `<span class="highlight-part cursor-pointer">${item.matchChord.trim()}</span>`;
+        return `<span class="highlight-part cursor-pointer">${item.matchPart.trim()}</span>`;
       });
 
       setLocatePart(mappedPart[0]);
     }
-  }, [matchesPos, matchParts, transposeLvl, transposedChords, detectedChords, spacedLine, isFlat]);
+  }, [
+    matchesPos,
+    matchParts,
+    transposeLvl,
+    transposedChords,
+    detectedChords,
+    spacedLine,
+    isFlat,
+  ]);
 
-  const isChordLine = matchesPos.length > 0 && line.replace(/\s+/g, '').length < 10;
+  // const isChordLine = matchesPos.length > 0 && line.replace(/\s+/g, '').length < 10;
+  const isChordLine = matchesPos.length > 0 && line.trim().split("")[0] !== "[";
+  console.log({ line: line.trim().split("")[0] });
 
   return {
     locateChord,
     matchesPos,
     locatePart,
     matchParts,
-    isChordLine
+    isChordLine,
   };
 };
 

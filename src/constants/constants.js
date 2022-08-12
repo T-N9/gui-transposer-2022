@@ -1,10 +1,7 @@
-// export const ChordRegexOp =
-//   /\s[EAB]bm|\s[EAB]bm\s|[EAB]bm\s|\s[DEGAB]b|\s[DEGAB]b\s|[DEGAB]b\s|[DEGAB]b|\s[ABCDEFG]m|\s[ABCDEFG]m\s|[ABCDEFG]m\s|\s[ABCDEFG]\s|[A-G]\s|\s[A-G]7|\s[A-G]7\s|[A-G]7\s|\s[ACDFG]#7|\s[ACDFG]#7\s|[ACDFG]#7\s|\[Verse \d+\]|\[Chorus \d+\]|\[Chorus\]|\[Verse\]|\[Intro\]/gm;
-
 export const ChordRegexOp =
-  /\s[ABDEG]bm|[ABDEG]bm\s|\s[ACDFG]#m|[ACDFG]#m\s|\s[ACDFG]#7|[ACDFG]#7\s|\s[A-G]m|[A-G]m\s|\s[A-G]#|[A-G]#\s|\s[ABDEG]b|[ABDEG]b\s|\s[A-G]add9|[A-G]add9\s|\s[A-G]7|[A-G]7\s|[A-G]\s|\s[A-G]\s|\[Verse \d+\]|\[Chorus \d+\]|\[Intro \d+\]|\[Chorus\]|\[Verse\]|\[Intro\]|\[Outro\]|\[Solo\]|\[Instrumental\]|\[Pre-chorus\]|\[Bridge\]|\[Interlude\]/gm;
+  /\s[ACDFG]#madd11|\s[ACDFG]#madd11\s|\s[A-G]madd11|\s[A-G]madd11\s|\s[ABDEG]bm|[ABDEG]bm\s|\s[ACDFG]#m|[ACDFG]#m\s|\s[ACDFG]#7|[ACDFG]#7\s|\s[A-G]m|[A-G]m\s|\s[A-G]#|[A-G]#\s|\s[ABDEG]b|[ABDEG]b\s|\s[A-G]add9|[A-G]add9\s|\s[A-G]7|[A-G]7\s|[A-G]\s|\s[A-G]\s/gm;
 
-  // ^[A-G]\s|\n[A-G]\s
+export const PartRegexOp = /\[Verse \d+\]|\[Chorus \d+\]|\[Intro \d+\]|\[Chorus\]|\[Verse\]|\[Intro\]|\[Outro\]|\[Solo\]|\[Instrumental\]|\[Pre-chorus\]|\[Pre-Chorus\]|\[Bridge\]|\[Interlude\]/gm;
 
 export const chords_Arr_i = [
   "C",
@@ -125,6 +122,38 @@ export const chords_Arr_iv_sh = [
   "Gadd9",
   "G#add9",
 ];
+
+export const chords_Arr_v = [
+  "Dmadd11",
+  "Ebmadd11",
+  "Emadd11",
+  "Fmadd11",
+  "Gbmadd11",
+  "Gmadd11",
+  "Abmadd11",
+  "Amadd11",
+  "Bbmadd11",
+  "Bmadd11",
+  "Cmadd11",
+  "Dbmadd11",
+];
+
+export const chords_Arr_v_sh = [
+  "Dmadd11",
+  "D#madd11",
+  "Emadd11",
+  "Fmadd11",
+  "F#madd11",
+  "Gmadd11",
+  "G#madd11",
+  "Amadd11",
+  "A#madd11",
+  "Bmadd11",
+  "Cmadd11",
+  "C#madd11",
+];
+
+
 
 export let chords_Arr_i_regex = [
   {

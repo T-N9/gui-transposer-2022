@@ -6,9 +6,9 @@ import {  processPosition } from '../chordDB/src/tools'
 const MyChord = ({position, id}) => {
   let tuning = ['E2', 'A2', 'D3', 'G3', 'B3', 'E4'];
 
-  let processedPos = processPosition(position,tuning);
+  let processedPos = processPosition(position,tuning , id);
 
-  console.log({id,processedPos});
+  // console.log({id,processedPos});
 
   const instrument = {
     strings: 6,
