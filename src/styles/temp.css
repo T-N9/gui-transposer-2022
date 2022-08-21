@@ -75,3 +75,23 @@ input:focus {
 .chord-line {
   background-color: antiquewhite;
 }
+
+.gui-form input {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.062) 0px 1px 3px -1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* .MuiOutlinedInput-notchedOutline */
+.MuiInputLabel-root {
+  color: #aaaaaa !important;
+  font-size: 16px;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #ffa726 !important;
+}
+
+.MuiButtonBase-root:hover {
+  background-color: #f57c00 !important;
+}

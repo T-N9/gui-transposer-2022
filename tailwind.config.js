@@ -13,7 +13,9 @@ module.exports = {
         'info' : '#00BFE8',
         'success' : '#22C36F',
         'danger' : '#ff5959',
-        'dark' : '#40514e'
+        'dark' : '#40514e',
+        'light' : '#ffa726',
+        'light-md' : '#f57c00'
       },
     },
   },
