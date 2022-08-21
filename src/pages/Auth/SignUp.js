@@ -147,6 +147,7 @@ const SignUp = () => {
               {isEmailSent && (
                 <div className="p-3 border-l-4 text-sm rounded border-success mb-4 bg-white shadow-md border-2">
                   <p>Verification email has sent.</p>
+                  <p>Reload page after verification.</p>
                 </div>
               )}
 

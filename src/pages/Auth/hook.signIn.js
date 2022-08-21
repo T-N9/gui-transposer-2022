@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 import { useForm } from "react-hook-form";
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 const Hook = () => {
   const auth = getAuth();
@@ -25,7 +25,7 @@ const Hook = () => {
         setIsInvalid(false);
         console.log(res.user);
         setIsLoading(false);
-        sessionStorage.setItem(
+        localStorage.setItem(
           "gui-userInfo",
           JSON.stringify({
             id: res.user.uid,
@@ -34,7 +34,7 @@ const Hook = () => {
           })
         );
 
-        sessionStorage.setItem("gui-verified", res.user.emailVerified);
+        localStorage.setItem("gui-verified", res.user.emailVerified);
         navigate("/");
       })
       .catch((err) => {

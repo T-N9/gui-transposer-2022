@@ -15,7 +15,7 @@ const Hook = () => {
 
   //   User Collection
   const userCollection = collection(database, "gui-users");
-  const getSessionUserInfo = JSON.parse(sessionStorage.getItem("gui-userInfo"));
+  const getSessionUserInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
 
   useEffect(() => {
     if (getSessionUserInfo !== null) {
@@ -24,7 +24,7 @@ const Hook = () => {
         .then((res) => {
           if (auth.currentUser) {
             auth.currentUser.emailVerified === true &&
-              sessionStorage.setItem("gui-verified", true);
+              localStorage.setItem("gui-verified", true);
             navigate("/");
           }
         })

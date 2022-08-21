@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router";
 import NavBar from "./components/common/nav-bar/NavBar";
 
 /* Pages */
-import { Main, Listing, SignUp, SignIn } from "./pages";
+import { Main, Listing, SignUp, SignIn, ResetPassword } from "./pages";
 
 import ChordDb from "./pages/ChordDb";
 
@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <>
-      {(location.pathname !== "/sign-up" && location.pathname !== '/sign-in') && <NavBar />}
+      {(location.pathname !== "/sign-up" && location.pathname !== '/sign-in' && location.pathname !== '/reset-password') && <NavBar />}
     
       <Routes>
         <Route path="/" element={<Listing />} />
@@ -27,6 +27,7 @@ const App = () => {
         <Route path="/chords" element={<ChordDb />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </>
   );

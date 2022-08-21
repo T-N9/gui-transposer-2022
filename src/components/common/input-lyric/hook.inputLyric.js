@@ -24,7 +24,7 @@ const Hook = (formSubmit, currentBoard) => {
 
   const onSubmit = (data, e) => {
     formSubmit(e);
-    console.log({data})
+    // console.log({data})
 
     dispatch(sendSongTitle(data.songTitle));
     dispatch(sendArtistName(data.artistName));

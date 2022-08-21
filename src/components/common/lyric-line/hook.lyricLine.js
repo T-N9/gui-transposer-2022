@@ -72,7 +72,7 @@ const Hook = (
     }
   }, [lyricBoard, line, spacedLine]);
 
-  console.log({matchParts})
+  // console.log({matchParts})
 
   useEffect(() => {
     if (matchesPos.length > 0) {
@@ -163,7 +163,7 @@ const Hook = (
 
   // const isChordLine = matchesPos.length > 0 && line.replace(/\s+/g, '').length < 10;
   const isChordLine = matchesPos.length > 0 && line.trim().split("")[0] !== "[";
-  console.log({ line: line.trim().split("")[0] });
+  // console.log({ line: line.trim().split("")[0] });
 
   return {
     locateChord,

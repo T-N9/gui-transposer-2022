@@ -31,7 +31,7 @@ const Hook = () => {
   //       .then((res) => {
   //         if (auth.currentUser) {
   //           auth.currentUser.emailVerified === true &&
-  //             sessionStorage.setItem("gui-verified", true);
+  //             localStorage.setItem("gui-verified", true);
   //           navigate("/");
   //         }
   //       })
@@ -49,7 +49,7 @@ const Hook = () => {
   //   .then((res) => {
   //     if (auth.currentUser) {
   //       auth.currentUser.emailVerified === true &&
-  //         sessionStorage.setItem("gui-verified", true);
+  //         localStorage.setItem("gui-verified", true);
   //       navigate("/");
   //     }
   //   })
@@ -85,8 +85,7 @@ const Hook = () => {
         watch("userPassword")
       )
         .then((res) => {
-
-          sessionStorage.setItem(
+          localStorage.setItem(
             "gui-userInfo",
             JSON.stringify({
               id: res.user.uid,
@@ -95,7 +94,7 @@ const Hook = () => {
             })
           );
 
-          sessionStorage.setItem("gui-verified", res.user.emailVerified);
+          localStorage.setItem("gui-verified", res.user.emailVerified);
 
           addDoc(userCollection, {
             name: data.userName,

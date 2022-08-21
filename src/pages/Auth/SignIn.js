@@ -18,6 +18,7 @@ const SignIn = () => {
     /* actions */
     handleSubmit,
     userSignIn,
+    resetPassword
   } = Hook();
 
   return (
@@ -103,6 +104,12 @@ const SignIn = () => {
                 Don't have an account?{" "}
                 <Link to="/sign-up" className="text-light-md font-bold">
                   Register Here.
+                </Link>
+              </p>
+
+              <p className="mt-1">
+                <Link to="/reset-password" className="text-light-md font-bold">
+                  Forget your password?
                 </Link>
               </p>
             </div>

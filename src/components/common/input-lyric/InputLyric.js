@@ -35,7 +35,7 @@ const InputLyric = ({
   let formArtistName = artistName ? artistName : currentBoard?.artistName;
   let formSongInputLyric = currentInputtedLyric ? currentInputtedLyric : inputLyric;
 
-  console.log({formSongTitle, formArtistName})
+  // console.log({formSongTitle, formArtistName})
 
   useEffect(() => {
     setValue("songTitle" , formSongTitle)

@@ -30,7 +30,7 @@ export const processPosition = (position, tuning, id) => {
   const frets = processString(position.frets);
   const baseFret = processbaseFret(frets);
 
-  console.log({id,Max :Math.max(...frets) > 4, Output : Math.min(...frets.filter((f) => f > 0)) })
+  // console.log({id,Max :Math.max(...frets) > 4, Output : Math.min(...frets.filter((f) => f > 0)) })
 
   return Object.assign(position, {
     baseFret: baseFret,
