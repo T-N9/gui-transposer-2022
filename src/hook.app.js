@@ -19,20 +19,20 @@ const Hook = () => {
 
   useEffect(() => {
     if (getSessionUserInfo !== null) {
-      navigate("/");
+      // navigate("/");
       getDocs(userCollection)
         .then((res) => {
           if (auth.currentUser) {
             auth.currentUser.emailVerified === true &&
               localStorage.setItem("gui-verified", true);
-            navigate("/");
+            // navigate("/");
           }
         })
         .catch((err) => {
           alert(err.message);
         });
     } else {
-      navigate("sign-up");
+      navigate("/sign-up");
     }
   }, []);
   return {

@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router";
 import NavBar from "./components/common/nav-bar/NavBar";
 
 /* Pages */
-import { Main, Listing, SignUp, SignIn, ResetPassword } from "./pages";
+import { Main, Listing, SignUp, SignIn, ResetPassword, UserProfile } from "./pages";
 
 import ChordDb from "./pages/ChordDb";
 
@@ -28,6 +28,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/profile" element={<UserProfile/>}/>
       </Routes>
     </>
   );

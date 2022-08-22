@@ -16,6 +16,7 @@ import {
 
 const Hook = () => {
   let auth = getAuth();
+  const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
@@ -23,6 +24,13 @@ const Hook = () => {
 
   //   User Collection
   const userCollection = collection(database, "gui-users");
+  const getSessionUserInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
+
+  useEffect(() => {
+    if (getSessionUserInfo !== null) {
+      navigate("/");
+    }
+  }, []);
 
   // useEffect(() => {
   //   if (getSessionUserInfo !== null) {

@@ -11,7 +11,7 @@ input:focus {
 }
 
 .lyric-input {
-  line-height:1.5;
+  line-height: 1.5;
   /* word-spacing: 3.4px; */
 }
 
@@ -21,7 +21,7 @@ input:focus {
 }
 
 .gen-form input {
-  line-height:1.5;
+  line-height: 1.5;
   word-spacing: 3.3px;
 }
 
@@ -68,7 +68,7 @@ input:focus {
 }
 
 .lyric-line {
-  margin : 10px 0 5px 0;
+  margin: 10px 0 5px 0;
   white-space: pre-wrap;
 }
 
@@ -77,9 +77,14 @@ input:focus {
 }
 
 .gui-form input {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.062) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.062) 0px 1px 3px -1px;
   border-radius: 5px;
   padding: 10px;
+}
+
+.user-profile {
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 
 /* .MuiOutlinedInput-notchedOutline */
