@@ -3,10 +3,15 @@ import { useNavigate } from "react-router";
 
 import { useForm } from "react-hook-form";
 
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+/* Custom Hook */
+import HookFirebaseAssets from "../../hook.firebaseAssets";
 
 const Hook = () => {
-  const auth = getAuth();
+
+  const { auth } = HookFirebaseAssets();
+
   const navigate = useNavigate();
 
   const [isInvalid, setIsInvalid] = useState(false);

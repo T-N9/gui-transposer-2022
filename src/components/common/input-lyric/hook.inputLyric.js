@@ -1,10 +1,19 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
+import { database } from "../../../firebase-config";
+import { collection, addDoc } from "firebase/firestore";
+
 /* actions */
-import { sendSongTitle , sendArtistName } from '../../../store/currentSongInfoSlice'
+import {
+  sendSongTitle,
+  sendArtistName,
+} from "../../../store/currentSongInfoSlice";
 
 const Hook = (formSubmit, currentBoard) => {
+  const userId = localStorage.getItem("gui-userId");
+
+  const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
 
   const dispatch = useDispatch();
 
@@ -17,10 +26,8 @@ const Hook = (formSubmit, currentBoard) => {
     formState: { errors },
   } = useForm();
 
-  // useEffect(() => {
-  //   trigger("songTitle")
-  //   trigger("artistName")
-  // }, []);
+  const currentInputtedLyric = currentBoard?.inputLyric?.join("\n");
+  console.log({ currentInputtedLyric });
 
   const onSubmit = (data, e) => {
     formSubmit(e);
@@ -28,11 +35,21 @@ const Hook = (formSubmit, currentBoard) => {
 
     dispatch(sendSongTitle(data.songTitle));
     dispatch(sendArtistName(data.artistName));
+
+    addDoc(boardDatabaseRef, {
+      songTitle: data.songTitle,
+      artistName: data.artistName,
+      lyricInput: currentInputtedLyric,
+    })
+      .then(() => {
+        alert("Song added");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   const megaFormSubmit = handleSubmit(onSubmit);
-
-  const currentInputtedLyric = currentBoard?.inputLyric?.join('\n');
 
   return {
     register,

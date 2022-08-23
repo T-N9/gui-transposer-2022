@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 /* Hook */
 import Hook from './hook.listing';
 
+/* Components */
+import UserBoardList from '../../components/userData/UserBoardList';
+
 const Listing = () => {
 
     const { boardList } = Hook();
@@ -36,6 +39,10 @@ const Listing = () => {
                    })
                 }
             </div>
+         </div>
+
+         <div>
+            <UserBoardList/>
          </div>
 
          <Link to={"/boards/new"}>

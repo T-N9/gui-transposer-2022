@@ -15,6 +15,7 @@ const ResetPassword = () => {
     errors,
     isLoading,
     isNotFound,
+    isMailSent,
 
     /* actions */
     handleSubmit,
@@ -34,10 +35,16 @@ const ResetPassword = () => {
           </h1>
 
           {isNotFound && (
-              <div className="p-3 border-l-4 text-sm rounded border-danger mb-4 bg-white shadow-md border-2">
-                <p>No user found with this mail.</p>
-              </div>
-            )}
+            <div className="p-3 border-l-4 text-sm rounded border-danger mb-4 bg-white shadow-md border-2">
+              <p>No user found with this mail.</p>
+            </div>
+          )}
+
+          {isMailSent && (
+            <div className="p-3 border-l-4 text-sm rounded border-success mb-4 bg-white shadow-md border-2">
+              <p>Reset mail has been sent.</p>
+            </div>
+          )}
 
           <div className="flex flex-col gap-y-4">
             <div className="flex flex-col gap-3">

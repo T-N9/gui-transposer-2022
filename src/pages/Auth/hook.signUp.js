@@ -3,70 +3,32 @@ import { useNavigate } from "react-router";
 
 import { useForm } from "react-hook-form";
 
-import { database } from "../../firebase-config";
-
 /* Firebase utilities */
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { addDoc, getDocs } from "firebase/firestore";
 
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
 
+/* Custom Hook */
+import HookFirebaseAssets from "../../hook.firebaseAssets";
+
 const Hook = () => {
-  let auth = getAuth();
+
+  const { auth, userCollection, getSessionUserInfo } = HookFirebaseAssets();
+
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
   const [passMatch, setPassMatch] = useState(true);
 
-  //   User Collection
-  const userCollection = collection(database, "gui-users");
-  const getSessionUserInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
-
   useEffect(() => {
     if (getSessionUserInfo !== null) {
       navigate("/");
     }
   }, []);
-
-  // useEffect(() => {
-  //   if (getSessionUserInfo !== null) {
-  //     navigate("/");
-  //     getDocs(userCollection)
-  //       .then((res) => {
-  //         if (auth.currentUser) {
-  //           auth.currentUser.emailVerified === true &&
-  //             localStorage.setItem("gui-verified", true);
-  //           navigate("/");
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         alert(err.message);
-  //       });
-  //   } else {
-  //     navigate("sign-up");
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-
-  // getDocs(userCollection)
-  //   .then((res) => {
-  //     if (auth.currentUser) {
-  //       auth.currentUser.emailVerified === true &&
-  //         localStorage.setItem("gui-verified", true);
-  //       navigate("/");
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     alert(err.message);
-  //   });
-  // console.log({ current: auth.currentUser });
-
-  // }, [auth]);
 
   const {
     watch,
@@ -92,24 +54,24 @@ const Hook = () => {
         watch("userMail"),
         watch("userPassword")
       )
-        .then((res) => {
+        .then((resData) => {
           localStorage.setItem(
             "gui-userInfo",
             JSON.stringify({
-              id: res.user.uid,
-              email: res.user.email,
-              accessToken: res.user.accessToken,
+              id: resData.user.uid,
+              email: resData.user.email,
+              accessToken: resData.user.accessToken,
             })
           );
 
-          localStorage.setItem("gui-verified", res.user.emailVerified);
+          localStorage.setItem("gui-verified", resData.user.emailVerified);
 
           addDoc(userCollection, {
             name: data.userName,
             email: data.userMail,
           })
             .then(() => {
-              alert("Data Added");
+              // alert("Data Added");
             })
             .catch((err) => {
               alert(err.message);

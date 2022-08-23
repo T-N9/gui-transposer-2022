@@ -1,32 +1,38 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 
-import { app, database } from "./firebase-config";
-
-import { getAuth } from "firebase/auth";
-
 /* Firebase utilities */
-import { collection, getDocs } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
+
+/* Custom Hook */
+import HookFirebaseAssets from "./hook.firebaseAssets";
 
 const Hook = () => {
-  let auth = getAuth();
+  const { auth, userCollection, getSessionUserInfo } = HookFirebaseAssets();
+
   const location = useLocation();
   const navigate = useNavigate();
 
-  //   User Collection
-  const userCollection = collection(database, "gui-users");
-  const getSessionUserInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
-
   useEffect(() => {
     if (getSessionUserInfo !== null) {
-      // navigate("/");
+
       getDocs(userCollection)
         .then((res) => {
           if (auth.currentUser) {
             auth.currentUser.emailVerified === true &&
               localStorage.setItem("gui-verified", true);
-            // navigate("/");
           }
+          
+          let userInfoSha = res?.docs.filter((info) => {
+            return info.data().email === getSessionUserInfo.email;
+          });
+          // console.log(getSessionUserInfo.email, userInfoSha)
+          localStorage.setItem("gui-userId", userInfoSha[0]?.id);
+          // console.log(
+          //   res.docs.map((item) => {
+          //     return { data: item.data(), id: item.id };
+          //   })
+          // );
         })
         .catch((err) => {
           alert(err.message);
