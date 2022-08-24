@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 /* Hook */
@@ -8,16 +8,16 @@ import Hook from "./hook.inputLyric";
 import { DoubleArrowRightIcon } from "@radix-ui/react-icons";
 
 const InputLyric = ({
-    inputLyric,
-    textArea,
-    formMessage,
-    currentBoard,
-    /* actions */
-    setInputLyric,
-    handleSubmit,
-    handleCombineKey,
+  inputLyric,
+  textArea,
+  formMessage,
+  currentBoard,
+  boardId,
+  /* actions */
+  setInputLyric,
+  handleSubmit,
+  handleCombineKey,
 }) => {
-
   const {
     register,
     errors,
@@ -25,45 +25,73 @@ const InputLyric = ({
     trigger,
     setValue,
     currentInputtedLyric,
+    formSongTitle,
+    formArtistName,
     /* action */
     megaFormSubmit,
-  } = Hook(handleSubmit, currentBoard)
-
-  const { songTitle, artistName, songInputLyric } = useSelector((state) => state.currentSongInfo);
-
-  let formSongTitle = songTitle ? songTitle : currentBoard?.songTitle;
-  let formArtistName = artistName ? artistName : currentBoard?.artistName;
-  let formSongInputLyric = currentInputtedLyric ? currentInputtedLyric : inputLyric;
-
-  // console.log({formSongTitle, formArtistName})
-
-  useEffect(() => {
-    setValue("songTitle" , formSongTitle)
-    setValue("artistName" , formArtistName)
-    setInputLyric(formSongInputLyric);
-  }, [currentInputtedLyric]);
+    handleAddingBoardList,
+  } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
 
   return (
     <>
-      <form onSubmit={megaFormSubmit} className="container mt-5 mx-auto p-0 md:p-5 md:px-30 lg:px-48" >
-
-        <button type="submit" className="bg-white border-2 border-blue-600 shadow-lg w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] flex justify-center items-center font-bold text-blue-600 text-lg">
+      <div>
+        <button
+          onClick={handleAddingBoardList}
+          className="px-5 py-2 bg-dark rounded text-white"
+        >
+          Add to Library
+        </button>
+      </div>
+      <form
+        onSubmit={megaFormSubmit}
+        className="container mt-5 mx-auto p-0 md:p-5 md:px-30 lg:px-48"
+      >
+        <button
+          type="submit"
+          className="bg-white border-2 border-blue-600 shadow-lg w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] flex justify-center items-center font-bold text-blue-600 text-lg"
+        >
           <span>
-            GO <DoubleArrowRightIcon className="w-10"/>
+            GO <DoubleArrowRightIcon className="w-10" />
           </span>
         </button>
 
         <div className="mb-12 flex gap-x-3 gap-y-5 items-center flex-wrap">
           <div className="flex flex-col relative">
-            <label className="text-xs" htmlFor="song-title">Song title:</label>
-            <input className="primary-input" defaultValue={formSongTitle} type="text" id="song-title" name="song-title" {...register("songTitle", { required: true })} />
-            {errors.songTitle && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
+            <label className="text-xs" htmlFor="song-title">
+              Song title:
+            </label>
+            <input
+              className="primary-input"
+              defaultValue={formSongTitle}
+              type="text"
+              id="song-title"
+              name="song-title"
+              {...register("songTitle", { required: true })}
+            />
+            {errors.songTitle && (
+              <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">
+                *This field is required
+              </span>
+            )}
           </div>
 
           <div className="flex flex-col relative">
-            <label className="text-xs" htmlFor="artist-name">Artist name:</label>
-            <input className="primary-input" defaultValue={formArtistName} type="text" id="artist-name" name="artist-name" {...register("artistName", { required: true })} />
-            {errors.artistName && <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">*This field is required</span>}
+            <label className="text-xs" htmlFor="artist-name">
+              Artist name:
+            </label>
+            <input
+              className="primary-input"
+              defaultValue={formArtistName}
+              type="text"
+              id="artist-name"
+              name="artist-name"
+              {...register("artistName", { required: true })}
+            />
+            {errors.artistName && (
+              <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">
+                *This field is required
+              </span>
+            )}
           </div>
         </div>
 
@@ -93,7 +121,10 @@ const InputLyric = ({
           )}
         </div>
 
-        <button type="submit" className=" bg-blue-600 rounded-md text-white py-2 px-4 mx-auto table my-5">
+        <button
+          type="submit"
+          className=" bg-blue-600 rounded-md text-white py-2 px-4 mx-auto table my-5"
+        >
           Generate
         </button>
       </form>

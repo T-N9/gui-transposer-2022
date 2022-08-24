@@ -11,11 +11,15 @@ const HookFirebaseAssets = () => {
   //   User Collection
   const userCollection = collection(database, "gui-users");
   const getSessionUserInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
+  const adminCollection = collection(database, "gui-admins");
+  const publicBoardsCollection = collection(database, "public-boards");
 
   return {
     auth,
     userCollection,
     getSessionUserInfo,
+    adminCollection,
+    publicBoardsCollection
   };
 };
 

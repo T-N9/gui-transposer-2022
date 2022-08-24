@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { resetSongInfo } from "../../store/currentSongInfoSlice";
 
 const Hook = () => {
+  const isAdmin = localStorage.getItem("interactingAdmin");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(resetSongInfo());
@@ -13,6 +14,7 @@ const Hook = () => {
 
   return {
     boardList,
+    isAdmin
   };
 };
 

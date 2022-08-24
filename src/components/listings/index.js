@@ -1,0 +1,1 @@
+export { default as PublicBoards } from './public-boards/PublicBoards';

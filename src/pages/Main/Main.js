@@ -33,6 +33,7 @@ const Main = () => {
     currentBoard,
     selected,
     speedOfScroll,
+    boardId,
     /* actions */
     setInputLyric,
     handleSubmit,
@@ -63,6 +64,7 @@ const Main = () => {
             textArea={textArea}
             formMessage={formMessage}
             currentBoard={currentBoard}
+            boardId= { boardId}
             /* actions */
             setInputLyric={setInputLyric}
             handleSubmit={handleSubmit}

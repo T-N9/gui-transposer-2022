@@ -8,13 +8,24 @@ import { getDocs } from "firebase/firestore";
 import HookFirebaseAssets from "./hook.firebaseAssets";
 
 const Hook = () => {
-  const { auth, userCollection, getSessionUserInfo } = HookFirebaseAssets();
+  const { auth, userCollection, getSessionUserInfo, adminCollection } =
+    HookFirebaseAssets();
 
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (getSessionUserInfo !== null) {
+      getDocs(adminCollection)
+        .then((res) => {
+          res.docs.map((item) => {
+            item.data().email === getSessionUserInfo.email &&
+              localStorage.setItem("interactingAdmin", true);
+          });
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
 
       getDocs(userCollection)
         .then((res) => {
@@ -22,7 +33,7 @@ const Hook = () => {
             auth.currentUser.emailVerified === true &&
               localStorage.setItem("gui-verified", true);
           }
-          
+
           let userInfoSha = res?.docs.filter((info) => {
             return info.data().email === getSessionUserInfo.email;
           });

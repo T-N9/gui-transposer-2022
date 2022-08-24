@@ -37,6 +37,7 @@ const Hook = () => {
   const handleLogOut = () => {
     localStorage.removeItem("gui-userInfo");
     localStorage.removeItem("gui-verified");
+    localStorage.removeItem("gui-userId");
     navigate("/sign-up");
   }
 

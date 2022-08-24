@@ -80,7 +80,7 @@ const Hook = () => {
    */
   //#region
   useEffect(() => {
-    // console.log({boardId})
+    console.log({boardId})
     let currentBoard = boardListData.filter((item) => {
       return item.id === parseInt(boardId);
     });
@@ -445,6 +445,8 @@ const Hook = () => {
     currentBoard,
     selected,
     speedOfScroll,
+    boardId,
+
     /* actions */
     setInputLyric,
     handleSubmit,
