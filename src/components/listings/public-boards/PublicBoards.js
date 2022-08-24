@@ -9,6 +9,9 @@ const PublicBoards = () => {
 
   return (
     <div className="">
+      <h1 className="font-secondary mb-2 font-bold text-dark">
+        Explore songs
+      </h1>
       <div className="flex gap-4 flex-wrap">
         {boardList.map((item, index) => {
           return (

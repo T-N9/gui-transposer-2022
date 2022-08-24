@@ -16,16 +16,16 @@ const Hook = () => {
 
   useEffect(() => {
     if (getSessionUserInfo !== null) {
-      getDocs(adminCollection)
-        .then((res) => {
-          res.docs.map((item) => {
-            item.data().email === getSessionUserInfo.email &&
-              localStorage.setItem("interactingAdmin", true);
-          });
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
+      // getDocs(adminCollection)
+      //   .then((res) => {
+      //     res.docs.map((item) => {
+      //       item.data().email === getSessionUserInfo.email &&
+      //         localStorage.setItem("interactingAdmin", true);
+      //     });
+      //   })
+      //   .catch((err) => {
+      //     alert(err.message);
+      //   });
 
       getDocs(userCollection)
         .then((res) => {

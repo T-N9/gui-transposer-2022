@@ -20,7 +20,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   const [currentBoardWithId, setCurrentBoardWithId] = useState(null);
 
-  const { publicBoardsCollection } = HookFirebaseAssets();
+  const { publicBoardsCollection, fetchPublicBoardList } = HookFirebaseAssets();
   const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
 
   const dispatch = useDispatch();
@@ -73,7 +73,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         lyricInput: inputtedPublicLyric,
       })
         .then(() => {
-          alert("Public Song added");
+          fetchPublicBoardList(true);
+          // alert('Song added');
         })
         .catch((err) => {
           alert(err.message);

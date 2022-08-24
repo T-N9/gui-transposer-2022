@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
 
+/* Firebase assets */
 import { database } from "../../firebase-config";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { getDocs, collection, query, where } from "firebase/firestore";
 
+import { setStartLoading, setStopLoading } from "../../store/generalSlice";
+
 const Hook = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const auth = getAuth();
+  const dispatch = useDispatch();
   // get info from localStorage
   const userInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
 
@@ -32,14 +37,25 @@ const Hook = () => {
   }, []);
 
   let matches = userName && userName?.match(/\b(\w)/g); // ['J','S','O','N']
-  let profileName = userName && matches.join("").slice(0,2);
+  let profileName = userName && matches.join("").slice(0, 2);
 
   const handleLogOut = () => {
+    dispatch(setStartLoading());
     localStorage.removeItem("gui-userInfo");
     localStorage.removeItem("gui-verified");
     localStorage.removeItem("gui-userId");
-    navigate("/sign-up");
-  }
+    localStorage.removeItem("interactingAdmin");
+
+    signOut(auth)
+      .then(() => {
+        dispatch(setStopLoading());
+        navigate("/sign-up");
+      })
+      .catch((err) => {
+        dispatch(setStopLoading());
+        alert(err.message);
+      });
+  };
 
   return {
     userName,
@@ -49,7 +65,7 @@ const Hook = () => {
     profileName,
 
     /* actions */
-    handleLogOut
+    handleLogOut,
   };
 };
 

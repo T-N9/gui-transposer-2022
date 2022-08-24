@@ -8,6 +8,9 @@ import Hook from "./hook.listing";
 import UserBoardList from "../../components/userData/UserBoardList";
 import { PublicBoards } from "../../components/listings";
 
+/* Icons */
+import { RocketIcon } from "@radix-ui/react-icons";
+
 const Listing = () => {
   const { boardList, isAdmin } = Hook();
 
@@ -59,13 +62,15 @@ const Listing = () => {
         </div>
       )}
 
+      <hr className="mt-5"/>
+
       <Link to={"/boards/new"}>
         <button
-          className={`rounded-md py-2 px-4 my-5 ${
+          className={`rounded-md py-2 px-4 my-5 flex justify-center items-center gap-2 ${
             isAdmin ? "bg-dark text-success" : " bg-info text-white"
           }`}
         >
-          Create New Board {isAdmin && "(Public)"}
+          Create New Board <RocketIcon/>
         </button>
       </Link>
     </section>

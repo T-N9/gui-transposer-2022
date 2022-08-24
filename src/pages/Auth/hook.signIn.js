@@ -4,13 +4,13 @@ import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { getDocs } from "firebase/firestore";
 
 /* Custom Hook */
 import HookFirebaseAssets from "../../hook.firebaseAssets";
 
 const Hook = () => {
-
-  const { auth } = HookFirebaseAssets();
+  const { auth, adminCollection } = HookFirebaseAssets();
 
   const navigate = useNavigate();
 
@@ -25,6 +25,7 @@ const Hook = () => {
 
   const userSignIn = (data) => {
     setIsLoading(true);
+
     signInWithEmailAndPassword(auth, data.userMail, data.userPassword)
       .then((res) => {
         setIsInvalid(false);
@@ -40,7 +41,18 @@ const Hook = () => {
         );
 
         localStorage.setItem("gui-verified", res.user.emailVerified);
-        navigate("/");
+
+        getDocs(adminCollection)
+          .then((res) => {
+            res.docs.map((item) => {
+              item.data().email === data.userMail &&
+                localStorage.setItem("interactingAdmin", true);
+            });
+            navigate("/");
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
       })
       .catch((err) => {
         setIsInvalid(true);

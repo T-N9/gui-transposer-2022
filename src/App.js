@@ -9,6 +9,9 @@ import NavBar from "./components/common/nav-bar/NavBar";
 /* Pages */
 import { Main, Listing, SignUp, SignIn, ResetPassword, UserProfile } from "./pages";
 
+/* Components */
+import { Loading } from "./components/common";
+
 import ChordDb from "./pages/ChordDb";
 
 import Hook from "./hook.app";
@@ -30,6 +33,8 @@ const App = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/profile" element={<UserProfile/>}/>
       </Routes>
+
+      <Loading/>
     </>
   );
 };
