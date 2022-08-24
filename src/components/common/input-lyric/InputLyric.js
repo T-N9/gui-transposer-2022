@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import Hook from "./hook.inputLyric";
 
 /* Icons */
-import { DoubleArrowRightIcon } from "@radix-ui/react-icons";
+import { DoubleArrowRightIcon, TrashIcon } from "@radix-ui/react-icons";
 
 const InputLyric = ({
   inputLyric,
@@ -27,6 +27,7 @@ const InputLyric = ({
     currentInputtedLyric,
     formSongTitle,
     formArtistName,
+    isNewBoard,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,
@@ -35,12 +36,30 @@ const InputLyric = ({
   return (
     <>
       <div>
-        <button
-          onClick={handleAddingBoardList}
-          className="px-5 py-2 bg-dark rounded text-white"
-        >
-          Add to Library
-        </button>
+        <div className="container mt-2 mx-auto p-0 md:p-5 md:px-30 lg:px-48 lg:py-2 font-secondary flex justify-end items-center gap-2">
+          {isNewBoard && (
+            <button
+              onClick={handleAddingBoardList}
+              className="px-5 py-2 bg-light shadow-md text-xs rounded text-white"
+            >
+              Add to Library
+            </button>
+          )}
+          {!isNewBoard && (
+            <>
+              <button
+                className="px-5 py-2 bg-light shadow-md text-xs rounded text-white"
+              >
+                Update Board
+              </button>
+              <button
+                className="px-5 py-2 bg-danger shadow-md text-xs rounded text-white"
+              >
+                <TrashIcon/>
+              </button>
+            </>
+          )}
+        </div>
       </div>
       <form
         onSubmit={megaFormSubmit}

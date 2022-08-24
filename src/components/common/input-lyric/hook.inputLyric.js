@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
+/* Firebase assets */
 import { database } from "../../../firebase-config";
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 /* actions */
 import {
@@ -13,12 +14,14 @@ import {
 
 /* Custom Hook */
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
+import { set } from "lodash";
 
 const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const userId = localStorage.getItem("gui-userId");
   const isAdmin = localStorage.getItem("interactingAdmin");
 
   const [currentBoardWithId, setCurrentBoardWithId] = useState(null);
+  const [ isNewBoard , setIsNewBoard ] = useState(true);
 
   const { publicBoardsCollection, fetchPublicBoardList } = HookFirebaseAssets();
   const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
@@ -47,23 +50,26 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const megaFormSubmit = handleSubmit(onSubmit);
 
   useEffect(() => {
-    boardId.length > 4 &&
+    if(boardId.length > 4) {
       getDocs(publicBoardsCollection)
-        .then((item) => {
-          let currentBoardWithIdRef = item.docs.filter((board) => {
-            return board.id === boardId;
-          });
-
-          let toStateRef = currentBoardWithIdRef.map((item) => item.data());
-
-          setCurrentBoardWithId(toStateRef[0]);
-        })
-        .catch((err) => {
-          alert(err.message);
+      .then((item) => {
+        let currentBoardWithIdRef = item.docs.filter((board) => {
+          return board.id === boardId;
         });
-  }, []);
 
-  console.log({ currentBoardWithId });
+        let toStateRef = currentBoardWithIdRef.map((item) => item.data());
+
+        setCurrentBoardWithId(toStateRef[0]);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+      setIsNewBoard(false);
+    } else {
+      setIsNewBoard(true);
+    }
+
+  }, []);
 
   const handleAddingBoardList = () => {
     if (isAdmin) {
@@ -104,8 +110,6 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     ? currentInputtedLyric
     : inputLyric;
 
-  // console.log({formSongTitle, formArtistName})
-
   useEffect(() => {
     setValue("songTitle", formSongTitle);
     setValue("artistName", formArtistName);
@@ -121,6 +125,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     currentInputtedLyric,
     formSongTitle,
     formArtistName,
+    isNewBoard,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,
