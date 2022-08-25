@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 /* Firebase assets */
 import { database } from "../../../firebase-config";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 /* actions */
 import {
@@ -17,11 +25,13 @@ import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
 
 const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
+  const navigate = useNavigate();
+
   const userId = localStorage.getItem("gui-userId");
   const isAdmin = localStorage.getItem("interactingAdmin");
 
   const [currentBoardWithId, setCurrentBoardWithId] = useState(null);
-  const [ isNewBoard , setIsNewBoard ] = useState(true);
+  const [isNewBoard, setIsNewBoard] = useState(true);
 
   const { publicBoardsCollection, fetchPublicBoardList } = HookFirebaseAssets();
   const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
@@ -50,28 +60,27 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const megaFormSubmit = handleSubmit(onSubmit);
 
   useEffect(() => {
-    if(boardId.length > 4) {
-      dispatch(setStartLoading())
+    if (boardId.length > 4) {
+      dispatch(setStartLoading());
       getDocs(publicBoardsCollection)
-      .then((item) => {
-        let currentBoardWithIdRef = item.docs.filter((board) => {
-          return board.id === boardId;
+        .then((item) => {
+          let currentBoardWithIdRef = item.docs.filter((board) => {
+            return board.id === boardId;
+          });
+
+          let toStateRef = currentBoardWithIdRef.map((item) => item.data());
+
+          setCurrentBoardWithId(toStateRef[0]);
+          dispatch(setStopLoading());
+        })
+        .catch((err) => {
+          alert(err.message);
+          dispatch(setStopLoading());
         });
-
-        let toStateRef = currentBoardWithIdRef.map((item) => item.data());
-
-        setCurrentBoardWithId(toStateRef[0]);
-        dispatch(setStopLoading());
-      })
-      .catch((err) => {
-        alert(err.message);
-        dispatch(setStopLoading());
-      });
       setIsNewBoard(false);
     } else {
       setIsNewBoard(true);
     }
-
   }, []);
 
   const handleAddingBoardList = () => {
@@ -103,6 +112,33 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     }
   };
 
+  const handleDeletingBoard = () => {
+    // dispatch(setStartLoading());
+    deleteDoc(doc(database, "public-boards", boardId))
+      .then(() => {
+        fetchPublicBoardList(true);
+        navigate("/");
+        // alert("Board is deleted");
+      })
+      .catch((err) => alert(err.message));
+  };
+
+  const handleUpdatingBoard = () => {
+    dispatch(setStartLoading());
+    updateDoc(doc(database, "public-boards", boardId), {
+      songTitle: watch("songTitle"),
+      artistName: watch("artistName"),
+      lyricInput: inputtedPublicLyric,
+    })
+      .then(() => {
+        dispatch(setStopLoading());
+      })
+      .catch((err) => {
+        dispatch(setStopLoading());
+        alert(err.message);
+      });
+  };
+
   const { songTitle, artistName, songInputLyric } = useSelector(
     (state) => state.currentSongInfo
   );
@@ -129,9 +165,12 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     formSongTitle,
     formArtistName,
     isNewBoard,
+    isAdmin,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,
+    handleDeletingBoard,
+    handleUpdatingBoard,
   };
 };
 

@@ -12,11 +12,11 @@ const PublicBoards = () => {
       <h1 className="font-secondary mb-2 font-bold text-dark">
         Explore songs
       </h1>
-      <div className="flex gap-4 flex-wrap">
+      <div className= "flex gap-4 flex-col lg:flex-row flex-wrap">
         {boardList.map((item, index) => {
           return (
             <Link key={index} to={`/boards/${item.id}`}>
-              <div className="p-2 shadow font-secondary rounded-md">
+              <div className="p-2 w-full lg:w-auto shadow font-secondary rounded-md">
                 <div>
                   <h1 className="text-xl text-primary font-bold">
                     {item.data.songTitle}
