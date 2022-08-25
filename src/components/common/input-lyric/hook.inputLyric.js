@@ -11,10 +11,10 @@ import {
   sendSongTitle,
   sendArtistName,
 } from "../../../store/currentSongInfoSlice";
+import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
 
 /* Custom Hook */
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
-import { set } from "lodash";
 
 const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const userId = localStorage.getItem("gui-userId");
@@ -51,6 +51,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   useEffect(() => {
     if(boardId.length > 4) {
+      dispatch(setStartLoading())
       getDocs(publicBoardsCollection)
       .then((item) => {
         let currentBoardWithIdRef = item.docs.filter((board) => {
@@ -60,9 +61,11 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         let toStateRef = currentBoardWithIdRef.map((item) => item.data());
 
         setCurrentBoardWithId(toStateRef[0]);
+        dispatch(setStopLoading());
       })
       .catch((err) => {
         alert(err.message);
+        dispatch(setStopLoading());
       });
       setIsNewBoard(false);
     } else {

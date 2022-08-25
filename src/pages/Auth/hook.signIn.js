@@ -29,7 +29,7 @@ const Hook = () => {
     signInWithEmailAndPassword(auth, data.userMail, data.userPassword)
       .then((res) => {
         setIsInvalid(false);
-        console.log(res.user);
+        // console.log(res.user);
         setIsLoading(false);
         localStorage.setItem(
           "gui-userInfo",

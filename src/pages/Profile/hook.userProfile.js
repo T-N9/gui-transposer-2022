@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 /* Firebase assets */
 import { database } from "../../firebase-config";
@@ -15,28 +15,30 @@ const Hook = () => {
   const dispatch = useDispatch();
   // get info from localStorage
   const userInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
+  const { profile } = useSelector((state) => state.userData);
+  const userProfile = profile[0];
 
   // collection and used query
   const userDataRef = collection(database, "gui-users");
   const userQuery = query(userDataRef, where("email", "==", userInfo.email));
 
-  const [userDetail, setUserDetail] = useState(null);
+  // const [userDetail, setUserDetail] = useState(null);
 
   const userData = auth.currentUser;
-  const userName = userDetail !== null && userDetail[0].name;
-  const userMail = userDetail !== null && userDetail[0].email;
+  const userName = userProfile !== null && userProfile?.name;
+  const userMail = userProfile !== null && userProfile?.email;
   const isVerified = userData?.emailVerified;
 
-  useEffect(() => {
-    getDocs(userQuery).then((res) => {
-      {
-        setUserDetail(res.docs.map((item) => item.data()));
-        console.log(res.docs.map((item) => item.data()));
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   getDocs(userQuery).then((res) => {
+  //     {
+  //       setUserDetail(res.docs.map((item) => item.data()));
+  //       // console.log(res.docs.map((item) => item.data()));
+  //     }
+  //   });
+  // }, []);
 
-  let matches = userName && userName?.match(/\b(\w)/g); // ['J','S','O','N']
+  let matches = userName && userName?.match(/\b(\w)/g); 
   let profileName = userName && matches.join("").slice(0, 2);
 
   const handleLogOut = () => {
@@ -61,7 +63,7 @@ const Hook = () => {
     userName,
     userMail,
     isVerified,
-    userDetail,
+    userProfile,
     profileName,
 
     /* actions */

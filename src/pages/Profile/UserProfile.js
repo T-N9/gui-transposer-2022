@@ -6,7 +6,7 @@ const UserProfile = () => {
     userName,
     userMail,
     isVerified,
-    userDetail,
+    userProfile,
     profileName,
 
     /* Actions */
@@ -14,22 +14,51 @@ const UserProfile = () => {
   } = Hook();
   return (
     <>
-      {userDetail !== null && (
+      {userProfile !== null && (
         <section>
-          <div className="container max-w-[500px] font-secondary mx-auto my-5">
+          <div className="container px-5 max-w-[500px] font-secondary mx-auto my-5 flex gap-4">
             <div className="user-profile w-12 h-12 rounded-full flex justify-center items-center text-white font-bold">
               {profileName}
             </div>
-            <p>Name : {userName}</p>
-            <p>Email : {userMail}</p>
+            <div>
+              {/* <p className="">
+                <span>Name :</span> <span>{userName}</span>
+              </p>
+              <p className="">
+                <span>Mail :</span> <span>{userMail}</span>
+              </p> */}
 
-            {isVerified ? "Your Email is verified" : "You are unverified"}
+              <table
+                className="profile-table"
+                style={{ borderSpacing: "20px", verticalAlign: "top" }}
+              >
+                <tbody>
+                  <tr>
+                    <td className="font-bold text-gray-500">Name </td>
+                    <td className="pl-3">{userName}</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold  align-top text-gray-500">Mail </td>
+                    <td className="pl-3">
+                      {userMail} <br />
+                      <span className="text-xs">
+                        {isVerified
+                          ? "Your Email is verified"
+                          : "You are unverified"}.
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
 
-            <br />
-            <br />
-            <button onClick={handleLogOut} className="px-4 py-2 font-bold bg-danger text-white rounded text-xs">
-              Log Out
-            </button>
+              <br />
+              <button
+                onClick={handleLogOut}
+                className="px-4 py-2 font-bold bg-danger text-white rounded text-xs"
+              >
+                Log Out
+              </button>
+            </div>
           </div>
         </section>
       )}
