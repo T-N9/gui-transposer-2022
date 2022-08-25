@@ -11,6 +11,8 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 
+import { HOME, SIGN_IN } from '../../constants/routeNames';
+
 /* Custom Hook */
 import HookFirebaseAssets from "../../hook.firebaseAssets";
 
@@ -26,7 +28,7 @@ const Hook = () => {
 
   useEffect(() => {
     if (getSessionUserInfo !== null) {
-      navigate("/");
+      navigate(HOME);
     }
   }, []);
 

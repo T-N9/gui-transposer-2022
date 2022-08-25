@@ -66,7 +66,7 @@ const Listing = () => {
 
       <Link to={"/boards/new"}>
         <button
-          className={`rounded-md py-2 px-4 my-5 inline-flex justify-center items-center gap-2 ${
+          className={`rounded-md py-2 px-4 my-5 flex justify-center items-center gap-2 ${
             isAdmin ? "bg-dark text-success" : " bg-info text-white"
           }`}
         >

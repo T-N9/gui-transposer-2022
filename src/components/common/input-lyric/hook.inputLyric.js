@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -24,8 +24,15 @@ import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
 /* Custom Hook */
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
 
+/* Context */
+import { 
+  AlertContext
+ } from '../../../util/AlertContext';
+
 const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const navigate = useNavigate();
+
+  const { handleCallAlert } = useContext(AlertContext);
 
   const userId = localStorage.getItem("gui-userId");
   const isAdmin = localStorage.getItem("interactingAdmin");
@@ -91,8 +98,9 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         lyricInput: inputtedPublicLyric,
       })
         .then(() => {
+          handleCallAlert('Song is Added', 'success')
           fetchPublicBoardList(true);
-          // alert('Song added');
+
         })
         .catch((err) => {
           alert(err.message);

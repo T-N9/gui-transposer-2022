@@ -9,6 +9,9 @@ import { getDocs } from "firebase/firestore";
 /* Custom Hook */
 import HookFirebaseAssets from "../../hook.firebaseAssets";
 
+/* Constants */
+import { HOME } from '../../constants/routeNames';
+
 const Hook = () => {
   const { auth, adminCollection } = HookFirebaseAssets();
 
@@ -48,7 +51,7 @@ const Hook = () => {
               item.data().email === data.userMail &&
                 localStorage.setItem("interactingAdmin", true);
             });
-            navigate("/");
+            navigate(HOME);
           })
           .catch((err) => {
             alert(err.message);

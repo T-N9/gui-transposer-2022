@@ -9,6 +9,9 @@ import { getDocs, collection, query, where } from "firebase/firestore";
 
 import { setStartLoading, setStopLoading } from "../../store/generalSlice";
 
+/* Constants */
+import { SIGN_UP } from '../../constants/routeNames';
+
 const Hook = () => {
   const navigate = useNavigate();
   const auth = getAuth();
@@ -22,21 +25,10 @@ const Hook = () => {
   const userDataRef = collection(database, "gui-users");
   const userQuery = query(userDataRef, where("email", "==", userInfo.email));
 
-  // const [userDetail, setUserDetail] = useState(null);
-
   const userData = auth.currentUser;
   const userName = userProfile !== null && userProfile?.name;
   const userMail = userProfile !== null && userProfile?.email;
   const isVerified = userData?.emailVerified;
-
-  // useEffect(() => {
-  //   getDocs(userQuery).then((res) => {
-  //     {
-  //       setUserDetail(res.docs.map((item) => item.data()));
-  //       // console.log(res.docs.map((item) => item.data()));
-  //     }
-  //   });
-  // }, []);
 
   let matches = userName && userName?.match(/\b(\w)/g); 
   let profileName = userName && matches.join("").slice(0, 2);
@@ -51,7 +43,7 @@ const Hook = () => {
     signOut(auth)
       .then(() => {
         dispatch(setStopLoading());
-        navigate("/sign-up");
+        navigate(SIGN_UP);
       })
       .catch((err) => {
         dispatch(setStopLoading());

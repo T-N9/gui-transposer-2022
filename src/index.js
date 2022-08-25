@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { store } from './store/store';
 import { ThemeProvider } from '@mui/material';
+import {AlertContextProvider} from './util/AlertContext';
 
 import theme from './Theme';
 
@@ -14,7 +15,9 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
-          <App />
+          <AlertContextProvider>
+            <App />
+          </AlertContextProvider>
         </ThemeProvider>
       </Provider>
     </BrowserRouter>

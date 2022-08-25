@@ -4,6 +4,7 @@ import currentSongInfoReducer from "./currentSongInfoSlice";
 import boardListReducer from "./boardListSlice";
 import generalReducer from "./generalSlice";
 import userDataReducer from "./userDataSlice";
+import alertMessageReducer from "./alertMessageSlice";
 
 export const store = configureStore({
     reducer : {
@@ -11,6 +12,7 @@ export const store = configureStore({
         currentSongInfo : currentSongInfoReducer,
         boardList : boardListReducer,
         general : generalReducer,
-        userData : userDataReducer
+        userData : userDataReducer,
+        alertMessage : alertMessageReducer
     }
 })

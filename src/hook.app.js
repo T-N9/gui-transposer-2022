@@ -7,6 +7,9 @@ import { getDocs } from "firebase/firestore";
 /* Custom Hook */
 import HookFirebaseAssets from "./hook.firebaseAssets";
 
+/* Constants */
+import { SIGN_UP } from './constants/routeNames';
+
 const Hook = () => {
   const { auth, userCollection, getSessionUserInfo, adminCollection } =
     HookFirebaseAssets();
@@ -16,17 +19,6 @@ const Hook = () => {
 
   useEffect(() => {
     if (getSessionUserInfo !== null) {
-      // getDocs(adminCollection)
-      //   .then((res) => {
-      //     res.docs.map((item) => {
-      //       item.data().email === getSessionUserInfo.email &&
-      //         localStorage.setItem("interactingAdmin", true);
-      //     });
-      //   })
-      //   .catch((err) => {
-      //     alert(err.message);
-      //   });
-
       getDocs(userCollection)
         .then((res) => {
           if (auth.currentUser) {
@@ -37,21 +29,16 @@ const Hook = () => {
           let userInfoSha = res?.docs.filter((info) => {
             return info.data().email === getSessionUserInfo.email;
           });
-          // console.log(getSessionUserInfo.email, userInfoSha)
           localStorage.setItem("gui-userId", userInfoSha[0]?.id);
-          // console.log(
-          //   res.docs.map((item) => {
-          //     return { data: item.data(), id: item.id };
-          //   })
-          // );
         })
         .catch((err) => {
           alert(err.message);
         });
     } else {
-      navigate("/sign-up");
+      navigate(SIGN_UP);
     }
   }, []);
+
   return {
     location,
   };

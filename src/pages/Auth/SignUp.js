@@ -9,6 +9,9 @@ import { TextField, Button } from "@mui/material";
 /* Hook */
 import Hook from "./hook.signUp";
 
+/* Constants */
+import { SIGN_IN } from '../../constants/routeNames';
+
 const SignUp = () => {
   const {
     errors,
@@ -153,7 +156,7 @@ const SignUp = () => {
 
               <p className="mt-3">
                 Already have an account?{" "}
-                <Link to="/sign-in" className="text-light-md font-bold">
+                <Link to={SIGN_IN} className="text-light-md font-bold">
                   Sign in.
                 </Link>
               </p>

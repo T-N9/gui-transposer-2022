@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 /* Icons */
 import { Logo, LoadingAni } from "../../assets";
@@ -8,6 +9,9 @@ import { TextField, Button } from "@mui/material";
 
 /* Hook */
 import Hook from "./hook.resetPassword";
+
+/* Constants */
+import { SIGN_IN } from '../../constants/routeNames';
 
 const ResetPassword = () => {
   const {
@@ -87,6 +91,9 @@ const ResetPassword = () => {
                 )}
               </Button>
             </div>
+            <p>
+              <Link to={SIGN_IN} className="text-light-md font-bold">Sign In</Link> to your account.
+            </p>
           </div>
         </form>
       </div>

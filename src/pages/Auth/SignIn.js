@@ -6,6 +6,9 @@ import { Logo, LoadingAni } from "../../assets";
 /* Components */
 import { TextField, Button } from "@mui/material";
 
+/* Constants */
+import { RESET_PASSWORD, SIGN_UP } from '../../constants/routeNames';
+
 import Hook from "./hook.signIn";
 
 const SignIn = () => {
@@ -102,13 +105,13 @@ const SignIn = () => {
 
               <p className="mt-3">
                 Don't have an account?{" "}
-                <Link to="/sign-up" className="text-light-md font-bold">
+                <Link to={SIGN_UP} className="text-light-md font-bold">
                   Register Here.
                 </Link>
               </p>
 
               <p className="mt-1">
-                <Link to="/reset-password" className="text-light-md font-bold">
+                <Link to={RESET_PASSWORD} className="text-light-md font-bold">
                   Forget your password?
                 </Link>
               </p>
