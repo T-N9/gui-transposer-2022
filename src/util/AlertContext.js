@@ -1,28 +1,31 @@
-import React, { createContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { setStartAlert, setStopAlert } from '../store/alertMessageSlice';
+import React, { createContext } from "react";
+import { useDispatch } from "react-redux";
+
+/* Redux actions */
+import { setStartAlert, setStopAlert } from "../store/alertMessageSlice";
 
 const AlertContext = createContext();
 
 const AlertContextProvider = (props) => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const handleCallAlert = (message , status) => {
-        console.log('Alert Call', message, status);
-        dispatch(setStartAlert({message, status}))
-    
-        setTimeout(() => {
-          dispatch(setStopAlert());
-        }, 3000);
-      }
+  const handleCallAlert = (message, status) => {
+    dispatch(setStartAlert({ message, status }));
 
-    return (
-        <AlertContext.Provider value={{
-            handleCallAlert
-        }}>
-            {props.children}
-        </AlertContext.Provider>
-    );
-}
+    setTimeout(() => {
+      dispatch(setStopAlert());
+    }, 3000);
+  };
 
-export {AlertContextProvider, AlertContext};
+  return (
+    <AlertContext.Provider
+      value={{
+        handleCallAlert,
+      }}
+    >
+      {props.children}
+    </AlertContext.Provider>
+  );
+};
+
+export { AlertContextProvider, AlertContext };
