@@ -25,9 +25,7 @@ import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
 
 /* Context */
-import { 
-  AlertContext
- } from '../../../util/AlertContext';
+import { AlertContext } from "../../../util/AlertContext";
 
 const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const navigate = useNavigate();
@@ -40,8 +38,13 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const [currentBoardWithId, setCurrentBoardWithId] = useState(null);
   const [isNewBoard, setIsNewBoard] = useState(true);
 
-  const { publicBoardsCollection, fetchPublicBoardList } = HookFirebaseAssets();
-  const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
+  const {
+    publicBoardsCollection,
+    fetchPublicBoardList,
+    fetchPersonalBoardList,
+    personalBoardsCollection,
+  } = HookFirebaseAssets();
+  // const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
 
   const dispatch = useDispatch();
 
@@ -53,6 +56,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     setValue,
     formState: { errors },
   } = useForm();
+
+  const { isPersonal } = useSelector((state) => state.general)
 
   const currentInputtedLyric = currentBoardWithId?.lyricInput?.join("\n");
   const inputtedPublicLyric = inputLyric.split("\n");
@@ -67,29 +72,55 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const megaFormSubmit = handleSubmit(onSubmit);
 
   useEffect(() => {
-    if (boardId.length > 4) {
-      dispatch(setStartLoading());
-      getDocs(publicBoardsCollection)
-        .then((item) => {
-          let currentBoardWithIdRef = item.docs.filter((board) => {
-            return board.id === boardId;
+    if(!isPersonal) {
+      if (boardId.length > 4) {
+        dispatch(setStartLoading());
+        getDocs(publicBoardsCollection)
+          .then((item) => {
+            let currentBoardWithIdRef = item.docs.filter((board) => {
+              return board.id === boardId;
+            });
+  
+            let toStateRef = currentBoardWithIdRef.map((item) => item.data());
+  
+            setCurrentBoardWithId(toStateRef[0]);
+            dispatch(setStopLoading());
+          })
+          .catch((err) => {
+            alert(err.message);
+            dispatch(setStopLoading());
           });
-
-          let toStateRef = currentBoardWithIdRef.map((item) => item.data());
-
-          setCurrentBoardWithId(toStateRef[0]);
-          dispatch(setStopLoading());
-        })
-        .catch((err) => {
-          alert(err.message);
-          dispatch(setStopLoading());
-        });
-      setIsNewBoard(false);
-    } else {
-      setIsNewBoard(true);
+        setIsNewBoard(false);
+      } else {
+        setIsNewBoard(true);
+      }
+    }else {
+      if (boardId.length > 4) {
+        dispatch(setStartLoading());
+        getDocs(personalBoardsCollection)
+          .then((item) => {
+            let currentBoardWithIdRef = item.docs.filter((board) => {
+              return board.id === boardId;
+            });
+  
+            let toStateRef = currentBoardWithIdRef.map((item) => item.data());
+  
+            setCurrentBoardWithId(toStateRef[0]);
+            dispatch(setStopLoading());
+          })
+          .catch((err) => {
+            alert(err.message);
+            dispatch(setStopLoading());
+          });
+        setIsNewBoard(false);
+      } else {
+        setIsNewBoard(true);
+      }
     }
+
   }, []);
 
+  //#region -- Managing CRUD Public board for admins
   const handleAddingBoardList = () => {
     if (isAdmin) {
       addDoc(publicBoardsCollection, {
@@ -98,21 +129,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         lyricInput: inputtedPublicLyric,
       })
         .then(() => {
-          handleCallAlert('Song is Added', 'success')
+          handleCallAlert("Song is Added", "success");
           fetchPublicBoardList(true);
-
-        })
-        .catch((err) => {
-          alert(err.message);
-        });
-    } else {
-      addDoc(boardDatabaseRef, {
-        songTitle: watch("songTitle"),
-        artistName: watch("artistName"),
-        lyricInput: inputtedPublicLyric,
-      })
-        .then(() => {
-          alert("Song added");
         })
         .catch((err) => {
           alert(err.message);
@@ -146,6 +164,51 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         alert(err.message);
       });
   };
+  //#endregion
+
+  //#region -- Managing CRUD for personal board
+  const handleAddingPersonalBoardList = () => {
+    addDoc(personalBoardsCollection, {
+      songTitle: watch("songTitle"),
+      artistName: watch("artistName"),
+      lyricInput: inputtedPublicLyric,
+    })
+      .then(() => {
+        handleCallAlert("Song is Added", "success");
+        fetchPersonalBoardList(true);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  const handleDeletingPersonalBoard = () => {
+    // dispatch(setStartLoading());
+    deleteDoc(doc(database, `gui-users/${userId}/boards`, boardId))
+      .then(() => {
+        fetchPersonalBoardList(true);
+        navigate("/");
+        // alert("Board is deleted");
+      })
+      .catch((err) => alert(err.message));
+  };
+
+  const handleUpdatingPersonalBoard = () => {
+    dispatch(setStartLoading());
+    updateDoc(doc(database, `gui-users/${userId}/boards`, boardId), {
+      songTitle: watch("songTitle"),
+      artistName: watch("artistName"),
+      lyricInput: inputtedPublicLyric,
+    })
+      .then(() => {
+        dispatch(setStopLoading());
+      })
+      .catch((err) => {
+        dispatch(setStopLoading());
+        alert(err.message);
+      });
+  };
+  //#endregion
 
   const { songTitle, artistName, songInputLyric } = useSelector(
     (state) => state.currentSongInfo
@@ -174,11 +237,16 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     formArtistName,
     isNewBoard,
     isAdmin,
+    isPersonal,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,
     handleDeletingBoard,
     handleUpdatingBoard,
+
+    handleAddingPersonalBoardList,
+    handleDeletingPersonalBoard,
+    handleUpdatingPersonalBoard
   };
 };
 

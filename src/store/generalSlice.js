@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export const generalSlice = createSlice({
     name : 'general',
     initialState : {
-        loading : false
+        loading : false,
+        isPersonal : false,
     },
     reducers : {
         setStartLoading : (state) => {
@@ -11,9 +12,15 @@ export const generalSlice = createSlice({
         },
         setStopLoading : (state) => {
             state.loading = false
+        },
+        setIsPublicBoard : (state) => {
+            state.isPersonal = false
+        },
+        setIsPersonalBoard : (state) => {
+            state.isPersonal = true
         }
     }
 });
 
-export const { setStartLoading, setStopLoading } = generalSlice.actions;
+export const { setStartLoading, setStopLoading, setIsPersonalBoard, setIsPublicBoard } = generalSlice.actions;
 export default generalSlice.reducer;

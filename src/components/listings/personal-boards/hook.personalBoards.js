@@ -4,26 +4,26 @@ import { useSelector, useDispatch } from "react-redux";
 /* Firebase assets */
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
 
-import { setIsPublicBoard } from "../../../store/generalSlice";
+import { setIsPersonalBoard } from "../../../store/generalSlice";
 
 const Hook = () => {
   const dispatch = useDispatch();
-  const { boardList } = useSelector((state) => state.boardList);
+  const { personalBoardList } = useSelector((state) => state.boardList);
 
-  const { fetchPublicBoardList } = HookFirebaseAssets();
+  const { fetchPersonalBoardList } = HookFirebaseAssets();
 
   useEffect(() => {
-    fetchPublicBoardList();
+    fetchPersonalBoardList();
   }, []);
 
   const handleBoardType = () => {
-    dispatch(setIsPublicBoard())
+    dispatch(setIsPersonalBoard())
   }
 
   return {
-    boardList,
+    personalBoardList,
     handleBoardType
   };
-};
+}
 
 export default Hook;

@@ -29,15 +29,22 @@ const InputLyric = ({
     formArtistName,
     isNewBoard,
     isAdmin,
+    isPersonal,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,
     handleDeletingBoard,
-    handleUpdatingBoard
+    handleUpdatingBoard,
+
+    /* Personal boards */
+    handleAddingPersonalBoardList,
+    handleDeletingPersonalBoard,
+    handleUpdatingPersonalBoard,
   } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
 
   return (
     <>
+      {/* Manage Public boards for admins */}
       {isAdmin && (
         <div>
           <div className="container mt-2 mx-auto p-0 md:p-5 md:px-30 lg:px-48 lg:py-2 font-secondary flex justify-end items-center gap-2">
@@ -51,10 +58,48 @@ const InputLyric = ({
             )}
             {!isNewBoard && (
               <>
-                <button onClick={handleUpdatingBoard} className="px-5 py-2 bg-light shadow-md text-xs rounded text-white">
+                <button
+                  onClick={handleUpdatingBoard}
+                  className="px-5 py-2 bg-light shadow-md text-xs rounded text-white"
+                >
                   Update Board
                 </button>
-                <button onClick={handleDeletingBoard} className="px-5 py-2 bg-danger shadow-md text-xs rounded text-white">
+                <button
+                  onClick={handleDeletingBoard}
+                  className="px-5 py-2 bg-danger shadow-md text-xs rounded text-white"
+                >
+                  <TrashIcon />
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Manage Personal boards for normal users */}
+      {!isAdmin && isPersonal && (
+        <div>
+          <div className="container mt-2 mx-auto p-0 md:p-5 md:px-30 lg:px-48 lg:py-2 font-secondary flex justify-end items-center gap-2">
+            {isNewBoard && (
+              <button
+                onClick={handleAddingPersonalBoardList}
+                className="px-5 py-2 bg-light shadow-md text-xs rounded text-white"
+              >
+                Add to Library
+              </button>
+            )}
+            {!isNewBoard && (
+              <>
+                <button
+                  onClick={handleUpdatingPersonalBoard}
+                  className="px-5 py-2 bg-light shadow-md text-xs rounded text-white"
+                >
+                  Update Board
+                </button>
+                <button
+                  onClick={handleDeletingPersonalBoard}
+                  className="px-5 py-2 bg-danger shadow-md text-xs rounded text-white"
+                >
                   <TrashIcon />
                 </button>
               </>

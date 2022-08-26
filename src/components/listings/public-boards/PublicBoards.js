@@ -1,21 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import { GlobeIcon } from "@radix-ui/react-icons";
 
 import Hook from "./hook.publicBoards";
 
-import { Link } from "react-router-dom";
-
 const PublicBoards = () => {
-  const { boardList } = Hook();
+  const { boardList,handleBoardType } = Hook();
 
   return (
     <div className="">
-      <h1 className="font-secondary mb-2 font-bold text-dark">
-        Explore songs
+      <h1 className="font-secondary flex items-center gap-2 text-xl mb-2 font-bold text-dark">
+        Explore songs <GlobeIcon/>
       </h1>
-      <div className= "flex gap-4 flex-col lg:flex-row flex-wrap">
+      <div className= "grid gap-4 grid-cols-1 md:grid-cols-5">
         {boardList.map((item, index) => {
           return (
-            <Link key={index} to={`/boards/${item.id}`}>
+            <Link onClick={handleBoardType} key={index} to={`/boards/${item.id}`}>
               <div className="p-2 w-full lg:w-auto shadow font-secondary rounded-md">
                 <div>
                   <h1 className="text-xl text-primary font-bold">

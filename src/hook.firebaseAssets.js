@@ -8,19 +8,23 @@ import { collection, getDocs, where, query } from "firebase/firestore";
 
 /* Redux Actions */
 import { setStartLoading, setStopLoading } from "./store/generalSlice";
-import { sendBoardList } from "./store/boardListSlice";
+import { sendBoardList, sendPersonalBoardList } from "./store/boardListSlice";
 import { setUserData } from "./store/userDataSlice";
+
+const userId = localStorage.getItem("gui-userId");
 
 const HookFirebaseAssets = () => {
   const dispatch = useDispatch();
   const auth = getAuth();
-  const { boardList } = useSelector((state) => state.boardList);
+  const { boardList, personalBoardList } = useSelector((state) => state.boardList);
 
   //   User Collection
   const userCollection = collection(database, "gui-users");
   const getSessionUserInfo = JSON.parse(localStorage.getItem("gui-userInfo"));
   const adminCollection = collection(database, "gui-admins");
   const publicBoardsCollection = collection(database, "public-boards");
+
+  const personalBoardsCollection = collection(database, `gui-users/${userId}/boards`)
 
   const fetchPublicBoardList = (isReq) => {
     // alert('fetching...')
@@ -42,6 +46,26 @@ const HookFirebaseAssets = () => {
         });
     }
   };
+
+  const fetchPersonalBoardList = (isReq) => {
+    if (personalBoardList.length === 0 || isReq) {
+      dispatch(setStartLoading());
+      getDocs(personalBoardsCollection)
+        .then((res) => {
+          let boardDataRef = [];
+          res.docs.map((item) => {
+            boardDataRef.push({ data: item.data(), id: item.id });
+          });
+
+          dispatch(sendPersonalBoardList(boardDataRef));
+          dispatch(setStopLoading());
+        })
+        .catch((err) => {
+          console.log(err.message);
+          dispatch(setStopLoading());
+        });
+    }
+  }
 
   const fetchUserData = () => {
     const userQuery = query(
@@ -68,9 +92,11 @@ const HookFirebaseAssets = () => {
     getSessionUserInfo,
     adminCollection,
     publicBoardsCollection,
+    personalBoardsCollection,
 
     /* actions */
     fetchPublicBoardList,
+    fetchPersonalBoardList
   };
 };
 

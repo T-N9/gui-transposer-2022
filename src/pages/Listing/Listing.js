@@ -6,13 +6,18 @@ import Hook from "./hook.listing";
 
 /* Components */
 import UserBoardList from "../../components/userData/UserBoardList";
-import { PublicBoards } from "../../components/listings";
+import { PublicBoards, PersonalBoards } from "../../components/listings";
 
 /* Icons */
 import { RocketIcon } from "@radix-ui/react-icons";
 
 const Listing = () => {
-  const { boardList, isAdmin } = Hook();
+  const {
+    boardList,
+    isAdmin, // action
+    handlePersonalBoard,
+    handlePublicBoard,
+  } = Hook();
 
   return (
     <section className="container mx-auto my-5 p-5">
@@ -56,23 +61,36 @@ const Listing = () => {
         </div>
       </div> */}
 
+      <hr className="mt-5" />
+
       {!isAdmin && (
-        <div>
-          <UserBoardList />
-        </div>
+        <>
+          <div className="mt-5">
+            <PersonalBoards />
+          </div>
+          <hr className="mt-5" />
+        </>
       )}
 
-      <hr className="mt-5"/>
-
-      <Link to={"/boards/new"}>
-        <button
-          className={`rounded-md py-2 px-4 my-5 flex justify-center items-center gap-2 ${
-            isAdmin ? "bg-dark text-success" : " bg-info text-white"
-          }`}
-        >
-          Create New Board <RocketIcon/>
-        </button>
-      </Link>
+      <div className="flex justify-center items-center">
+        {isAdmin ? (
+          <Link onClick={handlePublicBoard} to={"/boards/new"}>
+            <button
+              className={`rounded-md py-2 px-4 my-5 flex justify-center items-center gap-2 font-secondary shadow-md bg-dark text-success`}
+            >
+              Create New Board <RocketIcon />
+            </button>
+          </Link>
+        ) : (
+          <Link onClick={handlePersonalBoard} to={"/boards/new"}>
+            <button
+              className={`rounded-md py-2 px-4 my-5 flex justify-center items-center gap-2 font-secondary shadow-md  bg-info text-white`}
+            >
+              Create New Board <RocketIcon />
+            </button>
+          </Link>
+        )}
+      </div>
     </section>
   );
 };
