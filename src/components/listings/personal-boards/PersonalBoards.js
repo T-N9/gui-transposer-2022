@@ -21,7 +21,7 @@ const PersonalBoard = () => {
             <Link
               onClick={handleBoardType}
               key={index}
-              to={`/boards/${item.id}`}
+              to={`/my-boards/${item.id}`}
             >
               <div className="p-2 w-full lg:w-auto shadow font-secondary rounded-md">
                 <div>

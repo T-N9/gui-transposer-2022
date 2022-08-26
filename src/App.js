@@ -42,7 +42,8 @@ const App = () => {
       <Routes>
         {/* Operational pages */}
         <Route path={HOME} element={<Listing />} />
-        <Route path="/boards/:boardId" element={<Main />} />
+        <Route path="/boards/:boardId" element={<Main isPersonal={false}/>} />
+        <Route path="/my-boards/:boardId" element={<Main isPersonal={true}/>} />
 
         {/* authentication pages */}
         <Route path="/chords" element={<ChordDb />} />

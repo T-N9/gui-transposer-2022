@@ -129,8 +129,9 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         lyricInput: inputtedPublicLyric,
       })
         .then(() => {
-          handleCallAlert("Song is Added", "success");
+          handleCallAlert("Added to Public boards.", "success");
           fetchPublicBoardList(true);
+          navigate("/");
         })
         .catch((err) => {
           alert(err.message);
@@ -143,6 +144,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     deleteDoc(doc(database, "public-boards", boardId))
       .then(() => {
         fetchPublicBoardList(true);
+        handleCallAlert("Deleted Public board.", "info");
         navigate("/");
         // alert("Board is deleted");
       })
@@ -157,6 +159,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       lyricInput: inputtedPublicLyric,
     })
       .then(() => {
+        handleCallAlert("Updated Public board.", "info");
         dispatch(setStopLoading());
       })
       .catch((err) => {
@@ -174,8 +177,9 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       lyricInput: inputtedPublicLyric,
     })
       .then(() => {
-        handleCallAlert("Song is Added", "success");
+        handleCallAlert("Added to library.", "success");
         fetchPersonalBoardList(true);
+        navigate("/profile");
       })
       .catch((err) => {
         alert(err.message);
@@ -187,7 +191,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     deleteDoc(doc(database, `gui-users/${userId}/boards`, boardId))
       .then(() => {
         fetchPersonalBoardList(true);
-        navigate("/");
+        handleCallAlert("Deleted board.", "info");
+        navigate("/profile");
         // alert("Board is deleted");
       })
       .catch((err) => alert(err.message));
@@ -201,6 +206,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       lyricInput: inputtedPublicLyric,
     })
       .then(() => {
+        handleCallAlert("Updated board.", "info");
         dispatch(setStopLoading());
       })
       .catch((err) => {

@@ -22,7 +22,7 @@ const NavBar = () => {
           <ul>
             <li className="">
               <Link to="/profile">
-                <div className="user-profile w-12 h-12 rounded-full flex justify-center items-center text-white font-bold">
+                <div className="user-profile w-10 h-10 border-2 border-gray-200 rounded-full flex justify-center items-center text-white font-bold">
                   {profileName}
                 </div>
               </Link>

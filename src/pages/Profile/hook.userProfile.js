@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,7 +6,7 @@ import { database } from "../../firebase-config";
 import { getAuth, signOut } from "firebase/auth";
 import { getDocs, collection, query, where } from "firebase/firestore";
 
-import { setStartLoading, setStopLoading } from "../../store/generalSlice";
+import { setStartLoading, setStopLoading, setIsPersonalBoard } from "../../store/generalSlice";
 
 /* Constants */
 import { SIGN_UP } from '../../constants/routeNames';
@@ -51,15 +50,24 @@ const Hook = () => {
       });
   };
 
+  const isAdmin = localStorage.getItem("interactingAdmin");
+
+  const handlePersonalBoard = () => {
+    dispatch(setIsPersonalBoard())
+  }
+
   return {
     userName,
     userMail,
     isVerified,
     userProfile,
     profileName,
+    isAdmin,
+    
 
     /* actions */
     handleLogOut,
+    handlePersonalBoard
   };
 };
 

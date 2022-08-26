@@ -13,7 +13,9 @@ import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 /* Hook */
 import Hook from "./hook.main";
 
-const Main = () => {
+const Main = ({
+  isPersonal
+}) => {
   const {
     inputLyric,
     transposedChords,
@@ -65,6 +67,7 @@ const Main = () => {
             formMessage={formMessage}
             currentBoard={currentBoard}
             boardId= { boardId}
+            isPersonal = {isPersonal}
             /* actions */
             setInputLyric={setInputLyric}
             handleSubmit={handleSubmit}

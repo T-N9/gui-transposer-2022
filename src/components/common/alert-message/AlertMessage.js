@@ -9,7 +9,7 @@ const AlertMessage = () => {
 
   return (
     <div
-      className={`fixed bottom-20 left-1/2 bg-${status} transform transition-all -translate-x-1/2 rounded-lg shadow ${
+      className={`fixed top-20 left-1/2 bg-${status} transform transition-all -translate-x-1/2 rounded-lg shadow ${
         alert
           ? "visible opacity-100 translate-y-0"
           : "invisible opacity-0 -translate-y-10"

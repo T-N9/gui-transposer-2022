@@ -13,6 +13,7 @@ const InputLyric = ({
   formMessage,
   currentBoard,
   boardId,
+  isPersonal,
   /* actions */
   setInputLyric,
   handleSubmit,
@@ -29,7 +30,7 @@ const InputLyric = ({
     formArtistName,
     isNewBoard,
     isAdmin,
-    isPersonal,
+    // isPersonal,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,
