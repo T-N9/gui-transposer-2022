@@ -16,9 +16,6 @@ const Hook = () => {
 
   useEffect(() => {
     fetchPersonalBoardList();
-    setTimeout(() => {
-      fetchPersonalBoardList();
-    }, 2000);
   }, [GUI_USERID]);
 
   const handleBoardType = () => {
