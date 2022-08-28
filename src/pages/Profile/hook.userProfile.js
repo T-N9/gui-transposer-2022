@@ -6,6 +6,7 @@ import { database } from "../../firebase-config";
 import { getAuth, signOut } from "firebase/auth";
 import { getDocs, collection, query, where } from "firebase/firestore";
 
+import { clearAllBoardLists } from "../../store/boardListSlice";
 import { setStartLoading, setStopLoading, setIsPersonalBoard } from "../../store/generalSlice";
 
 /* Constants */
@@ -41,6 +42,7 @@ const Hook = () => {
 
     signOut(auth)
       .then(() => {
+        dispatch(clearAllBoardLists());
         dispatch(setStopLoading());
         navigate(SIGN_UP);
       })

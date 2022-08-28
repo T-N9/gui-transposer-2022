@@ -6,6 +6,9 @@ import HookFirebaseAssets from "../../../hook.firebaseAssets";
 
 import { setIsPublicBoard } from "../../../store/generalSlice";
 
+/* LocalStorage attributes */
+import { GUI_USERINFO } from "../../../constants/localAttributes";
+
 const Hook = () => {
   const dispatch = useDispatch();
   const { boardList } = useSelector((state) => state.boardList);
@@ -17,12 +20,12 @@ const Hook = () => {
   }, []);
 
   const handleBoardType = () => {
-    dispatch(setIsPublicBoard())
-  }
+    dispatch(setIsPublicBoard());
+  };
 
   return {
     boardList,
-    handleBoardType
+    handleBoardType,
   };
 };
 

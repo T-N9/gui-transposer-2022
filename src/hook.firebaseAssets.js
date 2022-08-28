@@ -11,12 +11,16 @@ import { setStartLoading, setStopLoading } from "./store/generalSlice";
 import { sendBoardList, sendPersonalBoardList } from "./store/boardListSlice";
 import { setUserData } from "./store/userDataSlice";
 
+/* Local */
+import { GUI_USERINFO } from "./constants/localAttributes";
 const userId = localStorage.getItem("gui-userId");
 
 const HookFirebaseAssets = () => {
   const dispatch = useDispatch();
   const auth = getAuth();
-  const { boardList, personalBoardList } = useSelector((state) => state.boardList);
+  const { boardList, personalBoardList } = useSelector(
+    (state) => state.boardList
+  );
 
   //   User Collection
   const userCollection = collection(database, "gui-users");
@@ -24,10 +28,12 @@ const HookFirebaseAssets = () => {
   const adminCollection = collection(database, "gui-admins");
   const publicBoardsCollection = collection(database, "public-boards");
 
-  const personalBoardsCollection = collection(database, `gui-users/${userId}/boards`)
+  const personalBoardsCollection = collection(
+    database,
+    `gui-users/${userId}/boards`
+  );
 
   const fetchPublicBoardList = (isReq) => {
-    // alert('fetching...')
     if (boardList.length === 0 || isReq) {
       dispatch(setStartLoading());
       getDocs(publicBoardsCollection)
@@ -56,7 +62,7 @@ const HookFirebaseAssets = () => {
           res.docs.map((item) => {
             boardDataRef.push({ data: item.data(), id: item.id });
           });
-
+          
           dispatch(sendPersonalBoardList(boardDataRef));
           dispatch(setStopLoading());
         })
@@ -65,7 +71,7 @@ const HookFirebaseAssets = () => {
           dispatch(setStopLoading());
         });
     }
-  }
+  };
 
   const fetchUserData = () => {
     const userQuery = query(
@@ -96,7 +102,7 @@ const HookFirebaseAssets = () => {
 
     /* actions */
     fetchPublicBoardList,
-    fetchPersonalBoardList
+    fetchPersonalBoardList,
   };
 };
 

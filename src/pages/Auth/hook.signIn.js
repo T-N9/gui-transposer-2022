@@ -13,7 +13,7 @@ import HookFirebaseAssets from "../../hook.firebaseAssets";
 import { HOME } from '../../constants/routeNames';
 
 const Hook = () => {
-  const { auth, adminCollection } = HookFirebaseAssets();
+  const { auth, adminCollection, userCollection, getSessionUserInfo } = HookFirebaseAssets();
 
   const navigate = useNavigate();
 
@@ -45,13 +45,31 @@ const Hook = () => {
 
         localStorage.setItem("gui-verified", res.user.emailVerified);
 
+        getDocs(userCollection)
+        .then((res) => {
+          if (auth.currentUser) {
+            auth.currentUser.emailVerified === true &&
+              localStorage.setItem("gui-verified", true);
+          }
+
+          let userInfoSha = res?.docs.filter((info) => {
+            return info.data().email === data.userMail;
+          });
+          localStorage.setItem("gui-userId", userInfoSha[0]?.id);
+          navigate(HOME);
+          // console.log("set user Id.")
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+
         getDocs(adminCollection)
           .then((res) => {
             res.docs.map((item) => {
               item.data().email === data.userMail &&
                 localStorage.setItem("interactingAdmin", true);
             });
-            navigate(HOME);
+            // navigate(HOME);
           })
           .catch((err) => {
             alert(err.message);

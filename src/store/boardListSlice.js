@@ -12,9 +12,13 @@ export const boardListSlice = createSlice({
         },
         sendPersonalBoardList: (state, action) => {
             state.personalBoardList = [...action.payload]
+        },
+        clearAllBoardLists : (state) => {
+            state.boardList = []
+            state.personalBoardList = []
         }
     }
 });
 
-export const { sendBoardList, sendPersonalBoardList } = boardListSlice.actions;
+export const { sendBoardList, sendPersonalBoardList, clearAllBoardLists } = boardListSlice.actions;
 export default boardListSlice.reducer;

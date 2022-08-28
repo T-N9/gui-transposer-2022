@@ -6,6 +6,8 @@ import HookFirebaseAssets from "../../../hook.firebaseAssets";
 
 import { setIsPersonalBoard } from "../../../store/generalSlice";
 
+import { GUI_USERID } from "../../../constants/localAttributes";
+
 const Hook = () => {
   const dispatch = useDispatch();
   const { personalBoardList } = useSelector((state) => state.boardList);
@@ -14,16 +16,19 @@ const Hook = () => {
 
   useEffect(() => {
     fetchPersonalBoardList();
-  }, []);
+    setTimeout(() => {
+      fetchPersonalBoardList();
+    }, 2000);
+  }, [GUI_USERID]);
 
   const handleBoardType = () => {
-    dispatch(setIsPersonalBoard())
-  }
+    dispatch(setIsPersonalBoard());
+  };
 
   return {
     personalBoardList,
-    handleBoardType
+    handleBoardType,
   };
-}
+};
 
 export default Hook;
