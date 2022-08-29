@@ -115,16 +115,19 @@ const InputLyric = ({
       >
         <button
           type="submit"
-          className="bg-white border-2 border-blue-600 shadow-lg w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] flex justify-center items-center font-bold text-blue-600 text-lg"
+          className="bg-blue-600 border-2 border-blue-600 shadow w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] flex justify-center items-center font-bold text-white text-lg"
         >
           <span>
             GO <DoubleArrowRightIcon className="w-10" />
           </span>
         </button>
 
-        <div className="mb-12 flex gap-x-3 gap-y-5 items-center flex-wrap">
+        <div className="mb-6 flex gap-x-3 gap-y-5 items-center flex-wrap">
           <div className="flex flex-col relative">
-            <label className="text-xs" htmlFor="song-title">
+            <label
+              className="text-sm font-secondary text-gray-600 mb-1"
+              htmlFor="song-title"
+            >
               Song title:
             </label>
             <input
@@ -143,7 +146,10 @@ const InputLyric = ({
           </div>
 
           <div className="flex flex-col relative">
-            <label className="text-xs" htmlFor="artist-name">
+            <label
+              className="text-sm font-secondary text-gray-600 mb-1"
+              htmlFor="artist-name"
+            >
               Artist name:
             </label>
             <input
@@ -163,6 +169,12 @@ const InputLyric = ({
         </div>
 
         <div className="relative">
+          <label
+            className="text-sm font-secondary text-gray-600 mb-1"
+            htmlFor="lyric-input"
+          >
+            Lyrics and chords:
+          </label>
           <textarea
             className="lyric-input min-h-[500px] w-full bg-blue-50 bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
             // defaultValue={inputLyric}
@@ -173,13 +185,13 @@ const InputLyric = ({
             }}
             ref={textArea}
             onKeyDown={(e) => handleCombineKey(e)}
-            name=""
-            id=""
+            name="lyric-input"
+            id="lyric-input"
             cols="30"
             rows="10"
             placeholder="Type chords and lyric"
           ></textarea>
-          <span className="absolute hidden lg:block -top-4 left-2 text-xs text-gray-400">
+          <span className="absolute hidden lg:block top-1 font-secondary right-2 text-xs text-gray-400">
             Ctrl + SPACE = Tab, at least a space between chords
           </span>
 
