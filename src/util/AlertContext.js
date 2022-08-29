@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 /* Redux actions */
 import { setStartAlert, setStopAlert } from "../store/alertMessageSlice";
+import { setAlertMessage, setOpenAlert } from '../store/alertBoxSlice';
 
 const AlertContext = createContext();
 
@@ -17,10 +18,16 @@ const AlertContextProvider = (props) => {
     }, 3000);
   };
 
+  const handleCallAlertBox = (message) => {
+    dispatch(setAlertMessage(message));
+    dispatch(setOpenAlert());
+  }
+
   return (
     <AlertContext.Provider
       value={{
         handleCallAlert,
+        handleCallAlertBox
       }}
     >
       {props.children}

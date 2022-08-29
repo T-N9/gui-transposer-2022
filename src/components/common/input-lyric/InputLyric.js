@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 
 /* Hook */
 import Hook from "./hook.inputLyric";
 
 /* Icons */
 import { DoubleArrowRightIcon, TrashIcon } from "@radix-ui/react-icons";
+
+import AlertBox from "../alert-box/AlertBox";
 
 const InputLyric = ({
   inputLyric,
@@ -36,6 +37,7 @@ const InputLyric = ({
     handleAddingBoardList,
     handleDeletingBoard,
     handleUpdatingBoard,
+    handleCallAlertBox,
 
     /* Personal boards */
     handleAddingPersonalBoardList,
@@ -98,7 +100,7 @@ const InputLyric = ({
                   Update Board
                 </button>
                 <button
-                  onClick={handleDeletingPersonalBoard}
+                  onClick={() =>handleCallAlertBox('Are you sure deleting this board?')}
                   className="px-5 py-2 bg-danger shadow-md text-xs rounded text-white"
                 >
                   <TrashIcon />
@@ -207,6 +209,10 @@ const InputLyric = ({
           Generate
         </button>
       </form>
+
+      <AlertBox
+        confirmAction = {handleDeletingPersonalBoard}
+      />
     </>
   );
 };

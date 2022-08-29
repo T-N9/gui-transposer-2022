@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Hook = () => {
-
-    const dispatch = useDispatch();
     const { alert, message, status } = useSelector((state) => state.alertMessage);
 
     return {

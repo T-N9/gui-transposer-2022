@@ -20,6 +20,7 @@ import {
   sendArtistName,
 } from "../../../store/currentSongInfoSlice";
 import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
+import { setCloseAlert } from "../../../store/alertBoxSlice";
 
 /* Custom Hook */
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
@@ -30,7 +31,7 @@ import { AlertContext } from "../../../util/AlertContext";
 const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const navigate = useNavigate();
 
-  const { handleCallAlert } = useContext(AlertContext);
+  const { handleCallAlert, handleCallAlertBox } = useContext(AlertContext);
 
   const userId = localStorage.getItem("gui-userId");
   let userIdTemp;
@@ -203,6 +204,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     deleteDoc(doc(database, `gui-users/${userIdTemp}/boards`, boardId))
       .then(() => {
         fetchPersonalBoardList(true);
+        dispatch(setCloseAlert());
         handleCallAlert("Deleted board.", "info");
         navigate("/profile");
       })
@@ -261,6 +263,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     handleAddingBoardList,
     handleDeletingBoard,
     handleUpdatingBoard,
+    handleCallAlertBox,
 
     handleAddingPersonalBoardList,
     handleDeletingPersonalBoard,

@@ -5,6 +5,7 @@ import { RocketIcon } from "@radix-ui/react-icons";
 
 /* Component */
 import PersonalBoards from "../../components/listings/personal-boards/PersonalBoards";
+import { AlertBox } from '../../components/common/'
 import Hook from "./hook.userProfile";
 const UserProfile = () => {
   const {
@@ -17,7 +18,8 @@ const UserProfile = () => {
 
     /* Actions */
     handleLogOut,
-    handlePersonalBoard
+    handlePersonalBoard,
+    handleCallAlertBox
   } = Hook();
   return (
     <>
@@ -73,7 +75,7 @@ const UserProfile = () => {
 
               <br />
               <button
-                onClick={handleLogOut}
+                onClick={() => handleCallAlertBox("Are you sure to log out?")}
                 className="px-4 py-2 font-bold bg-danger text-white rounded text-xs"
               >
                 Log Out
@@ -82,6 +84,9 @@ const UserProfile = () => {
           </div>
         </section>
       )}
+      <AlertBox
+        confirmAction={handleLogOut}
+      />
     </>
   );
 };

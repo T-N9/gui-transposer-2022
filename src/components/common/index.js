@@ -5,3 +5,4 @@ export { default as LyricBoard } from './lyric-board/LyricBoard';
 export { default as Setting } from './setting/Setting';
 export { default as Loading } from './loading/Loading';
 export { default as AlertMessage } from './alert-message/AlertMessage';
+export { default as AlertBox } from './alert-box/AlertBox';

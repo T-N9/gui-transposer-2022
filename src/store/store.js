@@ -5,6 +5,7 @@ import boardListReducer from "./boardListSlice";
 import generalReducer from "./generalSlice";
 import userDataReducer from "./userDataSlice";
 import alertMessageReducer from "./alertMessageSlice";
+import alertBoxReducer from "./alertBoxSlice";
 
 export const store = configureStore({
     reducer : {
@@ -13,6 +14,7 @@ export const store = configureStore({
         boardList : boardListReducer,
         general : generalReducer,
         userData : userDataReducer,
-        alertMessage : alertMessageReducer
+        alertMessage : alertMessageReducer,
+        alertBox: alertBoxReducer
     }
 })

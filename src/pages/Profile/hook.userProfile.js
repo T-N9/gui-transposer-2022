@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,8 +13,13 @@ import { setStartLoading, setStopLoading, setIsPersonalBoard } from "../../store
 /* Constants */
 import { SIGN_UP } from '../../constants/routeNames';
 
+/* Context */
+import { AlertContext } from "../../util/AlertContext";
+import { setCloseAlert } from "../../store/alertBoxSlice";
+
 const Hook = () => {
   const navigate = useNavigate();
+  const { handleCallAlertBox } = useContext(AlertContext);
   const auth = getAuth();
   const dispatch = useDispatch();
   // get info from localStorage
@@ -43,11 +49,13 @@ const Hook = () => {
     signOut(auth)
       .then(() => {
         dispatch(clearAllBoardLists());
+        dispatch(setCloseAlert());
         dispatch(setStopLoading());
         navigate(SIGN_UP);
       })
       .catch((err) => {
         dispatch(setStopLoading());
+        dispatch(setCloseAlert());
         alert(err.message);
       });
   };
@@ -69,7 +77,8 @@ const Hook = () => {
 
     /* actions */
     handleLogOut,
-    handlePersonalBoard
+    handlePersonalBoard,
+    handleCallAlertBox
   };
 };
 
