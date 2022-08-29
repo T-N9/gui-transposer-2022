@@ -33,6 +33,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const { handleCallAlert } = useContext(AlertContext);
 
   const userId = localStorage.getItem("gui-userId");
+  let userIdTemp;
   const isAdmin = localStorage.getItem("interactingAdmin");
 
   const [currentBoardWithId, setCurrentBoardWithId] = useState(null);
@@ -95,9 +96,15 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         setIsNewBoard(true);
       }
     }else {
+      userIdTemp = localStorage.getItem("gui-userId");
+      let personalBoardsCollectionTemp= collection(
+        database,
+        `gui-users/${userIdTemp}/boards`
+      );;
+
       if (boardId.length > 4) {
         dispatch(setStartLoading());
-        getDocs(personalBoardsCollection)
+        getDocs(personalBoardsCollectionTemp)
           .then((item) => {
             let currentBoardWithIdRef = item.docs.filter((board) => {
               return board.id === boardId;
@@ -171,7 +178,12 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   //#region -- Managing CRUD for personal board
   const handleAddingPersonalBoardList = () => {
-    addDoc(personalBoardsCollection, {
+    userIdTemp = localStorage.getItem("gui-userId");
+    let personalBoardsCollectionTemp= collection(
+      database,
+      `gui-users/${userIdTemp}/boards`
+    );;
+    addDoc(personalBoardsCollectionTemp, {
       songTitle: watch("songTitle"),
       artistName: watch("artistName"),
       lyricInput: inputtedPublicLyric,
@@ -187,20 +199,20 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   };
 
   const handleDeletingPersonalBoard = () => {
-    // dispatch(setStartLoading());
-    deleteDoc(doc(database, `gui-users/${userId}/boards`, boardId))
+    userIdTemp = localStorage.getItem("gui-userId");
+    deleteDoc(doc(database, `gui-users/${userIdTemp}/boards`, boardId))
       .then(() => {
         fetchPersonalBoardList(true);
         handleCallAlert("Deleted board.", "info");
         navigate("/profile");
-        // alert("Board is deleted");
       })
       .catch((err) => alert(err.message));
   };
 
   const handleUpdatingPersonalBoard = () => {
+    const userIdTemp = localStorage.getItem("gui-userId");
     dispatch(setStartLoading());
-    updateDoc(doc(database, `gui-users/${userId}/boards`, boardId), {
+    updateDoc(doc(database, `gui-users/${userIdTemp}/boards`, boardId), {
       songTitle: watch("songTitle"),
       artistName: watch("artistName"),
       lyricInput: inputtedPublicLyric,

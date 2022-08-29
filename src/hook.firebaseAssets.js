@@ -54,9 +54,15 @@ const HookFirebaseAssets = () => {
   };
 
   const fetchPersonalBoardList = (isReq) => {
+    let userIdTemp = localStorage.getItem("gui-userId");
+    let personalBoardsCollectionTemp= collection(
+      database,
+      `gui-users/${userIdTemp}/boards`
+    );;
+
     if (personalBoardList.length === 0 || isReq) {
       dispatch(setStartLoading());
-      getDocs(personalBoardsCollection)
+      getDocs(personalBoardsCollectionTemp)
         .then((res) => {
           let boardDataRef = [];
           res.docs.map((item) => {
