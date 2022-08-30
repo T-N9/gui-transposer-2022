@@ -24,11 +24,11 @@ const AlertBox = ({
           <p>{message}</p>
 
           <div className="flex justify-center items-center gap-4 mt-4">
-            <button className="px-3 py-2 rounded bg-danger text-white" onClick={closeAlertBox}>
+            <button className="px-3 py-2 rounded bg-danger text-white text-sm" onClick={closeAlertBox}>
               Cancel
             </button>
 
-            <button onClick={confirmAction} className="px-3 py-2 rounded bg-info text-white">
+            <button onClick={confirmAction} className="px-3 py-2 rounded bg-info text-white text-sm">
               Confirm
             </button>
           </div>

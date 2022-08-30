@@ -220,6 +220,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       lyricInput: inputtedPublicLyric,
     })
       .then(() => {
+        dispatch(setCloseAlert());
         handleCallAlert("Updated board.", "info");
         dispatch(setStopLoading());
       })

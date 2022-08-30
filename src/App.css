@@ -16,11 +16,11 @@
   }
 
   .lyric-input {
-    @apply bg-gray-100 rounded-lg transition-all shadow focus:shadow-md border w-full p-1 border-gray-300;
+    @apply bg-gray-100 rounded-lg shadow focus:shadow-md border w-full p-1 border-gray-300;
   }
 
   .primary-input {
-    @apply bg-white rounded-lg transition-all shadow focus:shadow-md border border-orange-400 p-2 focus:outline-none focus:border-orange-500 text-dark;
+    @apply bg-white rounded-lg shadow focus:shadow-md border border-orange-400 p-2 focus:outline-none focus:border-orange-500 text-dark;
   }
 }
 

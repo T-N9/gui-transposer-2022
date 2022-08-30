@@ -9,7 +9,6 @@ export const alertMessageSlice = createSlice({
   },
   reducers: {
     setStartAlert: (state, action) => {
-      console.log(action.payload)
       state.message = action.payload.message;
       state.status = action.payload.status
       state.alert = true;

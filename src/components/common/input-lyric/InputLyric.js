@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 
 /* Hook */
 import Hook from "./hook.inputLyric";
@@ -44,6 +44,17 @@ const InputLyric = ({
     handleDeletingPersonalBoard,
     handleUpdatingPersonalBoard,
   } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
+
+  const [confirmAction, setConfirmAction ] = useState(() => handleUpdatingPersonalBoard)
+  const handleClickUpdatePersonal = () => {
+    handleCallAlertBox('Are you sure updating this board?')
+    setConfirmAction(() =>handleUpdatingPersonalBoard)
+  }
+
+  const handleClickDeletePersonal = () => {
+    handleCallAlertBox('Are you sure deleting this board?')
+    setConfirmAction(() => handleDeletingPersonalBoard)
+  }
 
   return (
     <>
@@ -94,13 +105,13 @@ const InputLyric = ({
             {!isNewBoard && (
               <>
                 <button
-                  onClick={handleUpdatingPersonalBoard}
+                  onClick={handleClickUpdatePersonal}
                   className="px-5 py-2 bg-light shadow-md text-xs rounded text-white"
                 >
                   Update Board
                 </button>
                 <button
-                  onClick={() =>handleCallAlertBox('Are you sure deleting this board?')}
+                  onClick={handleClickDeletePersonal}
                   className="px-5 py-2 bg-danger shadow-md text-xs rounded text-white"
                 >
                   <TrashIcon />
@@ -211,7 +222,7 @@ const InputLyric = ({
       </form>
 
       <AlertBox
-        confirmAction = {handleDeletingPersonalBoard}
+        confirmAction = {confirmAction}
       />
     </>
   );
