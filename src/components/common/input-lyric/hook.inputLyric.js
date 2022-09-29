@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 /* Firebase assets */
 import { database } from "../../../firebase-config";
@@ -21,6 +21,10 @@ import {
 } from "../../../store/currentSongInfoSlice";
 import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
 import { setCloseAlert } from "../../../store/alertBoxSlice";
+import {
+  setIsPersonalBoard,
+  setIsPublicBoard,
+} from "../../../store/generalSlice";
 
 /* Custom Hook */
 import HookFirebaseAssets from "../../../hook.firebaseAssets";
@@ -29,6 +33,7 @@ import HookFirebaseAssets from "../../../hook.firebaseAssets";
 import { AlertContext } from "../../../util/AlertContext";
 
 const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
+  const location = useLocation();
   const navigate = useNavigate();
 
   const { handleCallAlert, handleCallAlertBox } = useContext(AlertContext);
@@ -46,9 +51,14 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     fetchPersonalBoardList,
     personalBoardsCollection,
   } = HookFirebaseAssets();
-  // const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    location.pathname.includes("my")
+      ? dispatch(setIsPersonalBoard())
+      : dispatch(setIsPublicBoard());
+  }, []);
 
   const {
     register,
@@ -59,7 +69,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     formState: { errors },
   } = useForm();
 
-  const { isPersonal } = useSelector((state) => state.general)
+  const { isPersonal } = useSelector((state) => state.general);
 
   const currentInputtedLyric = currentBoardWithId?.lyricInput?.join("\n");
   const inputtedPublicLyric = inputLyric.split("\n");
@@ -74,7 +84,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const megaFormSubmit = handleSubmit(onSubmit);
 
   useEffect(() => {
-    if(!isPersonal) {
+    if (!isPersonal) {
       if (boardId.length > 4) {
         dispatch(setStartLoading());
         getDocs(publicBoardsCollection)
@@ -82,9 +92,9 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
             let currentBoardWithIdRef = item.docs.filter((board) => {
               return board.id === boardId;
             });
-  
+
             let toStateRef = currentBoardWithIdRef.map((item) => item.data());
-  
+
             setCurrentBoardWithId(toStateRef[0]);
             dispatch(setStopLoading());
           })
@@ -96,12 +106,12 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       } else {
         setIsNewBoard(true);
       }
-    }else {
+    } else {
       userIdTemp = localStorage.getItem("gui-userId");
-      let personalBoardsCollectionTemp= collection(
+      let personalBoardsCollectionTemp = collection(
         database,
         `gui-users/${userIdTemp}/boards`
-      );;
+      );
 
       if (boardId.length > 4) {
         dispatch(setStartLoading());
@@ -110,9 +120,9 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
             let currentBoardWithIdRef = item.docs.filter((board) => {
               return board.id === boardId;
             });
-  
+
             let toStateRef = currentBoardWithIdRef.map((item) => item.data());
-  
+
             setCurrentBoardWithId(toStateRef[0]);
             dispatch(setStopLoading());
           })
@@ -125,16 +135,19 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         setIsNewBoard(true);
       }
     }
-
-  }, []);
+  }, [isPersonal]);
 
   const isFormsEmpty = () => {
-    if(watch("songTitle") === '' || watch('artistName') === '' || inputLyric === '') {
-      return true
+    if (
+      watch("songTitle") === "" ||
+      watch("artistName") === "" ||
+      inputLyric === ""
+    ) {
+      return true;
     } else {
-      return false
+      return false;
     }
-  }
+  };
 
   //#region -- Managing CRUD Public board for admins
   const handleAddingBoardList = () => {
@@ -188,7 +201,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   //#region -- Managing CRUD for personal board
   const handleAddingPersonalBoardList = () => {
     userIdTemp = localStorage.getItem("gui-userId");
-    let personalBoardsCollectionTemp= collection(
+    let personalBoardsCollectionTemp = collection(
       database,
       `gui-users/${userIdTemp}/boards`
     );
@@ -221,8 +234,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   const handleUpdatingPersonalBoard = () => {
     const abortAction = isFormsEmpty();
-    
-    if(!abortAction) {
+
+    if (!abortAction) {
       const userIdTemp = localStorage.getItem("gui-userId");
       dispatch(setStartLoading());
       updateDoc(doc(database, `gui-users/${userIdTemp}/boards`, boardId), {
@@ -239,11 +252,10 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
           dispatch(setStopLoading());
           alert(err.message);
         });
-    }else {
+    } else {
       dispatch(setCloseAlert());
       handleCallAlert("Please fill form completely.", "danger");
     }
-    
   };
   //#endregion
 
@@ -284,7 +296,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
     handleAddingPersonalBoardList,
     handleDeletingPersonalBoard,
-    handleUpdatingPersonalBoard
+    handleUpdatingPersonalBoard,
   };
 };
 
