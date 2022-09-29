@@ -11,7 +11,7 @@ const PublicBoards = () => {
   return (
     <div className="">
       <h1 className="font-secondary flex items-center gap-2 text-xl mb-2 font-bold text-dark">
-        Explore songs <GlobeIcon/>
+        Demo songs <GlobeIcon/>
       </h1>
       <div className= "grid gap-4 grid-cols-1 md:grid-cols-5">
         {boardList.map((item, index) => {

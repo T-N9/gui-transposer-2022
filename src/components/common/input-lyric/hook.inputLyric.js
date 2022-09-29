@@ -128,6 +128,14 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   }, []);
 
+  const isFormsEmpty = () => {
+    if(watch("songTitle") === '' || watch('artistName') === '' || inputLyric === '') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   //#region -- Managing CRUD Public board for admins
   const handleAddingBoardList = () => {
     if (isAdmin) {
@@ -183,7 +191,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     let personalBoardsCollectionTemp= collection(
       database,
       `gui-users/${userIdTemp}/boards`
-    );;
+    );
     addDoc(personalBoardsCollectionTemp, {
       songTitle: watch("songTitle"),
       artistName: watch("artistName"),
@@ -212,22 +220,30 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   };
 
   const handleUpdatingPersonalBoard = () => {
-    const userIdTemp = localStorage.getItem("gui-userId");
-    dispatch(setStartLoading());
-    updateDoc(doc(database, `gui-users/${userIdTemp}/boards`, boardId), {
-      songTitle: watch("songTitle"),
-      artistName: watch("artistName"),
-      lyricInput: inputtedPublicLyric,
-    })
-      .then(() => {
-        dispatch(setCloseAlert());
-        handleCallAlert("Updated board.", "info");
-        dispatch(setStopLoading());
+    const abortAction = isFormsEmpty();
+    
+    if(!abortAction) {
+      const userIdTemp = localStorage.getItem("gui-userId");
+      dispatch(setStartLoading());
+      updateDoc(doc(database, `gui-users/${userIdTemp}/boards`, boardId), {
+        songTitle: watch("songTitle"),
+        artistName: watch("artistName"),
+        lyricInput: inputtedPublicLyric,
       })
-      .catch((err) => {
-        dispatch(setStopLoading());
-        alert(err.message);
-      });
+        .then(() => {
+          dispatch(setCloseAlert());
+          handleCallAlert("Updated board.", "info");
+          dispatch(setStopLoading());
+        })
+        .catch((err) => {
+          dispatch(setStopLoading());
+          alert(err.message);
+        });
+    }else {
+      dispatch(setCloseAlert());
+      handleCallAlert("Please fill form completely.", "danger");
+    }
+    
   };
   //#endregion
 

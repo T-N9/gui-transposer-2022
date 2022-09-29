@@ -2,6 +2,8 @@ import React from "react";
 import Loading from "react-loading-components";
 import { useSelector } from "react-redux";
 
+import DefineChord from "../../common/chord-chart/DefineChord";
+
 /* Components */
 import LyricLine from "../lyric-line/LyricLine";
 
@@ -22,6 +24,8 @@ const LyricBoard = ({
   const { songTitle, artistName } = useSelector(
     (state) => state.currentSongInfo
   );
+
+  console.log({ detectedChords });
 
   return (
     <div ref={printRef}>
@@ -70,6 +74,16 @@ const LyricBoard = ({
               </div>
             )}
           </div>
+        )}
+
+        {showLyricBoard && (
+          <>
+            <div className="flex gap-3 fixed top-0 left-[50%] translate-x-[-50%] bg-white p-5 shadow">
+              {detectedChords.map((chord, index) => {
+                return <DefineChord key={index} chord={chord} />;
+              })}
+            </div>
+          </>
         )}
       </section>
 
