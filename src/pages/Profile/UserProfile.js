@@ -5,7 +5,7 @@ import { RocketIcon } from "@radix-ui/react-icons";
 
 /* Component */
 import PersonalBoards from "../../components/listings/personal-boards/PersonalBoards";
-import { AlertBox } from '../../components/common/'
+import { AlertBox } from "../../components/common/";
 import Hook from "./hook.userProfile";
 const UserProfile = () => {
   const {
@@ -19,44 +19,55 @@ const UserProfile = () => {
     /* Actions */
     handleLogOut,
     handlePersonalBoard,
-    handleCallAlertBox
+    handleCallAlertBox,
   } = Hook();
   return (
     <>
       {userProfile !== null && (
         <section>
           <div className="container px-5 lg:px-0 flex-col font-secondary mx-auto my-5 flex justify-center gap-4">
-
             {/* Profile Info */}
             <div className="flex gap-4 justify-start items-center md:items-start flex-col md:flex-row">
               <div className="user-profile w-28 h-28 rounded-lg flex justify-center items-center text-white font-bold">
                 {profileName}
               </div>
               <table
-                  className="profile-table"
-                  style={{ borderSpacing: "20px", verticalAlign: "top" }}
-                >
-                  <tbody>
-                    <tr>
-                      <td className="font-bold text-gray-500">Name </td>
-                      <td className="pl-3">{userName}</td>
-                    </tr>
-                    <tr>
-                      <td className="font-bold  align-top text-gray-500">
-                        Mail{" "}
-                      </td>
-                      <td className="pl-3">
-                        {userMail} <br />
-                        <span className="text-xs">
-                          {isVerified
-                            ? "Your Email is verified"
-                            : "You are unverified"}
-                          .
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                className="profile-table"
+                style={{ borderSpacing: "20px", verticalAlign: "top" }}
+              >
+                <tbody>
+                  <tr>
+                    <td className="font-bold text-gray-500">Name </td>
+                    <td className="pl-3">{userName}</td>
+                  </tr>
+                  <tr>
+                    <td className="font-bold  align-top text-gray-500">
+                      Mail{" "}
+                    </td>
+                    <td className="pl-3">
+                      {userMail} <br />
+                      <span className="text-xs">
+                        {isVerified
+                          ? "Your Email is verified"
+                          : "You are unverified"}
+                        .
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="table mx-auto">
+                      <button
+                        onClick={() =>
+                          handleCallAlertBox("Are you sure to log out?")
+                        }
+                        className="px-4 py-2  font-bold bg-danger text-white rounded text-xs"
+                      >
+                        Log Out
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
             <div className="w-full">
               {!isAdmin && (
@@ -75,21 +86,11 @@ const UserProfile = () => {
                   </Link>
                 </div>
               )}
-
-              <br />
-              <button
-                onClick={() => handleCallAlertBox("Are you sure to log out?")}
-                className="px-4 py-2 font-bold bg-danger text-white rounded text-xs"
-              >
-                Log Out
-              </button>
             </div>
           </div>
         </section>
       )}
-      <AlertBox
-        confirmAction={handleLogOut}
-      />
+      <AlertBox confirmAction={handleLogOut} />
     </>
   );
 };
