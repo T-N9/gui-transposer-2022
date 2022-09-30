@@ -100,3 +100,25 @@ input:focus {
 .MuiButtonBase-root:hover {
   background-color: #f57c00 !important;
 }
+
+.board-listing--grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+@media screen and (max-width : 768px) {
+  .board-listing--grid {
+    overflow-x: scroll;
+    display: grid;
+    grid-template-columns: repeat(5, 230px);
+  }
+}
+
+/* @media screen and (max-width : 568px) {
+  .board-listing--grid {
+    overflow-x: scroll;
+    display: grid;
+    grid-template-columns: repeat(5, 230px);
+  }
+} */
