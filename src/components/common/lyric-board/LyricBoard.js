@@ -78,7 +78,7 @@ const LyricBoard = ({
 
         {showLyricBoard && (
           <>
-            <div className="flex gap-3 fixed top-0 left-[50%] translate-x-[-50%] bg-white p-5 shadow">
+            <div className="flex gap-3 fixed top-0 left-[50%] translate-x-[-50%] bg-white p-5 shadow flex-wrap">
               {detectedChords.map((chord, index) => {
                 return <DefineChord key={index} chord={chord} />;
               })}
