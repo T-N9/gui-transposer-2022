@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/* Icons */
+import {AiFillFolderOpen} from 'react-icons/ai';
 import { Pencil2Icon } from "@radix-ui/react-icons";
 
 import Hook from "./hook.personalBoards";
@@ -14,7 +16,7 @@ const PersonalBoard = () => {
         backgroundImage: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       }}
     >
-      <h1 className="font-secondary flex items-center gap-2 mb-2 text-xl font-bold text-white">
+      <h1 className="font-secondary flex items-center gap-2 mb-4 text-xl font-bold text-white">
         Your Library <Pencil2Icon />
       </h1>
 
@@ -48,9 +50,7 @@ const PersonalBoard = () => {
                   <div className="flex justify-between items-center">
                     <p className="text-xs text-gray-400">12 / 5 /2020</p>
 
-                    <button className="rounded-md py-2 px-4 flex justify-center items-center gap-2 font-secondary shadow-md text-xs bg-info text-white">
-                      View
-                    </button>
+                    <button className="primary-btn--info-outline text-lg font-bold"><AiFillFolderOpen/></button>
                   </div>
                 </div>
               </div>
