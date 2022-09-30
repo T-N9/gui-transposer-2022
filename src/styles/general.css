@@ -114,11 +114,3 @@ input:focus {
     grid-template-columns: repeat(5, 230px);
   }
 }
-
-/* @media screen and (max-width : 568px) {
-  .board-listing--grid {
-    overflow-x: scroll;
-    display: grid;
-    grid-template-columns: repeat(5, 230px);
-  }
-} */
