@@ -11,8 +11,8 @@ module.exports = {
         'primary' : '#DD8905',
         'secondary' : '#B85F01',
         'info' : '#00BFE8',
-        'success' : '#22C36F',
-        'danger' : '#ff5959',
+        'success' : '#00C09C',
+        'danger' : '#F25259',
         'dark' : '#40514e',
         'light' : '#ffa726',
         'light-md' : '#f57c00'
