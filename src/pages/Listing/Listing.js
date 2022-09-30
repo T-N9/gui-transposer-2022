@@ -84,7 +84,7 @@ const Listing = () => {
         ) : (
           <Link onClick={handlePersonalBoard} to={"/my-boards/new"}>
             <button
-              className={`rounded-md py-2 px-4 my-5 flex justify-center items-center gap-2 font-secondary shadow-md  bg-info text-white`}
+              className={`primary-btn--info my-4`}
             >
               Create New Board <RocketIcon />
             </button>

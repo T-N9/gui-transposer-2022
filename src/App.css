@@ -22,6 +22,15 @@
   .primary-input {
     @apply bg-white rounded-lg shadow focus:shadow-md border border-orange-400 p-2 focus:outline-none focus:border-orange-500 text-dark;
   }
+
+  /* Buttons */
+  .primary-btn--info {
+    @apply rounded-md py-2 px-4 flex justify-center items-center gap-2 font-secondary shadow-md  bg-info text-white;
+  }
+
+  .primary-btn--info-outline {
+    @apply rounded-md py-2 px-4 flex justify-center items-center gap-2 font-secondary shadow-md  bg-white border border-info text-info;
+  }  
 }
 
 .lyric-bg {

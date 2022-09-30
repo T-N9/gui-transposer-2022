@@ -87,20 +87,6 @@ input:focus {
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
 }
 
-/* .MuiOutlinedInput-notchedOutline */
-.MuiInputLabel-root {
-  color: #aaaaaa !important;
-  font-size: 16px;
-}
-
-.MuiOutlinedInput-notchedOutline {
-  border-color: #ffa726 !important;
-}
-
-.MuiButtonBase-root:hover {
-  background-color: #f57c00 !important;
-}
-
 .board-listing--grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -113,4 +99,19 @@ input:focus {
     display: grid;
     grid-template-columns: repeat(5, 230px);
   }
+}
+
+/* MUI - overwrite */
+/* .MuiOutlinedInput-notchedOutline */
+.MuiInputLabel-root {
+  color: #aaaaaa !important;
+  font-size: 16px;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: #ffa726 !important;
+}
+
+.MuiButtonBase-root:hover {
+  background-color: #f57c00 !important;
 }

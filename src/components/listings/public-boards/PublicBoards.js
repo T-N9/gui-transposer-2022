@@ -32,7 +32,7 @@ const PublicBoards = () => {
                   <div className="flex justify-between items-center">
                     <p className="text-xs text-gray-400">12 / 5 /2020</p>
 
-                    <button className="rounded-md py-2 px-4 flex justify-center items-center gap-2 font-secondary shadow-md text-xs bg-info text-white">View</button>
+                    <button className="primary-btn--info-outline text-xs font-bold">View</button>
                   </div>
                 </div>
               </div>
