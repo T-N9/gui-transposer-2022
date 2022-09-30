@@ -6,6 +6,8 @@ import F_Chords from "./src/db/guitar/chords/F";
 import A_Chords from "./src/db/guitar/chords/A";
 import B_Chords from "./src/db/guitar/chords/B";
 
+import Ab_Chords from "./src/db/guitar/chords/Ab";
+
 //#region - major chords
 let C_major = C_Chords.filter((chord) => {
   return chord.suffix === "major";
@@ -27,6 +29,12 @@ let B_major = B_Chords.filter((chord) => {
   return chord.suffix === "major";
 });
 
+let Ab_major = Ab_Chords.filter((chord) => {
+  return chord.suffix === "major";
+});
+
+console.log({ Ab_Chords });
+
 //#endregion
 
 //#region - major chords
@@ -47,6 +55,10 @@ let A_minor = A_Chords.filter((chord) => {
 });
 
 let B_minor = B_Chords.filter((chord) => {
+  return chord.suffix === "minor";
+});
+
+let Ab_minor = Ab_Chords.filter((chord) => {
   return chord.suffix === "minor";
 });
 
@@ -73,6 +85,9 @@ const extractChord = (inputChord, isFamily = false) => {
       case "B":
         wantedChord = B_major[0].positions[0];
         break;
+      case "Ab" || "G#":
+        wantedChord = Ab_major[0].positions[0];
+        break;
       //#endregion
 
       //#region - minor
@@ -90,6 +105,9 @@ const extractChord = (inputChord, isFamily = false) => {
         break;
       case "Bm":
         wantedChord = B_minor[0].positions[0];
+        break;
+      case "Abm" || "G#m":
+        wantedChord = Ab_minor[0].positions[0];
         break;
       //#endregion
 
