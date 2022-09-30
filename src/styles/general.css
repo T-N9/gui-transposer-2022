@@ -10,6 +10,10 @@ input:focus {
   outline: none;
 }
 
+td {
+  vertical-align: top;
+}
+
 .lyric-input {
   line-height: 1.5;
   /* word-spacing: 3.4px; */

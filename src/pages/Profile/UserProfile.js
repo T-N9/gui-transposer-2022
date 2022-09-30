@@ -25,37 +25,40 @@ const UserProfile = () => {
     <>
       {userProfile !== null && (
         <section>
-          <div className="container px-5 lg:px-0 flex-col lg:flex-row font-secondary mx-auto my-5 flex justify-center gap-4">
-            <div className="user-profile w-28 h-28 rounded-lg flex justify-center items-center text-white font-bold">
-              {profileName}
+          <div className="container px-5 lg:px-0 flex-col font-secondary mx-auto my-5 flex justify-center gap-4">
+
+            {/* Profile Info */}
+            <div className="flex gap-4 justify-start items-center md:items-start flex-col md:flex-row">
+              <div className="user-profile w-28 h-28 rounded-lg flex justify-center items-center text-white font-bold">
+                {profileName}
+              </div>
+              <table
+                  className="profile-table"
+                  style={{ borderSpacing: "20px", verticalAlign: "top" }}
+                >
+                  <tbody>
+                    <tr>
+                      <td className="font-bold text-gray-500">Name </td>
+                      <td className="pl-3">{userName}</td>
+                    </tr>
+                    <tr>
+                      <td className="font-bold  align-top text-gray-500">
+                        Mail{" "}
+                      </td>
+                      <td className="pl-3">
+                        {userMail} <br />
+                        <span className="text-xs">
+                          {isVerified
+                            ? "Your Email is verified"
+                            : "You are unverified"}
+                          .
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
             <div className="w-full">
-              <table
-                className="profile-table"
-                style={{ borderSpacing: "20px", verticalAlign: "top" }}
-              >
-                <tbody>
-                  <tr>
-                    <td className="font-bold text-gray-500">Name </td>
-                    <td className="pl-3">{userName}</td>
-                  </tr>
-                  <tr>
-                    <td className="font-bold  align-top text-gray-500">
-                      Mail{" "}
-                    </td>
-                    <td className="pl-3">
-                      {userMail} <br />
-                      <span className="text-xs">
-                        {isVerified
-                          ? "Your Email is verified"
-                          : "You are unverified"}
-                        .
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
               {!isAdmin && (
                 <div className="flex flex-col items-center">
                   <div className="my-5 w-full">
