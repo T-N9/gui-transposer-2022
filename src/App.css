@@ -7,10 +7,12 @@
 @tailwind utilities;
 
 @layer components {
+  /* Lyric board */
   .highlight-chord {
     @apply font-bold text-xs text-white bg-orange-400 inline-block px-[4px] py-[2px] leading-[1.1] rounded shadow mr-[18px];
   }
 
+  /* Form elements */
   .chord-input {
     @apply bg-orange-100 border w-full p-1 border-rose-300;
   }
@@ -31,6 +33,11 @@
   .primary-btn--info-outline {
     @apply rounded-md py-2 px-4 flex justify-center items-center gap-2 font-secondary shadow-md  bg-white border border-info text-info;
   }  
+
+  /* Cards */
+  .listing-card {
+    @apply p-2 w-full lg:w-auto shadow font-secondary rounded-md border-[3px] border-solid border-gray-50 bg-white min-w-[180px];
+  }
 }
 
 .lyric-bg {
