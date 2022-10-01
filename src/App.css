@@ -36,7 +36,7 @@
 
   /* Cards */
   .listing-card {
-    @apply p-2 w-full lg:w-auto shadow font-secondary rounded-md border-[3px] border-solid border-gray-50 bg-white min-w-[180px];
+    @apply w-full p-1 lg:w-auto shadow font-secondary rounded-md min-w-[180px];
   }
 }
 

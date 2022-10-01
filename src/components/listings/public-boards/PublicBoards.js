@@ -32,9 +32,9 @@ const PublicBoards = () => {
               to={`/boards/${item.id}`}
             >
               <div className="listing-card">
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 bg-white p-2 bg-opacity-90 rounded-md">
                   <div>
-                    <h1 className="text-xl text-light-md font-bold">
+                    <h1 className="text-xl text-dark transition-all font-bold">
                       {item.data.songTitle}
                     </h1>
                     <p>

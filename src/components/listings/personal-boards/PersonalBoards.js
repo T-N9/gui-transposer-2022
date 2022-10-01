@@ -38,10 +38,10 @@ const PersonalBoard = () => {
               key={index}
               to={`/my-boards/${item.id}`}
             >
-              <div className="p-2 w-full lg:w-auto shadow font-secondary rounded-md border-[3px] border-solid border-gray-50 bg-white">
-                <div className="flex flex-col gap-5">
+              <div className="listing-card">
+                <div className="flex flex-col gap-5 bg-white p-2 bg-opacity-90 rounded-md">
                   <div>
-                    <h1 className="text-xl text-light-md font-bold">
+                    <h1 className="text-xl text-dark transition-all font-bold">
                       {item.data.songTitle}
                     </h1>
                     <p>
