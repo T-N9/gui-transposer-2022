@@ -1,5 +1,5 @@
 import React from "react";
-import Draggable from 'react-draggable'
+import Draggable from "react-draggable";
 import Loading from "react-loading-components";
 import { useSelector } from "react-redux";
 
@@ -26,11 +26,10 @@ const LyricBoard = ({
     (state) => state.currentSongInfo
   );
 
-  console.log({ detectedChords });
-
   return (
-    <div ref={printRef}>
-      <section className="py-7 md:px-6 lg:px-10">
+    <section ref={printRef}>
+      <div className="py-7 md:px-6 lg:px-10">
+        {/* Song infos */}
         {showLyricBoard && (
           <div className="mb-8 flex flex-col font-secondary border-solid border-dark border-l-4 pl-3">
             <h1 className="text-2xl font-bold text-orange-400">{songTitle}</h1>
@@ -41,6 +40,7 @@ const LyricBoard = ({
           </div>
         )}
 
+        {/* Detected chords */}
         {showLyricBoard && (
           <div className="flex flex-col container mx-auto justify-start gap-x-7 items-start font-secondary">
             <span>Chords :</span>
@@ -77,6 +77,7 @@ const LyricBoard = ({
           </div>
         )}
 
+        {/* Chord Board */}
         {showLyricBoard && (
           <Draggable>
             <div className="chordBoard flex gap-3 fixed top-0 left-[30%] translate-x-[-50%] bg-dark cursor-move p-5 shadow flex-wrap">
@@ -86,13 +87,16 @@ const LyricBoard = ({
             </div>
           </Draggable>
         )}
-      </section>
+      </div>
 
+      {/* Loading grid-icon */}
       {loading && (
         <div className="container mx-auto h-96 w-full flex justify-center items-center">
           <Loading type="grid" width={50} height={50} fill="#1aa7ec" />
         </div>
       )}
+
+      {/* Main Lyrics area */}
       {showLyricBoard && (
         <pre className="lyric-board min-h-[40vh] container mx-auto font-primary p-0 md:p-5 md:px-30 lg:px-48 overflow-x-auto">
           <div className="px-0 md:px-4 pb-5 shadow lyric-bg">
@@ -113,7 +117,7 @@ const LyricBoard = ({
           </div>
         </pre>
       )}
-    </div>
+    </section>
   );
 };
 
