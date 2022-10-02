@@ -1,4 +1,4 @@
-import A_Chords from "../../src/db/guitar/chords/F";
+import A_Chords from "../../src/db/guitar/chords/A";
 
 const A_major = A_Chords.filter((chord) => {
     return chord.suffix === "major";
