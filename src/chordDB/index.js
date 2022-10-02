@@ -10,7 +10,12 @@ import { E_major, E_minor, E_7 } from "./classification/E";
 import { G_major, G_minor, G_7 } from "./classification/G";
 
 const extractChord = (inputChord, isFamily = false) => {
-  let wantedChord, wantedFamily;
+
+  /* 
+    wantedChord === the first (main) position of positions array
+    wantedPosition is all positions of a chord
+  */
+  let wantedChord, wantedPositions;
 
   if (!isFamily) {
     switch (inputChord) {
@@ -82,12 +87,82 @@ const extractChord = (inputChord, isFamily = false) => {
       default:
         break;
     }
+  } else {
+    switch (inputChord) {
+      //#region - major
+      case "Ab" || "G#":
+        wantedPositions = Ab_major[0].positions;
+        break;
+      case "C":
+        wantedPositions = C_major[0].positions;
+        break;
+      case "D":
+        wantedPositions = D_major[0].positions;
+        break;
+      case "F":
+        wantedPositions = F_major[0].positions;
+        break;
+      case "A":
+        wantedPositions = A_major[0].positions;
+        break;
+      case "B":
+        wantedPositions = B_major[0].positions;
+        break;
+      case "G":
+        wantedPositions = G_major[0].positions;
+        break;
+      case "E":
+        wantedPositions = E_major[0].positions;
+        break;
+      //#endregion
+
+      //#region - minor
+      case "Abm" || "G#m":
+        wantedPositions = Ab_minor[0].positions;
+        break;
+      case "Em":
+        wantedPositions = E_minor[0].positions;
+        break;
+      case "Cm":
+        wantedPositions = C_minor[0].positions;
+        break;
+      case "Dm":
+        wantedPositions = D_minor[0].positions;
+        break;
+      case "Fm":
+        wantedPositions = F_minor[0].positions;
+        break;
+      case "Am":
+        wantedPositions = A_minor[0].positions;
+        break;
+      case "Bm":
+        wantedPositions = B_minor[0].positions;
+        break;
+      case "Gm":
+        wantedPositions = G_minor[0].positions;
+        break;
+      //#endregion
+
+      //#region - major7
+      case "G7":
+        wantedPositions = G_7[0].positions;
+        break;
+      case "D7":
+        wantedPositions = D_7[0].positions;
+        break;
+      case "E7":
+        wantedPositions = E_7[0].positions;
+        break;
+      //#endregion
+      default:
+        break;
+    }
   }
 
   return {
     wantedChord,
 
-    wantedFamily,
+    wantedPositions,
   };
 };
 
