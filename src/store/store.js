@@ -6,6 +6,7 @@ import generalReducer from "./generalSlice";
 import userDataReducer from "./userDataSlice";
 import alertMessageReducer from "./alertMessageSlice";
 import alertBoxReducer from "./alertBoxSlice";
+import chordChartReducer from "./chordChartSlice";
 
 export const store = configureStore({
     reducer : {
@@ -15,6 +16,7 @@ export const store = configureStore({
         general : generalReducer,
         userData : userDataReducer,
         alertMessage : alertMessageReducer,
-        alertBox: alertBoxReducer
+        alertBox: alertBoxReducer,
+        chordChart : chordChartReducer
     }
 })
