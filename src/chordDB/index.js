@@ -6,7 +6,7 @@ import { B_major, B_minor } from "./classification/B";
 import { C_major, C_minor } from "./classification/C";
 import { D_major, D_minor, D_7 } from "./classification/D";
 import { F_major, F_minor } from "./classification/F";
-import { E_major, E_minor } from "./classification/E";
+import { E_major, E_minor, E_7 } from "./classification/E";
 import { G_major, G_minor, G_7 } from "./classification/G";
 
 const extractChord = (inputChord, isFamily = false) => {
@@ -74,6 +74,9 @@ const extractChord = (inputChord, isFamily = false) => {
         break;
       case "D7":
         wantedChord = D_7[0].positions[0];
+        break;
+      case "E7":
+        wantedChord = E_7[0].positions[0];
         break;
       //#endregion
       default:
