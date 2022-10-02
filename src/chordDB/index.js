@@ -157,6 +157,7 @@ const extractChord = (inputChord, isFamily = false) => {
       default:
         break;
     }
+    console.log({wantedPositions})
   }
 
   return {
