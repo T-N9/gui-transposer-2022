@@ -60,10 +60,6 @@ td {
   justify-content: center;
 }
 
-.chord-item {
-  width: 130px;
-}
-
 .chord {
   display: inline-block;
   background-color: brown;
@@ -135,4 +131,33 @@ td {
 
 .MuiButtonBase-root:hover {
   background-color: #f57c00 !important;
+}
+
+/* Chord Board */
+.chordBoard g circle[r="4"] {
+  fill: #00BFE8;
+  stroke: #00BFE8;
+
+}
+
+.chordBoard g circle[r="2"] {
+  fill: #00C09C;
+  stroke: #00C09C;
+
+}
+
+.chordBoard g text[y="-2"] {
+  fill: #F25259;
+}
+
+.chordBoard g text[y="31.5"], g text[y="19.5"], g text[y="8"]  {
+  fill: #00BFE8;
+}
+
+.chordBoard rect {
+  fill: #00BFE8;
+}
+
+.chord-item {
+  width: 100px;
 }

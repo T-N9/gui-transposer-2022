@@ -14,10 +14,10 @@ const DefineChord = ({
 
     return (
         <>
-            <div className='flex flex-col justify-center items-center'>
+            <div className='flex flex-col cursor-pointer justify-center items-center bg-white rounded-md'>
                 <ChordChart position={wantedChord}/>
                 
-                <p className='font-bold text-info'>{chord}</p>
+                <p className='font-bold text-light-md'>{chord}</p>
             </div>
         </>
     );
