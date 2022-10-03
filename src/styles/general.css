@@ -158,6 +158,10 @@ td {
   fill: #00BFE8;
 }
 
-.chord-item {
+.chordBoard .chord-item {
   width: 100px;
+}
+
+.presentChord .chord-item {
+  width: 300px;
 }

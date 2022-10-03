@@ -1,7 +1,7 @@
-import Ab_Chords from "../../src/db/guitar/chords/Ab";
+// import Ab_Chords from "../../../data/guitar_chords//Ab";
 
-const Ab_major = Ab_Chords.filter((chord) => {
-    return chord.suffix === "major";
-  });
+// const Ab_major = Ab_Chords.filter((chord) => {
+//     return chord.suffix === "major";
+//   });
 
-export default Ab_major;
+// export default Ab_major;

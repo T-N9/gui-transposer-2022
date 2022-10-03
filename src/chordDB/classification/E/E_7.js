@@ -1,4 +1,4 @@
-import E_Chords from "../../src/db/guitar/chords/E";
+import E_Chords from "../../../data/guitar_chords/E_Chords";
 
 const E_7 = E_Chords.filter((chord) => {
     return chord.suffix === "7";
