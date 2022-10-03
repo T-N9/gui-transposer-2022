@@ -6,3 +6,5 @@ export { default as Setting } from './setting/Setting';
 export { default as Loading } from './loading/Loading';
 export { default as AlertMessage } from './alert-message/AlertMessage';
 export { default as AlertBox } from './alert-box/AlertBox';
+export { default as PresentChord } from './chord-chart/PresentChord';
+export { default as ChordBoard } from './chord-chart/ChordBoard';

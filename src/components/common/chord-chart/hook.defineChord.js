@@ -4,14 +4,20 @@ import { useDispatch } from "react-redux";
 import extractChord from "../../../chordDB";
 
 /* Actions */
-import { setChordToShow } from "../../../store/chordChartSlice";
+import {
+  setChordToShow,
+  setChordPositions,
+} from "../../../store/chordChartSlice";
 
 const Hook = () => {
   const dispatch = useDispatch();
   const handleClickChord = (chord) => {
-    extractChord(chord, true);
+    const { wantedPositions } = extractChord(chord, true);
+
+    console.log({ wantedPositions })
 
     dispatch(setChordToShow(chord));
+    dispatch(setChordPositions(wantedPositions));
   };
 
   return {

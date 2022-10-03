@@ -7,8 +7,7 @@ export const processString = (strings) =>
   Array.isArray(strings) ? strings : strChord2array(strings);
 
 const processbaseFret = (frets) => {
-  
-  return Math.max(...frets) > 4 ? Math.min(...frets.filter((f) => f > 0)) : 1;
+    return Math.max(...frets) > 4 ? Math.min(...frets.filter((f) => f > 0)) : 1;
 };
 
 const processBarres = (barres, baseFret) =>
@@ -27,6 +26,7 @@ const processFingers = (fingers) => (fingers ? processString(fingers) : []);
 
 export const processPosition = (position, tuning, id) => {
   // console.log({position, tuning})
+  console.log('TOols is running')
   const frets = processString(position.frets);
   const baseFret = processbaseFret(frets);
 

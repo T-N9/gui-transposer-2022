@@ -14,6 +14,7 @@ const DefineChord = ({ chord }) => {
 
   const { handleClickChord } = Hook();
 
+  console.log({wantedChord})
   return (
     <>
       <div

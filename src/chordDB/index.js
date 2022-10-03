@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import { A_major, A_minor } from "./classification/A";
 import { Ab_major, Ab_minor } from "./classification/Ab";
 import { B_major, B_minor } from "./classification/B";
@@ -17,6 +15,7 @@ const extractChord = (inputChord, isFamily = false) => {
   */
   let wantedChord, wantedPositions;
 
+  console.log('A major 0',A_major[0].positions[0])
   if (!isFamily) {
     switch (inputChord) {
       //#region - major
@@ -157,7 +156,7 @@ const extractChord = (inputChord, isFamily = false) => {
       default:
         break;
     }
-    console.log({wantedPositions})
+    // console.log({wantedPositions})
   }
 
   return {

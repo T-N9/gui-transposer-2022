@@ -7,6 +7,8 @@ import DefineChord from "../../common/chord-chart/DefineChord";
 
 /* Components */
 import LyricLine from "../lyric-line/LyricLine";
+import PresentChord from "../chord-chart/PresentChord";
+import ChordBoard from "../chord-chart/ChordBoard";
 
 /* Util */
 import { changeChordType } from "../../../util/changeChordType";
@@ -79,15 +81,13 @@ const LyricBoard = ({
 
         {/* Chord Board */}
         {showLyricBoard && (
-          <Draggable>
-            <div className="chordBoard flex gap-3 fixed top-0 left-[30%] translate-x-[-50%] bg-dark cursor-move p-5 shadow flex-wrap">
-              {detectedChords.map((chord, index) => {
-                return <DefineChord key={index} chord={chord} />;
-              })}
-            </div>
-          </Draggable>
+          <ChordBoard
+            detectedChords={detectedChords}
+          />
         )}
       </div>
+
+      <PresentChord/>
 
       {/* Loading grid-icon */}
       {loading && (
