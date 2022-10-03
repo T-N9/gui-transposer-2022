@@ -36,4 +36,40 @@ export default [
       },
     ],
   },
+  {
+    key: "D",
+    suffix: "minor",
+    positions: [
+      {
+        frets: [-1, -1, 0, 2, 3, 1],
+        fingers: [0, 0, 0, 2, 3, 1],
+        baseFret: 1,
+        barres: [],
+        midi: [50, 57, 62, 65],
+      },
+      {
+        frets: [1, 1, 3, 3, 2, 1],
+        fingers: [1, 1, 3, 4, 2, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 5,
+        midi: [45, 50, 57, 62, 65, 69],
+      },
+      {
+        frets: [-1, 3, 2, 2, 1, -1],
+        fingers: [0, 4, 2, 3, 1, 0],
+        baseFret: 6,
+        barres: [],
+        midi: [53, 57, 62, 65],
+      },
+      {
+        frets: [1, 3, 3, 1, 1, 1],
+        fingers: [1, 3, 4, 1, 1, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 10,
+        midi: [50, 57, 62, 65, 69, 74],
+      },
+    ],
+  },
 ];
