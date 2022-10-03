@@ -7,6 +7,7 @@ import extractChord from "../../../chordDB";
 import {
   setChordToShow,
   setChordPositions,
+  togglePresentChords
 } from "../../../store/chordChartSlice";
 
 const Hook = () => {
@@ -14,14 +15,18 @@ const Hook = () => {
   const handleClickChord = (chord) => {
     const { wantedPositions } = extractChord(chord, true);
 
-    console.log({ wantedPositions })
-
     dispatch(setChordToShow(chord));
     dispatch(setChordPositions(wantedPositions));
+    dispatch(togglePresentChords());
   };
+
+  const closePresentChords = () => {
+    dispatch(togglePresentChords());
+  } 
 
   return {
     handleClickChord,
+    closePresentChords
   };
 };
 
