@@ -81,14 +81,11 @@ const LyricBoard = ({
 
         {/* Chord Board */}
         {showLyricBoard && (
-          <ChordBoard
-            detectedChords={detectedChords}
-            isFlat = {isFlat}
-          />
+          <ChordBoard detectedChords={detectedChords} isFlat={isFlat} />
         )}
       </div>
 
-      <PresentChord/>
+      <PresentChord isFlat={isFlat} />
 
       {/* Loading grid-icon */}
       {loading && (

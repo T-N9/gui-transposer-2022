@@ -18,23 +18,22 @@ const extractChord = (inputChord, isFamily = false) => {
   */
   let wantedChord, wantedPositions;
 
-  console.log({CSharp_major: CSharp_major[0].positions[0]});
   if (!isFamily) {
     switch (inputChord) {
       //#region - major
-      case "Ab" || "G#":
+      case "Ab":
         wantedChord = Ab_major[0].positions[0];
         break;
-      case "Bb" || "A#":
+      case "Bb":
         wantedChord = Bb_major[0].positions[0];
         break;
-      case "Db" || "C#":
+      case "Db":
         wantedChord = CSharp_major[0].positions[0];
         break;
-      case "Eb" || "D#":
+      case "Eb":
         wantedChord = Eb_major[0].positions[0];
         break;
-      case "Gb" || "F#":
+      case "Gb":
         wantedChord = FSharp_major[0].positions[0];
         break;
       case "C":
@@ -61,19 +60,19 @@ const extractChord = (inputChord, isFamily = false) => {
       //#endregion
 
       //#region - minor
-      case "Abm" || "G#m":
+      case "Abm":
         wantedChord = Ab_minor[0].positions[0];
         break;
-      case "Bbm" || "A#m":
+      case "Bbm":
         wantedChord = Bb_minor[0].positions[0];
         break;
-      case "Dbm" || "C#m":
+      case "Dbm":
         wantedChord = CSharp_minor[0].positions[0];
         break;
-      case "Ebm" || "D#m":
+      case "Ebm":
         wantedChord = Eb_minor[0].positions[0];
         break;
-      case "Gbm" || "F#m":
+      case "Gbm":
         wantedChord = FSharp_minor[0].positions[0];
         break;
       case "Em":
@@ -116,19 +115,19 @@ const extractChord = (inputChord, isFamily = false) => {
   } else {
     switch (inputChord) {
       //#region - major
-      case "Ab" || "G#":
+      case "Ab":
         wantedPositions = Ab_major[0].positions;
         break;
-      case "Bb" || "A#":
+      case "Bb":
         wantedPositions = Bb_major[0].positions;
         break;
-      case "Db" || "C#":
+      case "Db":
         wantedPositions = CSharp_major[0].positions;
         break;
-      case "Eb" || "D#":
+      case "Eb":
         wantedPositions = Eb_major[0].positions;
         break;
-      case "Gb" || "F#":
+      case "Gb":
         // case "F#" || "Gb":
         wantedPositions = FSharp_major[0].positions;
       case "C":
@@ -155,19 +154,19 @@ const extractChord = (inputChord, isFamily = false) => {
       //#endregion
 
       //#region - minor
-      case "Abm" || "G#m":
+      case "Abm":
         wantedPositions = Ab_minor[0].positions;
         break;
-      case "Bbm" || "A#m":
+      case "Bbm":
         wantedPositions = Bb_minor[0].positions;
         break;
-      case "Dbm" || "C#m":
+      case "Dbm":
         wantedPositions = CSharp_minor[0].positions;
         break;
-      case "Ebm" || "D#m":
+      case "Ebm":
         wantedPositions = Eb_minor[0].positions;
         break;
-      case "Gbm" || "F#m":
+      case "Gbm":
         wantedPositions = FSharp_minor[0].positions;
         break;
       case "Em":
@@ -209,8 +208,6 @@ const extractChord = (inputChord, isFamily = false) => {
     }
     // console.log({wantedPositions})
   }
-
-  console.log({wantedChord})
 
   return {
     wantedChord,

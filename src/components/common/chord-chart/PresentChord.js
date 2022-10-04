@@ -9,7 +9,10 @@ import SwiperFree from "../swiper/SwiperFree";
 /* Hook */
 import Hook from "./hook.defineChord";
 
-const PresentChord = () => {
+/* Util */
+import { changeChordType } from "../../../util/changeChordType";
+
+const PresentChord = ({ isFlat}) => {
   const { chordToShow, chordPositions, presentChords } = useSelector(
     (state) => state.chordChart
   );
@@ -34,7 +37,7 @@ const PresentChord = () => {
                 return (
                   <SwiperSlide key={index}>
                     <div className="bg-white px-3 py-5 rounded-md select-none">
-                      <h1 className="text-center text-xl font-bold text-light-md">{chordToShow} - {index +1}</h1>
+                      <h1 className="text-center text-xl font-bold text-light-md">{changeChordType(chordToShow, isFlat)} - {index +1}</h1>
                       <ChordChart position={position} id={index} />
                     </div>
                   </SwiperSlide>
