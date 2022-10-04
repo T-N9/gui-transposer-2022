@@ -81,7 +81,12 @@ const LyricBoard = ({
 
         {/* Chord Board */}
         {showLyricBoard && (
-          <ChordBoard detectedChords={detectedChords} isFlat={isFlat} />
+          <ChordBoard
+            detectedChords={detectedChords}
+            transposeLvl={transposeLvl}
+            transposedChords={transposedChords}
+            isFlat={isFlat}
+          />
         )}
       </div>
 
