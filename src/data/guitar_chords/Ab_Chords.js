@@ -1,0 +1,76 @@
+export default [
+  {
+    key: "Ab",
+    suffix: "major",
+    positions: [
+      {
+        frets: [4, 3, 1, 1, 1, -1],
+        fingers: [3, 2, 1, 1, 1, 0],
+        barres: [1],
+        capo: true,
+        baseFret: 1,
+        midi: [44, 48, 51, 56, 60],
+      },
+      {
+        frets: [1, 3, 3, 2, 1, 1],
+        fingers: [1, 3, 4, 2, 1, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 4,
+        midi: [44, 51, 56, 60, 63, 68],
+      },
+      {
+        frets: [-1, 1, 1, 3, 4, 3],
+        fingers: [0, 1, 1, 2, 4, 3],
+        barres: [1],
+        capo: true,
+        baseFret: 6,
+        midi: [51, 56, 63, 68, 72],
+      },
+      {
+        frets: [1, 4, 3, 1, 2, 1],
+        fingers: [1, 4, 3, 1, 2, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 8,
+        midi: [48, 56, 60, 63, 68, 72],
+      },
+    ],
+  },
+  {
+    key: "Ab",
+    suffix: "minor",
+    positions: [
+      {
+        frets: [1, 3, 3, 1, 1, 1],
+        fingers: [1, 3, 4, 1, 1, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 4,
+        midi: [44, 51, 56, 59, 63, 68],
+      },
+      {
+        frets: [-1, -1, 1, 3, 4, 2],
+        fingers: [0, 0, 1, 3, 4, 2],
+        baseFret: 6,
+        barres: [],
+        midi: [56, 63, 68, 71],
+      },
+      {
+        frets: [-1, -1, 3, 2, 3, 1],
+        fingers: [0, 0, 3, 2, 4, 1],
+        baseFret: 7,
+        barres: [],
+        midi: [59, 63, 68, 71],
+      },
+      {
+        frets: [1, 1, 3, 3, 2, 1],
+        fingers: [1, 1, 3, 4, 2, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 11,
+        midi: [51, 56, 63, 68, 71, 75],
+      },
+    ],
+  },
+];
