@@ -1,8 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { SwiperSlide } from "swiper/react";
 
 /* components */
 import ChordChart from "./ChordChart";
+import SwiperFree from "../swiper/SwiperFree";
 
 /* Hook */
 import Hook from "./hook.defineChord";
@@ -24,15 +26,22 @@ const PresentChord = () => {
         onClick={closePresentChords}
         className="presentChord absolute top-0 bottom-0 left-0 right-0 bg-dark bg-opacity-75 z-30 flex justify-center  items-center"
       ></div>
-      <div className="flex gap-3 relative z-50">
-        {chordPositions.length !== 0 &&
-          chordPositions.map((position, index) => {
-            return (
-              <div key={index} className="bg-white px-3 py-5 rounded-md">
-                <ChordChart position={position} id={index} />
-              </div>
-            );
-          })}
+      <div className="flex gap-3 relative z-50 w-[40%]">
+        {presentChords && (
+          <SwiperFree>
+            {chordPositions.length !== 0 &&
+              chordPositions.map((position, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <div className="bg-white px-3 py-5 rounded-md select-none">
+                      <h1 className="text-center">{chordToShow} - {index +1}</h1>
+                      <ChordChart position={position} id={index} />
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+          </SwiperFree>
+        )}
       </div>
     </div>
   );
