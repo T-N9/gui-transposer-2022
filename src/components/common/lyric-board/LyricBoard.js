@@ -83,6 +83,7 @@ const LyricBoard = ({
         {showLyricBoard && (
           <ChordBoard
             detectedChords={detectedChords}
+            isFlat = {isFlat}
           />
         )}
       </div>

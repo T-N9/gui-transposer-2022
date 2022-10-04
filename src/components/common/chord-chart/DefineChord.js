@@ -8,8 +8,9 @@ import Hook from "./hook.defineChord";
 
 /* Util */
 import extractChord from "../../../chordDB";
+import { changeChordType } from "../../../util/changeChordType";
 
-const DefineChord = ({ chord }) => {
+const DefineChord = ({ chord, isFlat }) => {
   const { wantedChord } = extractChord(chord);
 
   const { handleClickChord } = Hook();
@@ -23,7 +24,7 @@ const DefineChord = ({ chord }) => {
       >
         <ChordChart position={wantedChord} />
 
-        <p className="font-bold text-light-md">{chord}</p>
+        <p className="font-bold text-light-md">{changeChordType(chord, isFlat)}</p>
       </div>
     </>
   );
