@@ -21,7 +21,7 @@ const PresentChord = ({ isFlat}) => {
 
   return (
     <div
-      className={`h-screen fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center transition-all ${
+      className={`h-screen fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center transition-all z-[3000] ${
         presentChords ? "visible opacity-100" : "invisible opacity-0"
       }`}
     >
