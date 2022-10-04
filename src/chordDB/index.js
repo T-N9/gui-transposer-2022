@@ -1,14 +1,14 @@
-import { A_major, A_minor } from "./classification/A";
-import { Ab_major, Ab_minor } from "./classification/Ab";
-import { B_major, B_minor } from "./classification/B";
-import { Bb_major, Bb_minor } from "./classification/Bb";
-import { C_major, C_minor } from "./classification/C";
-import { CSharp_major, CSharp_minor } from "./classification/C#";
+import { A_major, A_minor, A_7 } from "./classification/A";
+import { Ab_major, Ab_minor, Ab_7 } from "./classification/Ab";
+import { B_major, B_minor, B_7 } from "./classification/B";
+import { Bb_major, Bb_minor, Bb_7 } from "./classification/Bb";
+import { C_major, C_minor, C_7 } from "./classification/C";
+import { CSharp_major, CSharp_minor, CSharp_7 } from "./classification/CSharp";
 import { D_major, D_minor, D_7 } from "./classification/D";
 import { E_major, E_minor, E_7 } from "./classification/E";
-import { Eb_major, Eb_minor } from "./classification/Eb";
-import { F_major, F_minor } from "./classification/F";
-import { FSharp_major, FSharp_minor } from "./classification/F#";
+import { Eb_major, Eb_minor, Eb_7 } from "./classification/Eb";
+import { F_major, F_minor, F_7 } from "./classification/F";
+import { FSharp_major, FSharp_minor, FSharp_7 } from "./classification/FSharp";
 import { G_major, G_minor, G_7 } from "./classification/G";
 
 const extractChord = (inputChord, isFamily = false) => {
@@ -98,9 +98,24 @@ const extractChord = (inputChord, isFamily = false) => {
         break;
       //#endregion
 
-      //#region - major7
-      case "G7":
-        wantedChord = G_7[0].positions[0];
+      //#region - 7
+      case "A7":
+        wantedChord = A_7[0].positions[0];
+        break;
+      case "Ab7":
+        wantedChord = Ab_7[0].positions[0];
+        break;
+      case "B7":
+        wantedChord = B_7[0].positions[0];
+        break;
+      case "Bb7":
+        wantedChord = Bb_7[0].positions[0];
+        break;
+      case "C7":
+        wantedChord = C_7[0].positions[0];
+        break;
+      case "Db7":
+        wantedChord = CSharp_7[0].positions[0];
         break;
       case "D7":
         wantedChord = D_7[0].positions[0];
@@ -108,6 +123,19 @@ const extractChord = (inputChord, isFamily = false) => {
       case "E7":
         wantedChord = E_7[0].positions[0];
         break;
+      case "Eb7":
+        wantedChord = Eb_7[0].positions[0];
+        break;
+      case "F7":
+        wantedChord = F_7[0].positions[0];
+        break;
+      case "Gb7":
+        wantedChord = FSharp_7[0].positions[0];
+        break;
+      case "G7":
+        wantedChord = G_7[0].positions[0];
+        break;
+
       //#endregion
       default:
         break;
@@ -128,7 +156,7 @@ const extractChord = (inputChord, isFamily = false) => {
         wantedPositions = Eb_major[0].positions;
         break;
       case "Gb":
-        // case "F#" || "Gb":
+        // case "Gb" || "Gb":
         wantedPositions = FSharp_major[0].positions;
       case "C":
         wantedPositions = C_major[0].positions;
@@ -192,15 +220,42 @@ const extractChord = (inputChord, isFamily = false) => {
         break;
       //#endregion
 
-      //#region - major7
-      case "G7":
-        wantedPositions = G_7[0].positions;
+      //#region - 7
+      case "A7":
+        wantedPositions = A_7[0].positions;
+        break;
+      case "Ab7":
+        wantedPositions = Ab_7[0].positions;
+        break;
+      case "B7":
+        wantedPositions = B_7[0].positions;
+        break;
+      case "Bb7":
+        wantedPositions = Bb_7[0].positions;
+        break;
+      case "C7":
+        wantedPositions = C_7[0].positions;
+        break;
+      case "Db7":
+        wantedPositions = CSharp_7[0].positions;
         break;
       case "D7":
         wantedPositions = D_7[0].positions;
         break;
       case "E7":
         wantedPositions = E_7[0].positions;
+        break;
+      case "Eb7":
+        wantedPositions = Eb_7[0].positions;
+        break;
+      case "F7":
+        wantedPositions = F_7[0].positions;
+        break;
+      case "Gb7":
+        wantedPositions = FSharp_7[0].positions;
+        break;
+      case "G7":
+        wantedPositions = G_7[0].positions;
         break;
       //#endregion
       default:
