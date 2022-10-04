@@ -14,12 +14,12 @@ const DefineChord = ({ chord }) => {
 
   const { handleClickChord } = Hook();
 
-  console.log({wantedChord})
   return (
     <>
       <div
         onClick={() => handleClickChord(chord)}
-        className="flex flex-col cursor-pointer justify-center items-center bg-white rounded-md"
+        onTouchEnd={() => handleClickChord(chord)}
+        className="flex flex-col cursor-pointer justify-center shadow-md items-center bg-white rounded-md"
       >
         <ChordChart position={wantedChord} />
 

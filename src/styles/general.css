@@ -150,7 +150,7 @@ td {
   fill: #F25259;
 }
 
-.chordBoard g text[y="31.5"], g text[y="19.5"], g text[y="8"]  {
+.chordBoard g text[y="31.5"],.chordBoard g text[y="19.5"],.chordBoard g text[y="8"]  {
   fill: #00BFE8;
 }
 
@@ -162,6 +162,27 @@ td {
   width: 100px;
 }
 
-.presentChord .chord-item {
-  width: 300px;
+@media screen and (max-width : 768px) {
+  .chordBoard .chord-item {
+    width: 60px;
+  }
+}
+
+text[font-family="Verdana"] {
+  font-family: 'Rubik', sans-serif !important;
+}
+
+.presentChord .swiper {
+  padding-bottom: 30px !important;
+}
+
+.presentChord .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+  bottom: 10px !important;
+  left: 0;
+  width: 100%;
+  background-color: white;
+}
+
+.swiper-pagination-bullet {
+  background: #f57c00 !important;
 }
