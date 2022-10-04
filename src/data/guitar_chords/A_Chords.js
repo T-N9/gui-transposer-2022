@@ -71,4 +71,40 @@ export default [
       },
     ],
   },
+  {
+    key: "A",
+    suffix: "7",
+    positions: [
+      {
+        frets: [-1, 0, 2, 0, 2, 0],
+        fingers: [0, 0, 2, 0, 3, 0],
+        baseFret: 1,
+        barres: [],
+        midi: [45, 52, 55, 61, 64],
+      },
+      {
+        frets: [-1, 0, 2, 2, 2, 3],
+        fingers: [0, 0, 1, 1, 1, 2],
+        barres: [2],
+        capo: true,
+        baseFret: 1,
+        midi: [45, 52, 57, 61, 67],
+      },
+      {
+        frets: [1, 3, 1, 2, 1, 1],
+        fingers: [1, 3, 1, 2, 1, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 5,
+        midi: [45, 52, 55, 61, 64, 69],
+      },
+      {
+        frets: [-1, 0, 1, 3, 2, 3],
+        fingers: [0, 0, 1, 3, 2, 4],
+        baseFret: 7,
+        barres: [],
+        midi: [45, 57, 64, 67, 73],
+      },
+    ],
+  },
 ];
