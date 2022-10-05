@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
 /* Util */
-import extractChord from "../../../chordDB";
+import extractChord_beta from "../../../chordDB";
 
 /* Actions */
 import {
@@ -13,7 +13,7 @@ import {
 const Hook = () => {
   const dispatch = useDispatch();
   const handleClickChord = (chord) => {
-    const { wantedPositions } = extractChord(chord, true);
+    const { wantedPositions } = extractChord_beta(chord, true);
 
     dispatch(setChordToShow(chord));
     dispatch(setChordPositions(wantedPositions));

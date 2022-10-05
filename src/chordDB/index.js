@@ -11,6 +11,438 @@ import { F_major, F_minor, F_7 } from "./classification/F";
 import { FSharp_major, FSharp_minor, FSharp_7 } from "./classification/FSharp";
 import { G_major, G_minor, G_7 } from "./classification/G";
 
+//#region - individual chord extracted
+const extract_A_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return A_major[0].positions[0];
+      case "m":
+        return A_minor[0].positions[0];
+      case "7":
+        return A_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return A_major[0].positions;
+      case "m":
+        return A_minor[0].positions;
+      case "7":
+        return A_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_Ab_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return Ab_major[0].positions[0];
+      case "m":
+        return Ab_minor[0].positions[0];
+      case "7":
+        return Ab_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return Ab_major[0].positions;
+      case "m":
+        return Ab_minor[0].positions;
+      case "7":
+        return Ab_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_B_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return B_major[0].positions[0];
+      case "m":
+        return B_minor[0].positions[0];
+      case "7":
+        return B_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return B_major[0].positions;
+      case "m":
+        return B_minor[0].positions;
+      case "7":
+        return B_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_Bb_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return Bb_major[0].positions[0];
+      case "m":
+        return Bb_minor[0].positions[0];
+      case "7":
+        return Bb_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return Bb_major[0].positions;
+      case "m":
+        return Bb_minor[0].positions;
+      case "7":
+        return Bb_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_C_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return C_major[0].positions[0];
+      case "m":
+        return C_minor[0].positions[0];
+      case "7":
+        return C_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return C_major[0].positions;
+      case "m":
+        return C_minor[0].positions;
+      case "7":
+        return C_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_CSharp_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return CSharp_major[0].positions[0];
+      case "m":
+        return CSharp_minor[0].positions[0];
+      case "7":
+        return CSharp_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return CSharp_major[0].positions;
+      case "m":
+        return CSharp_minor[0].positions;
+      case "7":
+        return CSharp_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_D_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return D_major[0].positions[0];
+      case "m":
+        return D_minor[0].positions[0];
+      case "7":
+        return D_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return D_major[0].positions;
+      case "m":
+        return D_minor[0].positions;
+      case "7":
+        return D_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_E_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return E_major[0].positions[0];
+      case "m":
+        return E_minor[0].positions[0];
+      case "7":
+        return E_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return E_major[0].positions;
+      case "m":
+        return E_minor[0].positions;
+      case "7":
+        return E_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_Eb_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return Eb_major[0].positions[0];
+      case "m":
+        return Eb_minor[0].positions[0];
+      case "7":
+        return Eb_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return Eb_major[0].positions;
+      case "m":
+        return Eb_minor[0].positions;
+      case "7":
+        return Eb_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_F_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return F_major[0].positions[0];
+      case "m":
+        return F_minor[0].positions[0];
+      case "7":
+        return F_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return F_major[0].positions;
+      case "m":
+        return F_minor[0].positions;
+      case "7":
+        return F_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_FSharp_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return FSharp_major[0].positions[0];
+      case "m":
+        return FSharp_minor[0].positions[0];
+      case "7":
+        return FSharp_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return FSharp_major[0].positions;
+      case "m":
+        return FSharp_minor[0].positions;
+      case "7":
+        return FSharp_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+
+const extract_G_chord = (suffix, isFamily) => {
+  if (!isFamily) {
+    switch (suffix) {
+      case "":
+        return G_major[0].positions[0];
+      case "m":
+        return G_minor[0].positions[0];
+      case "7":
+        return G_7[0].positions[0];
+      default:
+        break;
+    }
+  } else {
+    switch (suffix) {
+      case "":
+        return G_major[0].positions;
+      case "m":
+        return G_minor[0].positions;
+      case "7":
+        return G_7[0].positions;
+      default:
+        break;
+    }
+  }
+};
+//#endregion
+
+const drawOut_Major_Suffix = (inputChord) => {
+  let chordLength = inputChord.length;
+  let major, suffix;
+  if (chordLength === 1) {
+    major = inputChord;
+    suffix = "";
+  } else if (chordLength === 2) {
+    major = inputChord.charAt(1) === "b" ? inputChord : inputChord.charAt(0);
+    suffix =
+      inputChord.charAt(1) === "b" ? "" : inputChord.slice(1, chordLength);
+  } else if (chordLength >= 3) {
+    if (inputChord.charAt(1) === "b") {
+      major = inputChord.slice(0, 2);
+      suffix = inputChord.slice(2, chordLength);
+    } else {
+      major = inputChord.slice(0, 1);
+      suffix = inputChord.slice(1, chordLength);
+    }
+  }
+
+  console.log({ inputChord ,major, suffix})
+  return { major, suffix };
+};
+
+export const extractChord_beta = (inputChord, isFamily = false) => {
+  let splittedChord = drawOut_Major_Suffix(inputChord);
+
+  let wantedChord, wantedPositions;
+
+  if (!isFamily) {
+    switch (splittedChord.major) {
+      case "A":
+        wantedChord = extract_A_chord(splittedChord.suffix, false);
+        break;
+      case "Ab":
+        wantedChord = extract_Ab_chord(splittedChord.suffix, false);
+        break;
+      case "B":
+        wantedChord = extract_B_chord(splittedChord.suffix, false);
+        break;
+      case "Bb":
+        wantedChord = extract_Bb_chord(splittedChord.suffix, false);
+        break;
+      case "C":
+        wantedChord = extract_C_chord(splittedChord.suffix, false);
+        break;
+      case "Db":
+        wantedChord = extract_CSharp_chord(splittedChord.suffix, false);
+        break;
+      case "D":
+        wantedChord = extract_D_chord(splittedChord.suffix, false);
+        break;
+      case "E":
+        wantedChord = extract_E_chord(splittedChord.suffix, false);
+        break;
+      case "Eb":
+        wantedChord = extract_Eb_chord(splittedChord.suffix, false);
+        break;
+      case "F":
+        wantedChord = extract_F_chord(splittedChord.suffix, false);
+        break;
+      case "Gb":
+        wantedChord = extract_FSharp_chord(splittedChord.suffix, false);
+        break;
+      case "G":
+        wantedChord = extract_G_chord(splittedChord.suffix, false);
+        break;
+      default:
+        break;
+    }
+  } else {
+    switch (splittedChord.major) {
+      case "A":
+        wantedPositions = extract_A_chord(splittedChord.suffix, true);
+        break;
+      case "Ab":
+        wantedPositions = extract_Ab_chord(splittedChord.suffix, true);
+        break;
+      case "B":
+        wantedPositions = extract_B_chord(splittedChord.suffix, true);
+        break;
+      case "Bb":
+        wantedPositions = extract_Bb_chord(splittedChord.suffix, true);
+        break;
+      case "C":
+        wantedPositions = extract_C_chord(splittedChord.suffix, true);
+        break;
+      case "Db":
+        wantedPositions = extract_CSharp_chord(splittedChord.suffix, true);
+        break;
+      case "D":
+        wantedPositions = extract_D_chord(splittedChord.suffix, true);
+        break;
+      case "E":
+        wantedPositions = extract_E_chord(splittedChord.suffix, true);
+        break;
+      case "Eb":
+        wantedPositions = extract_Eb_chord(splittedChord.suffix, true);
+        break;
+      case "F":
+        wantedPositions = extract_F_chord(splittedChord.suffix, true);
+        break;
+      case "Gb":
+        wantedPositions = extract_FSharp_chord(splittedChord.suffix, true);
+        break;
+      case "G":
+        wantedPositions = extract_G_chord(splittedChord.suffix, true);
+        break;
+      default:
+        break;
+    }
+  }
+
+  return { wantedChord, wantedPositions };
+};
+
+// console.log({ Em : extractChord_beta('Em', true)})
+
 const extractChord = (inputChord, isFamily = false) => {
   /* 
     wantedChord === the first (main) position of positions array
@@ -271,4 +703,4 @@ const extractChord = (inputChord, isFamily = false) => {
   };
 };
 
-export default extractChord;
+export default extractChord_beta;

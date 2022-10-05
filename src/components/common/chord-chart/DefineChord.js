@@ -7,11 +7,11 @@ import ChordChart from "./ChordChart";
 import Hook from "./hook.defineChord";
 
 /* Util */
-import extractChord from "../../../chordDB";
+import extractChord_beta from "../../../chordDB";
 import { changeChordType } from "../../../util/changeChordType";
 
 const DefineChord = ({ chord, isFlat }) => {
-  const { wantedChord } = extractChord(chord);
+  const { wantedChord } = extractChord_beta(chord);
 
   const { handleClickChord } = Hook();
 
