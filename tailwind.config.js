@@ -9,14 +9,16 @@ module.exports = {
     extend: {
       colors: {
         'primary' : '#DD8905',
-        'secondary' : '#B85F01',
-        'info' : '#00BFE8',
+        'secondary' : '#455480',
+        'info' : '#8B83FF',
         'success' : '#00C09C',
         'danger' : '#F25259',
-        'dark' : '#40514e',
+        'dark' : '#2F4858',
         'light' : '#ffa726',
         'light-md' : '#f57c00'
       },
+      // #8B83FF
+      // #00C09C
     },
   },
   plugins: [

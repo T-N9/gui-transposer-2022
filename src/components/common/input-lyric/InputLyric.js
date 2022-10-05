@@ -128,10 +128,10 @@ const InputLyric = ({
       >
         <button
           type="submit"
-          className="bg-blue-600 border-2 border-blue-600 shadow w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] flex justify-center items-center font-bold text-white text-lg"
+          className="bg-secondary border-2 border-secondary text-light w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] shadow-md font-secondary flex justify-center items-center font-bold text-lg transition-all hover:bg-opacity-90"
         >
           <span>
-            GO <DoubleArrowRightIcon className="w-10" />
+            GO
           </span>
         </button>
 
@@ -189,7 +189,7 @@ const InputLyric = ({
             Lyrics and chords:
           </label>
           <textarea
-            className="lyric-input min-h-[500px] w-full bg-blue-50 bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+            className="lyric-input min-h-[500px] w-full bg-white bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 transition-all outline-none focus:shadow-2xl"
             // defaultValue={inputLyric}
             tabIndex={-1}
             value={inputLyric}
@@ -209,13 +209,13 @@ const InputLyric = ({
           </span>
 
           {formMessage !== "" && (
-            <span className="text-xs text-red-500">{formMessage}</span>
+            <span className="text-xs text-danger">{formMessage}</span>
           )}
         </div>
 
         <button
           type="submit"
-          className=" bg-blue-600 rounded-md text-white py-2 px-4 mx-auto table my-5"
+          className=" bg-secondary text-light font-bold text-xl rounded-md py-2 px-8 shadow-md font-secondary mx-auto table mt-11 transition-all hover:bg-opacity-90"
         >
           Generate
         </button>

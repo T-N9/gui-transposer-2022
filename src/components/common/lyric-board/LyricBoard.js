@@ -47,7 +47,7 @@ const LyricBoard = ({
           <div className="flex flex-col container mx-auto justify-start gap-x-7 items-start font-secondary">
             <span>Chords :</span>
             {detectedChords.length === 0 && (
-              <span className="text-yellow-300">No chords detected.</span>
+              <span className="text-yellow-500 font-bold">No chords detected.</span>
             )}
             {transposedChords.length > 0 && transposeLvl !== 0 ? (
               <div className=" flex flex-wrap text-base gap-x-5 font-medium">
@@ -58,7 +58,7 @@ const LyricBoard = ({
                         <p className="text-info min-w-[30px]">
                           {changeChordType(detectedChords[index], isFlat)}
                         </p>
-                        <p className="text-danger min-w-[30px]">
+                        <p className="text-success min-w-[30px]">
                           {changeChordType(chord, isFlat)}
                         </p>
                       </div>
@@ -69,7 +69,7 @@ const LyricBoard = ({
               <div className=" flex flex-wrap text-base gap-x-5 font-medium">
                 {detectedChords.map((chord) => {
                   return (
-                    <p className="text-blue-500 min-w-[30px]" key={chord}>
+                    <p className="text-info min-w-[30px]" key={chord}>
                       {changeChordType(chord, isFlat)}
                     </p>
                   );

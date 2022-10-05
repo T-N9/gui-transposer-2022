@@ -49,7 +49,7 @@ const Setting = ({
     <div className="bg-gray-100 fixed bottom-5 right-5 p-5 rounded shadow">
       <button
         onClick={() => setIsSetting(false)}
-        className="absolute -top-3 right-0 bg-red-500 text-white text-lg p-1 rounded-full"
+        className="absolute -top-3 right-0 bg-danger text-white text-lg p-1 rounded-full"
       >
         <Cross1Icon />
       </button>
