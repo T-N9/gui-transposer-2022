@@ -21,21 +21,21 @@ import { SharpSymbol, FlatSymbol } from "../../../assets";
 import Hook from "./hook.setting";
 
 const Setting = ({
-    isFlat,
-    printRef ,
-    detectedChords ,
-    transposeLvl ,
-    selected,
-    speedOfScroll,
-    /* actions */
-    setIsFlat,
-    setIsSetting,
-    setEditMode ,
-    setIsPrinting,
-    setTransposeLvl ,
-    handleTransposeDown ,
-    handleTransposeUp,
-    setSelected
+  isFlat,
+  printRef,
+  detectedChords,
+  transposeLvl,
+  selected,
+  speedOfScroll,
+  /* actions */
+  setIsFlat,
+  setIsSetting,
+  setEditMode,
+  setIsPrinting,
+  setTransposeLvl,
+  handleTransposeDown,
+  handleTransposeUp,
+  setSelected,
 }) => {
   const {
     scrollSpeed,
@@ -74,7 +74,9 @@ const Setting = ({
           <Listbox value={selected} onChange={setSelected}>
             <div className="relative">
               <Listbox.Button className="relative w-full rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md cursor-pointer focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-                <span className="block font-secondary truncate">{selected}</span>
+                <span className="block font-secondary truncate">
+                  {selected}
+                </span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <CaretSortIcon />
                 </span>
@@ -102,7 +104,9 @@ const Setting = ({
                         <>
                           <span
                             className={`block truncate font-secondary px-2 py-1 ${
-                              selected ? "font-medium bg-info text-white" : "font-normal"
+                              selected
+                                ? "font-medium bg-info text-white"
+                                : "font-normal"
                             }`}
                           >
                             {speed.name}
@@ -152,7 +156,7 @@ const Setting = ({
           <ReactToPrint
             onBeforePrint={() => setIsPrinting(true)}
             trigger={() => (
-              <button className="bg-gray-800 font-secondary text-sm text-white p-2 rounded flex justify-center items-center gap-x-2">
+              <button className="bg-dark font-secondary text-sm text-white p-2 rounded flex justify-center items-center gap-x-2">
                 Print <FileIcon />
               </button>
             )}
