@@ -1,15 +1,25 @@
-import { A_major, A_minor, A_7 } from "./classification/A";
-import { Ab_major, Ab_minor, Ab_7 } from "./classification/Ab";
-import { B_major, B_minor, B_7 } from "./classification/B";
-import { Bb_major, Bb_minor, Bb_7 } from "./classification/Bb";
-import { C_major, C_minor, C_7 } from "./classification/C";
-import { CSharp_major, CSharp_minor, CSharp_7 } from "./classification/CSharp";
-import { D_major, D_minor, D_7 } from "./classification/D";
-import { E_major, E_minor, E_7 } from "./classification/E";
-import { Eb_major, Eb_minor, Eb_7 } from "./classification/Eb";
-import { F_major, F_minor, F_7 } from "./classification/F";
-import { FSharp_major, FSharp_minor, FSharp_7 } from "./classification/FSharp";
-import { G_major, G_minor, G_7 } from "./classification/G";
+import { A_major, A_minor, A_7, A_m7 } from "./classification/A";
+import { Ab_major, Ab_minor, Ab_7, Ab_m7 } from "./classification/Ab";
+import { B_major, B_minor, B_7, B_m7 } from "./classification/B";
+import { Bb_major, Bb_minor, Bb_7, Bb_m7 } from "./classification/Bb";
+import { C_major, C_minor, C_7, C_m7 } from "./classification/C";
+import {
+  CSharp_major,
+  CSharp_minor,
+  CSharp_7,
+  CSharp_m7,
+} from "./classification/CSharp";
+import { D_major, D_minor, D_7, D_m7 } from "./classification/D";
+import { E_major, E_minor, E_7, E_m7 } from "./classification/E";
+import { Eb_major, Eb_minor, Eb_7, Eb_m7 } from "./classification/Eb";
+import { F_major, F_minor, F_7, F_m7 } from "./classification/F";
+import {
+  FSharp_major,
+  FSharp_minor,
+  FSharp_7,
+  FSharp_m7,
+} from "./classification/FSharp";
+import { G_major, G_minor, G_7, G_m7 } from "./classification/G";
 
 //#region - individual chord extracted
 const extract_A_chord = (suffix, isFamily) => {
@@ -21,6 +31,8 @@ const extract_A_chord = (suffix, isFamily) => {
         return A_minor[0].positions[0];
       case "7":
         return A_7[0].positions[0];
+      case "m7":
+        return A_m7[0].positions[0];
       default:
         break;
     }
@@ -32,6 +44,8 @@ const extract_A_chord = (suffix, isFamily) => {
         return A_minor[0].positions;
       case "7":
         return A_7[0].positions;
+      case "m7":
+        return A_m7[0].positions;
       default:
         break;
     }
@@ -47,6 +61,8 @@ const extract_Ab_chord = (suffix, isFamily) => {
         return Ab_minor[0].positions[0];
       case "7":
         return Ab_7[0].positions[0];
+      case "m7":
+        return Ab_m7[0].positions[0];
       default:
         break;
     }
@@ -58,6 +74,8 @@ const extract_Ab_chord = (suffix, isFamily) => {
         return Ab_minor[0].positions;
       case "7":
         return Ab_7[0].positions;
+      case "m7":
+        return Ab_m7[0].positions;
       default:
         break;
     }
@@ -73,6 +91,8 @@ const extract_B_chord = (suffix, isFamily) => {
         return B_minor[0].positions[0];
       case "7":
         return B_7[0].positions[0];
+      case "m7":
+        return B_m7[0].positions[0];
       default:
         break;
     }
@@ -83,7 +103,9 @@ const extract_B_chord = (suffix, isFamily) => {
       case "m":
         return B_minor[0].positions;
       case "7":
-        return B_7[0].positions;
+        return B_7[0].positions[0];
+      case "m7":
+        return B_m7[0].positions[0];
       default:
         break;
     }
@@ -99,6 +121,8 @@ const extract_Bb_chord = (suffix, isFamily) => {
         return Bb_minor[0].positions[0];
       case "7":
         return Bb_7[0].positions[0];
+      case "m7":
+        return Bb_m7[0].positions[0];
       default:
         break;
     }
@@ -110,6 +134,8 @@ const extract_Bb_chord = (suffix, isFamily) => {
         return Bb_minor[0].positions;
       case "7":
         return Bb_7[0].positions;
+      case "m7":
+        return Bb_m7[0].positions;
       default:
         break;
     }
@@ -125,6 +151,8 @@ const extract_C_chord = (suffix, isFamily) => {
         return C_minor[0].positions[0];
       case "7":
         return C_7[0].positions[0];
+      case "m7":
+        return C_m7[0].positions[0];
       default:
         break;
     }
@@ -136,6 +164,8 @@ const extract_C_chord = (suffix, isFamily) => {
         return C_minor[0].positions;
       case "7":
         return C_7[0].positions;
+      case "m7":
+        return C_m7[0].positions[0];
       default:
         break;
     }
@@ -151,6 +181,8 @@ const extract_CSharp_chord = (suffix, isFamily) => {
         return CSharp_minor[0].positions[0];
       case "7":
         return CSharp_7[0].positions[0];
+      case "m7":
+        return CSharp_m7[0].positions[0];
       default:
         break;
     }
@@ -162,6 +194,8 @@ const extract_CSharp_chord = (suffix, isFamily) => {
         return CSharp_minor[0].positions;
       case "7":
         return CSharp_7[0].positions;
+      case "m7":
+        return CSharp_m7[0].positions;
       default:
         break;
     }
@@ -177,6 +211,8 @@ const extract_D_chord = (suffix, isFamily) => {
         return D_minor[0].positions[0];
       case "7":
         return D_7[0].positions[0];
+      case "m7":
+        return D_m7[0].positions[0];
       default:
         break;
     }
@@ -188,6 +224,8 @@ const extract_D_chord = (suffix, isFamily) => {
         return D_minor[0].positions;
       case "7":
         return D_7[0].positions;
+      case "m7":
+        return D_m7[0].positions;
       default:
         break;
     }
@@ -203,6 +241,8 @@ const extract_E_chord = (suffix, isFamily) => {
         return E_minor[0].positions[0];
       case "7":
         return E_7[0].positions[0];
+      case "m7":
+        return E_m7[0].positions[0];
       default:
         break;
     }
@@ -214,6 +254,8 @@ const extract_E_chord = (suffix, isFamily) => {
         return E_minor[0].positions;
       case "7":
         return E_7[0].positions;
+      case "m7":
+        return E_m7[0].positions;
       default:
         break;
     }
@@ -229,6 +271,8 @@ const extract_Eb_chord = (suffix, isFamily) => {
         return Eb_minor[0].positions[0];
       case "7":
         return Eb_7[0].positions[0];
+      case "m7":
+        return Eb_m7[0].positions[0];
       default:
         break;
     }
@@ -240,6 +284,8 @@ const extract_Eb_chord = (suffix, isFamily) => {
         return Eb_minor[0].positions;
       case "7":
         return Eb_7[0].positions;
+      case "m7":
+        return Eb_m7[0].positions;
       default:
         break;
     }
@@ -255,6 +301,8 @@ const extract_F_chord = (suffix, isFamily) => {
         return F_minor[0].positions[0];
       case "7":
         return F_7[0].positions[0];
+      case "m7":
+        return F_m7[0].positions[0];
       default:
         break;
     }
@@ -266,6 +314,8 @@ const extract_F_chord = (suffix, isFamily) => {
         return F_minor[0].positions;
       case "7":
         return F_7[0].positions;
+      case "m7":
+        return F_m7[0].positions;
       default:
         break;
     }
@@ -281,6 +331,8 @@ const extract_FSharp_chord = (suffix, isFamily) => {
         return FSharp_minor[0].positions[0];
       case "7":
         return FSharp_7[0].positions[0];
+      case "m7":
+        return FSharp_m7[0].positions[0];
       default:
         break;
     }
@@ -292,6 +344,8 @@ const extract_FSharp_chord = (suffix, isFamily) => {
         return FSharp_minor[0].positions;
       case "7":
         return FSharp_7[0].positions;
+      case "m7":
+        return FSharp_m7[0].positions;
       default:
         break;
     }
@@ -307,6 +361,8 @@ const extract_G_chord = (suffix, isFamily) => {
         return G_minor[0].positions[0];
       case "7":
         return G_7[0].positions[0];
+      case "m7":
+        return G_m7[0].positions[0];
       default:
         break;
     }
@@ -318,6 +374,8 @@ const extract_G_chord = (suffix, isFamily) => {
         return G_minor[0].positions;
       case "7":
         return G_7[0].positions;
+      case "m7":
+        return G_m7[0].positions;
       default:
         break;
     }
@@ -345,7 +403,7 @@ const drawOut_Major_Suffix = (inputChord) => {
     }
   }
 
-  console.log({ inputChord ,major, suffix})
+  console.log({ inputChord, major, suffix });
   return { major, suffix };
 };
 
