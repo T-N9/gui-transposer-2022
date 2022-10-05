@@ -7,61 +7,61 @@ import Ab_Chords from "../chordDB/src/db/guitar/chords/Ab";
 import B_Chords from "../chordDB/src/db/guitar/chords/B";
 import Bb_Chords from "../chordDB/src/db/guitar/chords/Bb";
 import C_Chords from "../chordDB/src/db/guitar/chords/C";
-import CSharp_Chords from "../chordDB/src/db/guitar/chords/C#";
+import CSharp_Chords from "../chordDB/src/db/guitar/chords/CSharp";
 import D_Chords from "../chordDB/src/db/guitar/chords/D";
 import E_Chords from "../chordDB/src/db/guitar/chords/E";
 import Eb_Chords from "../chordDB/src/db/guitar/chords/Eb";
 import F_Chords from "../chordDB/src/db/guitar/chords/F";
-import FSharp_Chords from "../chordDB/src/db/guitar/chords/F#";
+import FSharp_Chords from "../chordDB/src/db/guitar/chords/FSharp";
 import G_Chords from "../chordDB/src/db/guitar/chords/G";
 
 const ChordDb = () => {
   let A_major = A_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let Ab_major = Ab_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let B_major = B_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let Bb_major = Bb_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let C_major = C_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let CSharp_major = CSharp_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let D_major = D_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let E_major = E_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let Eb_major = Eb_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let FSharp_major = FSharp_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let F_major = F_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   let G_major = G_Chords.filter((chord) => {
-    return chord.suffix === "7";
+    return chord.suffix === "m7";
   });
 
   console.log({
@@ -82,7 +82,7 @@ const ChordDb = () => {
   return (
     <div>
       <div className="container my-4">
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {A_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -90,7 +90,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {Ab_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -98,7 +98,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {B_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -106,7 +106,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {Bb_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -114,7 +114,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {C_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -122,7 +122,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {CSharp_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -130,7 +130,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {D_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -138,7 +138,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {E_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -146,7 +146,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {Eb_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -154,7 +154,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {F_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -162,7 +162,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {FSharp_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;
@@ -170,7 +170,7 @@ const ChordDb = () => {
           </div>
         </div>
 
-        <div className="my-8">
+        <div className="my-8 border">
           <div className="flex gap-4 justify-center">
             {G_major[0].positions.map((position, index) => {
               return <MyChord key={index} id={index} position={position} />;

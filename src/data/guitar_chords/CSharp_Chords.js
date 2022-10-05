@@ -108,4 +108,47 @@ export default [
       },
     ],
   },
+  {
+    key: "C#",
+    suffix: "m7",
+    positions: [
+      {
+        frets: [1, -1, 1, 1, 1, -1],
+        fingers: [2, 0, 3, 3, 3, 0],
+        baseFret: 9,
+        barres: [],
+        midi: [49, 59, 64, 68],
+      },
+      {
+        frets: [-1, 1, 3, 1, 2, 1],
+        fingers: [0, 1, 3, 1, 2, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 4,
+        midi: [49, 56, 59, 64, 68],
+      },
+      {
+        frets: [-1, -1, 2, 2, 1, 3],
+        fingers: [0, 0, 2, 3, 1, 4],
+        baseFret: 5,
+        barres: [],
+        midi: [56, 61, 64, 71],
+      },
+      {
+        frets: [1, 3, 1, 1, 1, 1],
+        fingers: [1, 4, 1, 1, 1, 1],
+        barres: [1],
+        capo: true,
+        baseFret: 9,
+        midi: [49, 56, 59, 64, 68, 73],
+      },
+      {
+        frets: [-1, -1, 1, 3, 2, 2],
+        fingers: [0, 0, 1, 4, 2, 3],
+        baseFret: 11,
+        barres: [],
+        midi: [61, 68, 71, 76],
+      },
+    ],
+  },
 ];
