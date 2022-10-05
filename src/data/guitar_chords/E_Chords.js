@@ -111,18 +111,11 @@ export default [
     suffix: "m7",
     positions: [
       {
-        frets: [0, -1, 0, 0, 0, -1],
-        fingers: [2, 0, 3, 3, 3, 0],
+        frets: [0, 2, 0, 0, 0, 0],
+        fingers: [0, 2, 0, 0, 0, 0],
         baseFret: 1,
         barres: [],
-        midi: [40, 50, 55, 59],
-      },
-      {
-        frets: [1, -1, 1, 1, 1, -1],
-        fingers: [2, 0, 3, 3, 3, 0],
-        baseFret: 12,
-        barres: [],
-        midi: [52, 62, 67, 71],
+        midi: [40, 47, 50, 55, 59, 64],
       },
       {
         frets: [0, 2, 2, 0, 3, 0],
@@ -131,13 +124,7 @@ export default [
         barres: [],
         midi: [40, 47, 52, 55, 62, 64],
       },
-      {
-        frets: [0, 2, 0, 0, 0, 0],
-        fingers: [0, 2, 0, 0, 0, 0],
-        baseFret: 1,
-        barres: [],
-        midi: [40, 47, 50, 55, 59, 64],
-      },
+
       {
         frets: [0, 2, 2, 4, 3, 3],
         fingers: [0, 1, 1, 4, 2, 3],
@@ -159,6 +146,20 @@ export default [
         baseFret: 8,
         barres: [],
         midi: [59, 64, 67, 74],
+      },
+      {
+        frets: [1, -1, 1, 1, 1, -1],
+        fingers: [2, 0, 3, 3, 3, 0],
+        baseFret: 12,
+        barres: [],
+        midi: [52, 62, 67, 71],
+      },
+      {
+        frets: [0, -1, 0, 0, 0, -1],
+        fingers: [2, 0, 3, 3, 3, 0],
+        baseFret: 1,
+        barres: [],
+        midi: [40, 50, 55, 59],
       },
     ],
   },
