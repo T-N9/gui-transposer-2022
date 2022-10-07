@@ -6,7 +6,7 @@ const Hook = () => {
   const boardDatabaseRef = collection(database, `gui-users/${userId}/boards`);
 
   getDocs(boardDatabaseRef).then((res) => {
-    console.log(res.docs.map((item) => item.data()));
+    // console.log(res.docs.map((item) => item.data()));
   });
 
   return {};

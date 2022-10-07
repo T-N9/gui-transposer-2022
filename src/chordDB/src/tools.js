@@ -26,7 +26,7 @@ const processFingers = (fingers) => (fingers ? processString(fingers) : []);
 
 export const processPosition = (position, tuning, id) => {
   // console.log({position, tuning})
-  console.log('TOols is running')
+
   const frets = processString(position.frets);
   const baseFret = processbaseFret(frets);
 

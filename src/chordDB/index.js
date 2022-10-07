@@ -403,7 +403,7 @@ const drawOut_Major_Suffix = (inputChord) => {
     }
   }
 
-  console.log({ inputChord, major, suffix });
+  // console.log({ inputChord, major, suffix });
   return { major, suffix };
 };
 
