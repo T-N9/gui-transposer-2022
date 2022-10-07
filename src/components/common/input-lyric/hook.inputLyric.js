@@ -71,6 +71,10 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   const { isPersonal } = useSelector((state) => state.general);
 
+  const { songTitle, artistName, songInputLyric } = useSelector(
+    (state) => state.currentSongInfo
+  );
+
   const currentInputtedLyric = currentBoardWithId?.lyricInput?.join("\n");
   const inputtedPublicLyric = inputLyric.split("\n");
 
@@ -85,7 +89,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   useEffect(() => {
     if (!isPersonal) {
-      if (boardId.length > 4) {
+      if (boardId.length > 4 && songInputLyric.length === 0) {
         dispatch(setStartLoading());
         getDocs(publicBoardsCollection)
           .then((item) => {
@@ -103,6 +107,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
             dispatch(setStopLoading());
           });
         setIsNewBoard(false);
+      } else if (boardId.length > 4) {
+        setIsNewBoard(false);
       } else {
         setIsNewBoard(true);
       }
@@ -112,8 +118,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         database,
         `gui-users/${userIdTemp}/boards`
       );
-
-      if (boardId.length > 4) {
+      // && songInputLyric.length === 0)
+      if (boardId.length > 4 && songInputLyric.length === 0) {
         dispatch(setStartLoading());
         getDocs(personalBoardsCollectionTemp)
           .then((item) => {
@@ -130,6 +136,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
             alert(err.message);
             dispatch(setStopLoading());
           });
+        setIsNewBoard(false);
+      } else if (boardId.length > 4) {
         setIsNewBoard(false);
       } else {
         setIsNewBoard(true);
@@ -258,10 +266,6 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     }
   };
   //#endregion
-
-  const { songTitle, artistName, songInputLyric } = useSelector(
-    (state) => state.currentSongInfo
-  );
 
   let formSongTitle = songTitle ? songTitle : currentBoardWithId?.songTitle;
   let formArtistName = artistName ? artistName : currentBoardWithId?.artistName;
