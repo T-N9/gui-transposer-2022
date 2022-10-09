@@ -84,7 +84,7 @@ const LyricBoard = ({
             <div className="flex flex-col">
               Capo on :
               <span className="text-light-md font-bold">
-                {capoFret === 0 || capoFret === ""
+                {capoFret === 0 || capoFret === "" || capoFret === undefined
                   ? "No capo"
                   : `${capoFret} fret`}
               </span>

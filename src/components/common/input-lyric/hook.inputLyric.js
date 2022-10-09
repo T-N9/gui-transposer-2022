@@ -316,6 +316,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     isNewBoard,
     isAdmin,
     isPersonal,
+    capoOnFret,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,

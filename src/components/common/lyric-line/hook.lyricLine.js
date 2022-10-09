@@ -114,7 +114,7 @@ const Hook = (
             transposedChords[detectedChords.indexOf(sharpedChord)];
 
           let changedChordType = changeChordType(transposedChordInLine, isFlat);
-
+          {console.log({transposedChordInLine})}
           if (index === 0) {
             mergingLine.push(
               spacedLine.replace(

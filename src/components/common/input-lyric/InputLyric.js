@@ -32,6 +32,7 @@ const InputLyric = ({
     formCapoFret,
     isNewBoard,
     isAdmin,
+    capoOnFret,
     // isPersonal,
     /* action */
     megaFormSubmit,
@@ -200,8 +201,7 @@ const InputLyric = ({
             >
               Capo on:
             </label>
-            {console.log({formCapoFret})}
-            <select value={formCapoFret} placeholder={formCapoFret} onChange={(e) => {
+            <select value={capoOnFret} onChange={(e) => {
               setCapoOnFret(e.target.value)
             }} className="p-[10px] primary-input" name="capoFret" id="capoFret">
               <option value={0}>No Capo</option>
