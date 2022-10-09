@@ -18,6 +18,7 @@ import {
 import {
   sendSongTitle,
   sendArtistName,
+  sendCapoFret,
 } from "../../../store/currentSongInfoSlice";
 import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
 import { setCloseAlert } from "../../../store/alertBoxSlice";
@@ -44,6 +45,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   const [currentBoardWithId, setCurrentBoardWithId] = useState(null);
   const [isNewBoard, setIsNewBoard] = useState(true);
+  const [capoOnFret, setCapoOnFret] = useState(0);
 
   const {
     publicBoardsCollection,
@@ -71,7 +73,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   const { isPersonal } = useSelector((state) => state.general);
 
-  const { songTitle, artistName, songInputLyric } = useSelector(
+  const { songTitle, artistName, songInputLyric, capoFret } = useSelector(
     (state) => state.currentSongInfo
   );
 
@@ -83,6 +85,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
     dispatch(sendSongTitle(data.songTitle));
     dispatch(sendArtistName(data.artistName));
+    dispatch(sendCapoFret(capoOnFret));
   };
 
   const megaFormSubmit = handleSubmit(onSubmit);
@@ -166,6 +169,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
           songTitle: watch("songTitle"),
           artistName: watch("artistName"),
           lyricInput: inputtedPublicLyric,
+          capoFret: capoOnFret,
         })
           .then(() => {
             handleCallAlert("Added to Public boards.", "success");
@@ -199,6 +203,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       songTitle: watch("songTitle"),
       artistName: watch("artistName"),
       lyricInput: inputtedPublicLyric,
+      capoFret: capoOnFret,
     })
       .then(() => {
         handleCallAlert("Updated Public board.", "info");
@@ -224,6 +229,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         songTitle: watch("songTitle"),
         artistName: watch("artistName"),
         lyricInput: inputtedPublicLyric,
+        capoFret: capoOnFret,
       })
         .then(() => {
           handleCallAlert("Added to library.", "success");
@@ -260,6 +266,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         songTitle: watch("songTitle"),
         artistName: watch("artistName"),
         lyricInput: inputtedPublicLyric,
+        capoFret: capoOnFret,
       })
         .then(() => {
           dispatch(setCloseAlert());
@@ -282,10 +289,12 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   let formSongInputLyric = currentInputtedLyric
     ? currentInputtedLyric
     : inputLyric;
+  let formCapoFret = capoFret ? capoFret : currentBoardWithId?.capoFret;
 
   useEffect(() => {
     setValue("songTitle", formSongTitle);
     setValue("artistName", formArtistName);
+    setCapoOnFret(formCapoFret);
     setInputLyric(formSongInputLyric);
   }, [currentInputtedLyric, currentBoardWithId]);
 
@@ -298,6 +307,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     currentInputtedLyric,
     formSongTitle,
     formArtistName,
+    formCapoFret,
     isNewBoard,
     isAdmin,
     isPersonal,
@@ -311,6 +321,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     handleAddingPersonalBoardList,
     handleDeletingPersonalBoard,
     handleUpdatingPersonalBoard,
+
+    setCapoOnFret,
   };
 };
 

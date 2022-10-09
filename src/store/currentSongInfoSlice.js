@@ -5,7 +5,7 @@ const initialState = {
     artistName : '',
     detectedChords : [],
     transposedChords : [],
-    capoFret : 0,
+    capoFret : '',
     key : '',
     tuning : '0',
     songInputLyric : []

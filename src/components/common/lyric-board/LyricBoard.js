@@ -24,7 +24,7 @@ const LyricBoard = ({
   /* actions */
   showLyricBoard,
 }) => {
-  const { songTitle, artistName } = useSelector(
+  const { songTitle, artistName, capoFret } = useSelector(
     (state) => state.currentSongInfo
   );
 
@@ -42,40 +42,53 @@ const LyricBoard = ({
           </div>
         )}
 
-        {/* Detected chords */}
+        {/* Detected chords /  Capo */}
         {showLyricBoard && (
-          <div className="flex flex-col container mx-auto justify-start gap-x-7 items-start font-secondary">
-            <span>Chords :</span>
-            {detectedChords.length === 0 && (
-              <span className="text-yellow-500 font-bold">No chords detected.</span>
-            )}
-            {transposedChords.length > 0 && transposeLvl !== 0 ? (
-              <div className=" flex flex-wrap text-base gap-x-5 font-medium">
-                {transposedChords.length > 0 &&
-                  transposedChords.map((chord, index) => {
+          <div className="flex container mx-auto justify-start gap-x-7 items-start font-secondary">
+            <div>
+              <span>Chords :</span>
+              {detectedChords.length === 0 && (
+                <span className="text-yellow-500 font-bold">
+                  No chords detected.
+                </span>
+              )}
+              {transposedChords.length > 0 && transposeLvl !== 0 ? (
+                <div className=" flex flex-wrap text-base gap-x-5 font-medium">
+                  {transposedChords.length > 0 &&
+                    transposedChords.map((chord, index) => {
+                      return (
+                        <div key={chord}>
+                          <p className="text-info min-w-[30px]">
+                            {changeChordType(detectedChords[index], isFlat)}
+                          </p>
+                          <p className="text-success min-w-[30px]">
+                            {changeChordType(chord, isFlat)}
+                          </p>
+                        </div>
+                      );
+                    })}
+                </div>
+              ) : (
+                <div className=" flex flex-wrap text-base gap-x-5 font-medium">
+                  {detectedChords.map((chord) => {
                     return (
-                      <div key={chord}>
-                        <p className="text-info min-w-[30px]">
-                          {changeChordType(detectedChords[index], isFlat)}
-                        </p>
-                        <p className="text-success min-w-[30px]">
-                          {changeChordType(chord, isFlat)}
-                        </p>
-                      </div>
+                      <p className="text-info min-w-[30px]" key={chord}>
+                        {changeChordType(chord, isFlat)}
+                      </p>
                     );
                   })}
-              </div>
-            ) : (
-              <div className=" flex flex-wrap text-base gap-x-5 font-medium">
-                {detectedChords.map((chord) => {
-                  return (
-                    <p className="text-info min-w-[30px]" key={chord}>
-                      {changeChordType(chord, isFlat)}
-                    </p>
-                  );
-                })}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col">
+              Capo on :
+              <span className="text-light-md font-bold">
+                {capoFret === 0 || capoFret === ""
+                  ? "No capo"
+                  : `${capoFret} fret`}
+              </span>
+            </div>
           </div>
         )}
 

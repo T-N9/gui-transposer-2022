@@ -29,6 +29,7 @@ const InputLyric = ({
     currentInputtedLyric,
     formSongTitle,
     formArtistName,
+    formCapoFret,
     isNewBoard,
     isAdmin,
     // isPersonal,
@@ -43,6 +44,8 @@ const InputLyric = ({
     handleAddingPersonalBoardList,
     handleDeletingPersonalBoard,
     handleUpdatingPersonalBoard,
+
+    setCapoOnFret
   } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
 
   const [confirmAction, setConfirmAction] = useState(
@@ -197,8 +200,11 @@ const InputLyric = ({
             >
               Capo on:
             </label>
-            <select className="p-[10px] primary-input" name="capoFret" id="capoFret">
-              <option className="p-4" value={0}>No Capo</option>
+            {console.log({formCapoFret})}
+            <select value={formCapoFret} placeholder={formCapoFret} onChange={(e) => {
+              setCapoOnFret(e.target.value)
+            }} className="p-[10px] primary-input" name="capoFret" id="capoFret">
+              <option value={0}>No Capo</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
