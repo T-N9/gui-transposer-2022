@@ -2,7 +2,10 @@ import React from "react";
 
 import Hook from "./hook.alertMessage";
 
-import { CheckCircledIcon } from "@radix-ui/react-icons";
+import {
+  CheckCircledIcon,
+  CrossCircledIcon,
+} from "@radix-ui/react-icons";
 
 const AlertMessage = () => {
   const { alert, message, status } = Hook();
@@ -18,7 +21,7 @@ const AlertMessage = () => {
       <div className="py-2 px-5 flex gap-3 justify-between items-center text-white ">
         <h1 className="font-secondary">{message}</h1>
 
-        <CheckCircledIcon/>
+        {status === "danger" ? <CrossCircledIcon /> : <CheckCircledIcon />}
       </div>
     </div>
   );

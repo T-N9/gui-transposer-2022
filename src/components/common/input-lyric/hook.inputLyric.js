@@ -159,20 +159,25 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   //#region -- Managing CRUD Public board for admins
   const handleAddingBoardList = () => {
-    if (isAdmin) {
-      addDoc(publicBoardsCollection, {
-        songTitle: watch("songTitle"),
-        artistName: watch("artistName"),
-        lyricInput: inputtedPublicLyric,
-      })
-        .then(() => {
-          handleCallAlert("Added to Public boards.", "success");
-          fetchPublicBoardList(true);
-          navigate("/");
+    let isInComplete = isFormsEmpty();
+    if (!isInComplete) {
+      if (isAdmin) {
+        addDoc(publicBoardsCollection, {
+          songTitle: watch("songTitle"),
+          artistName: watch("artistName"),
+          lyricInput: inputtedPublicLyric,
         })
-        .catch((err) => {
-          alert(err.message);
-        });
+          .then(() => {
+            handleCallAlert("Added to Public boards.", "success");
+            fetchPublicBoardList(true);
+            navigate("/");
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
+      }
+    } else {
+      handleCallAlert("Data is incomplete.", "danger");
     }
   };
 
@@ -208,24 +213,29 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   //#region -- Managing CRUD for personal board
   const handleAddingPersonalBoardList = () => {
-    userIdTemp = localStorage.getItem("gui-userId");
-    let personalBoardsCollectionTemp = collection(
-      database,
-      `gui-users/${userIdTemp}/boards`
-    );
-    addDoc(personalBoardsCollectionTemp, {
-      songTitle: watch("songTitle"),
-      artistName: watch("artistName"),
-      lyricInput: inputtedPublicLyric,
-    })
-      .then(() => {
-        handleCallAlert("Added to library.", "success");
-        fetchPersonalBoardList(true);
-        navigate("/profile");
+    let isInComplete = isFormsEmpty();
+    if (!isInComplete) {
+      userIdTemp = localStorage.getItem("gui-userId");
+      let personalBoardsCollectionTemp = collection(
+        database,
+        `gui-users/${userIdTemp}/boards`
+      );
+      addDoc(personalBoardsCollectionTemp, {
+        songTitle: watch("songTitle"),
+        artistName: watch("artistName"),
+        lyricInput: inputtedPublicLyric,
       })
-      .catch((err) => {
-        alert(err.message);
-      });
+        .then(() => {
+          handleCallAlert("Added to library.", "success");
+          fetchPersonalBoardList(true);
+          navigate("/profile");
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    } else {
+      handleCallAlert("Data is incomplete.", "danger");
+    }
   };
 
   const handleDeletingPersonalBoard = () => {

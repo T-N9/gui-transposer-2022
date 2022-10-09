@@ -58,6 +58,16 @@ const InputLyric = ({
     setConfirmAction(() => handleDeletingPersonalBoard);
   };
 
+  const handleClickUpdatePublic = () => {
+    handleCallAlertBox("Are you sure updating this board?");
+    setConfirmAction(() => handleUpdatingBoard);
+  };
+
+  const handleClickDeletePublic = () => {
+    handleCallAlertBox("Are you sure deleting this board?");
+    setConfirmAction(() => handleDeletingBoard);
+  };
+
   return (
     <>
       {/* Manage Public boards for admins */}
@@ -75,13 +85,13 @@ const InputLyric = ({
             {!isNewBoard && (
               <>
                 <button
-                  onClick={handleUpdatingBoard}
+                  onClick={handleClickUpdatePublic}
                   className="px-5 py-2 bg-light shadow-md text-xs rounded text-white"
                 >
                   Update Board
                 </button>
                 <button
-                  onClick={handleDeletingBoard}
+                  onClick={handleClickDeletePublic}
                   className="px-5 py-2 bg-danger shadow-md text-xs rounded text-white"
                 >
                   <TrashIcon />
@@ -183,7 +193,7 @@ const InputLyric = ({
           <div className="flex flex-col relative">
             <label
               className="text-sm font-secondary text-gray-600 mb-1"
-              for="capoFret"
+              htmlFor="capoFret"
             >
               Capo on:
             </label>
