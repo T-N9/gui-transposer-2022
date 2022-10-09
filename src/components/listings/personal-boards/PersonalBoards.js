@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { AiFillFolderOpen } from "react-icons/ai";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 
+/* Util */
+import { formattedTime } from '../../../util/timeFormat';
+
 import Hook from "./hook.personalBoards";
 
 const PersonalBoard = () => {
@@ -52,7 +55,7 @@ const PersonalBoard = () => {
                     </p>
                   </div>
                   <div className="flex justify-between items-center">
-                    <p className="text-xs text-gray-400">12 / 5 /2020</p>
+                    <p className="text-xs text-gray-400">{formattedTime(item.data.createdAt)}</p>
 
                     <button className="primary-btn--info-outline text-lg font-bold">
                       <AiFillFolderOpen />

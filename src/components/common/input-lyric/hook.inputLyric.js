@@ -12,6 +12,7 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  serverTimestamp
 } from "firebase/firestore";
 
 /* actions */
@@ -169,7 +170,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
           songTitle: watch("songTitle"),
           artistName: watch("artistName"),
           lyricInput: inputtedPublicLyric,
-          capoFret: capoOnFret,
+          capoFret: capoOnFret === undefined ? 0 : capoOnFret,
+          createdAt : serverTimestamp()
         })
           .then(() => {
             handleCallAlert("Added to Public boards.", "success");
@@ -203,7 +205,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       songTitle: watch("songTitle"),
       artistName: watch("artistName"),
       lyricInput: inputtedPublicLyric,
-      capoFret: capoOnFret,
+      capoFret: capoOnFret === undefined ? 0 : capoOnFret,
+      createdAt : serverTimestamp()
     })
       .then(() => {
         handleCallAlert("Updated Public board.", "info");
@@ -229,7 +232,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         songTitle: watch("songTitle"),
         artistName: watch("artistName"),
         lyricInput: inputtedPublicLyric,
-        capoFret: capoOnFret,
+        capoFret: capoOnFret === undefined ? 0 : capoOnFret,
+        createdAt : serverTimestamp()
       })
         .then(() => {
           handleCallAlert("Added to library.", "success");
@@ -266,7 +270,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         songTitle: watch("songTitle"),
         artistName: watch("artistName"),
         lyricInput: inputtedPublicLyric,
-        capoFret: capoOnFret,
+        capoFret: capoOnFret === undefined ? 0 : capoOnFret,
+        createdAt : serverTimestamp()
       })
         .then(() => {
           dispatch(setCloseAlert());

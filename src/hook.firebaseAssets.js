@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 /* Firebase utilities */
 import { database } from "./firebase-config";
 import { getAuth } from "firebase/auth";
-import { collection, getDocs, where, query } from "firebase/firestore";
+import { collection, getDocs, where, query, orderBy } from "firebase/firestore";
 
 /* Redux Actions */
 import { setStartLoading, setStopLoading } from "./store/generalSlice";
@@ -55,20 +55,22 @@ const HookFirebaseAssets = () => {
 
   const fetchPersonalBoardList = (isReq) => {
     let userIdTemp = localStorage.getItem("gui-userId");
-    let personalBoardsCollectionTemp= collection(
+    let personalBoardsCollectionTemp = collection(
       database,
       `gui-users/${userIdTemp}/boards`
-    );;
+    );
+
+    let personalBoards_byTime = query(personalBoardsCollectionTemp, orderBy('createdAt', 'desc'))
 
     if (personalBoardList.length === 0 || isReq) {
       dispatch(setStartLoading());
-      getDocs(personalBoardsCollectionTemp)
+      getDocs(personalBoards_byTime)
         .then((res) => {
           let boardDataRef = [];
           res.docs.map((item) => {
             boardDataRef.push({ data: item.data(), id: item.id });
           });
-          
+
           dispatch(sendPersonalBoardList(boardDataRef));
           dispatch(setStopLoading());
         })
