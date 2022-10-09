@@ -45,16 +45,18 @@ const InputLyric = ({
     handleUpdatingPersonalBoard,
   } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
 
-  const [confirmAction, setConfirmAction ] = useState(() => handleUpdatingPersonalBoard)
+  const [confirmAction, setConfirmAction] = useState(
+    () => handleUpdatingPersonalBoard
+  );
   const handleClickUpdatePersonal = () => {
-    handleCallAlertBox('Are you sure updating this board?')
-    setConfirmAction(() =>handleUpdatingPersonalBoard)
-  }
+    handleCallAlertBox("Are you sure updating this board?");
+    setConfirmAction(() => handleUpdatingPersonalBoard);
+  };
 
   const handleClickDeletePersonal = () => {
-    handleCallAlertBox('Are you sure deleting this board?')
-    setConfirmAction(() => handleDeletingPersonalBoard)
-  }
+    handleCallAlertBox("Are you sure deleting this board?");
+    setConfirmAction(() => handleDeletingPersonalBoard);
+  };
 
   return (
     <>
@@ -130,9 +132,7 @@ const InputLyric = ({
           type="submit"
           className="bg-secondary border-2 border-secondary text-light w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] shadow-md font-secondary flex justify-center items-center font-bold text-lg transition-all hover:bg-opacity-90"
         >
-          <span>
-            GO
-          </span>
+          <span>GO</span>
         </button>
 
         <div className="mb-6 flex gap-x-3 gap-y-5 items-center flex-wrap">
@@ -179,6 +179,30 @@ const InputLyric = ({
               </span>
             )}
           </div>
+
+          <div className="flex flex-col relative">
+            <label
+              className="text-sm font-secondary text-gray-600 mb-1"
+              for="capoFret"
+            >
+              Capo on:
+            </label>
+            <select className="p-[10px] primary-input" name="capoFret" id="capoFret">
+              <option className="p-4" value={0}>No Capo</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+              <option value={8}>8</option>
+              <option value={9}>9</option>
+              <option value={10}>10</option>
+              <option value={11}>11</option>
+              <option value={12}>12</option>
+            </select>
+          </div>
         </div>
 
         <div className="relative">
@@ -221,9 +245,7 @@ const InputLyric = ({
         </button>
       </form>
 
-      <AlertBox
-        confirmAction = {confirmAction}
-      />
+      <AlertBox confirmAction={confirmAction} />
     </>
   );
 };
