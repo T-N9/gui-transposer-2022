@@ -8,7 +8,6 @@ import DefineChord from "../../common/chord-chart/DefineChord";
 /* Components */
 import LyricLine from "../lyric-line/LyricLine";
 import PresentChord from "../chord-chart/PresentChord";
-import ChordBoard from "../chord-chart/ChordBoard";
 
 /* Util */
 import { changeChordType } from "../../../util/changeChordType";
@@ -99,7 +98,12 @@ const LyricBoard = ({
               </span>
             </div>
 
-            {!(key === 0 || key === "" || key === undefined || key === "---") && (
+            {!(
+              key === 0 ||
+              key === "" ||
+              key === undefined ||
+              key === "---"
+            ) && (
               <div className="flex flex-col">
                 Key :<span className="text-light-md font-bold">{key}</span>
               </div>
@@ -107,7 +111,24 @@ const LyricBoard = ({
           </div>
         )}
 
-
+        {showLyricBoard && (
+          <div className="mt-4">
+            Charts:
+            <div className="chordBoard flex gap-3 flex-wrap">
+              {transposeLvl !== 0
+                ? transposedChords.map((chord, index) => {
+                    return (
+                      <DefineChord key={index} chord={chord} isFlat={isFlat} />
+                    );
+                  })
+                : detectedChords.map((chord, index) => {
+                    return (
+                      <DefineChord key={index} chord={chord} isFlat={isFlat} />
+                    );
+                  })}
+            </div>
+          </div>
+        )}
       </div>
 
       <PresentChord isFlat={isFlat} />
