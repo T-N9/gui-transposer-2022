@@ -358,7 +358,7 @@ export const chords_Arr_Regex = [
 /* Tuning */
 export const tuning_List = [
   "Standard",
-  "Haft-Step Down",
+  "Half-Step Down",
   "Perfect Fourth Tuning",
   "A Tuning",
   "B Tuning",
@@ -377,3 +377,78 @@ export const tuning_List = [
   "Open G",
   "Celtic",
 ];
+
+export const tuning_object = [
+  {
+    name : 'Standard',
+    tuning : ["E", "A", "D", "G", "B", "E"]
+  },
+  {
+    name: "Half-Step Down",
+    tuning : ['D#','G#','C#','F#','A#','D#']
+  },
+  {
+    name : 'Perfect Fourth Tuning',
+    tuning : ['E',"A","D","G","C","F"]
+  },
+  {
+    name : 'A Tuning',
+    tuning : ['E','A','E','A','C#','E']
+  },
+  {
+    name : 'B Tuning',
+    tuning : ['B','E','A','D','F#','B']
+  },
+  {
+    name : 'C Tuning',
+    tuning : ['C','F','A#','D#','G','C']
+  },
+  {
+    name : 'C# Tuning',
+    tuning : ['C#','F#','B','E','G#','C#']
+  },
+  {
+    name : 'D Tuning',
+    tuning : ['D','G','C','F','A','D']
+  },
+  {
+    name: 'Drop A',
+    tuning : ['A','E','A','D','F#','B']
+  },
+  {
+    name: 'Drop B',
+    tuning : ['B','F#','B','E','G#','C#']
+  },
+  {
+    name: 'Drop C',
+    tuning : ['C','G','C','F','A','D']
+  },
+  {
+    name : 'Drop Db',
+    tuning : ['Db','Ab','Eb','Gb','Bb','Eb']
+  },
+  {
+    name : 'Drop D',
+    tuning : ['D','A','D','G','B','E']
+  },
+  {
+    name: 'Open C',
+    tuning : ['C','G','C','G','C','E']
+  },
+  {
+    name: 'Open D',
+    tuning : ['D','A','D','F#','A','D']
+  },
+  {
+    name: 'Open E',
+    tuning : ['E','B','E','G#','B','E']
+  },
+  {
+    name : 'Open G',
+    tuning : ['D','G','D','G','B','D']
+  },
+  {
+    name : 'Celtic',
+    tuning : ['D','A','D','G','A','D']
+  },
+]
