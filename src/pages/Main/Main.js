@@ -1,11 +1,13 @@
-import React, {useEffect} from "react";
-import {
-  animateScroll as scroll,
-  Element,
-} from "react-scroll";
+import React, { useEffect } from "react";
+import { animateScroll as scroll, Element } from "react-scroll";
 
 /* Components */
-import { Setting, InputLyric, LyricBoard } from "../../components/common";
+import {
+  Setting,
+  InputLyric,
+  LyricBoard,
+  ChordBoard,
+} from "../../components/common";
 
 /* Icons */
 import { MixerHorizontalIcon } from "@radix-ui/react-icons";
@@ -13,9 +15,7 @@ import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 /* Hook */
 import Hook from "./hook.main";
 
-const Main = ({
-  isPersonal
-}) => {
+const Main = ({ isPersonal }) => {
   const {
     inputLyric,
     transposedChords,
@@ -49,7 +49,7 @@ const Main = ({
     setIsPrinting,
     setIsSetting,
     // setCurrentBoard,
-    setSelected
+    setSelected,
   } = Hook();
 
   useEffect(() => {
@@ -66,8 +66,8 @@ const Main = ({
             textArea={textArea}
             formMessage={formMessage}
             currentBoard={currentBoard}
-            boardId= { boardId}
-            isPersonal = {isPersonal}
+            boardId={boardId}
+            isPersonal={isPersonal}
             /* actions */
             setInputLyric={setInputLyric}
             handleSubmit={handleSubmit}
@@ -90,26 +90,36 @@ const Main = ({
           />
         </section>
 
+        {/* Chord Board */}
+        {showLyricBoard && (
+          <ChordBoard
+            detectedChords={detectedChords}
+            transposeLvl={transposeLvl}
+            transposedChords={transposedChords}
+            isFlat={isFlat}
+          />
+        )}
+
         {showLyricBoard && (
           <>
             {isSetting ? (
               <>
                 <Setting
                   isFlat={isFlat}
-                  printRef = {printRef}
-                  detectedChords = {detectedChords}
-                  transposeLvl = {transposeLvl}
-                  selected = {selected}
-                  speedOfScroll = {speedOfScroll}
+                  printRef={printRef}
+                  detectedChords={detectedChords}
+                  transposeLvl={transposeLvl}
+                  selected={selected}
+                  speedOfScroll={speedOfScroll}
                   /* actions */
                   setIsFlat={setIsFlat}
                   setIsSetting={setIsSetting}
-                  setEditMode = {setEditMode}
+                  setEditMode={setEditMode}
                   setIsPrinting={setIsPrinting}
-                  setTransposeLvl = {setTransposeLvl}
-                  handleTransposeDown = {handleTransposeDown}
-                  handleTransposeUp = {handleTransposeUp}
-                  setSelected = {setSelected}
+                  setTransposeLvl={setTransposeLvl}
+                  handleTransposeDown={handleTransposeDown}
+                  handleTransposeUp={handleTransposeUp}
+                  setSelected={setSelected}
                 />
               </>
             ) : (
