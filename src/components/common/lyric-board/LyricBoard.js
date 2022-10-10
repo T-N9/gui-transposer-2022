@@ -24,7 +24,7 @@ const LyricBoard = ({
   /* actions */
   showLyricBoard,
 }) => {
-  const { songTitle, artistName, capoFret, tuning } = useSelector(
+  const { songTitle, artistName, capoFret, tuning, key } = useSelector(
     (state) => state.currentSongInfo
   );
 
@@ -98,6 +98,12 @@ const LyricBoard = ({
                   : `${tuning}`}
               </span>
             </div>
+
+            {!(key === 0 || key === "" || key === undefined || key === "---") && (
+              <div className="flex flex-col">
+                Key :<span className="text-light-md font-bold">{key}</span>
+              </div>
+            )}
           </div>
         )}
 
