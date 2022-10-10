@@ -354,3 +354,26 @@ export const chords_Arr_Regex = [
     regex: /\s[C]#m\s/g,
   },
 ];
+
+/* Tuning */
+export const tuning_List = [
+  "Standard",
+  "Haft-Step Down",
+  "Perfect Fourth Tuning",
+  "A Tuning",
+  "B Tuning",
+  "C Tuning",
+  "C# Tuning",
+  "D Tuning",
+  "Drop A",
+  "Drop Bb",
+  "Drop B",
+  "Drop C",
+  "Drop Db",
+  "Drop D",
+  "Open C",
+  "Open D",
+  "Open E",
+  "Open G",
+  "Celtic",
+];

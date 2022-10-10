@@ -4,7 +4,10 @@ import React, { useState } from "react";
 import Hook from "./hook.inputLyric";
 
 /* Icons */
-import { DoubleArrowRightIcon, TrashIcon } from "@radix-ui/react-icons";
+import { TrashIcon } from "@radix-ui/react-icons";
+
+/* Constants */
+import { tuning_List } from "../../../constants/constants";
 
 import AlertBox from "../alert-box/AlertBox";
 
@@ -46,7 +49,7 @@ const InputLyric = ({
     handleDeletingPersonalBoard,
     handleUpdatingPersonalBoard,
 
-    setCapoOnFret
+    setCapoOnFret,
   } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
 
   const [confirmAction, setConfirmAction] = useState(
@@ -201,9 +204,15 @@ const InputLyric = ({
             >
               Capo on:
             </label>
-            <select value={capoOnFret} onChange={(e) => {
-              setCapoOnFret(e.target.value)
-            }} className="p-[10px] primary-input" name="capoFret" id="capoFret">
+            <select
+              value={capoOnFret}
+              onChange={(e) => {
+                setCapoOnFret(e.target.value);
+              }}
+              className="p-[10px] primary-input"
+              name="capoFret"
+              id="capoFret"
+            >
               <option value={0}>No Capo</option>
               <option value={1}>1</option>
               <option value={2}>2</option>
@@ -217,6 +226,28 @@ const InputLyric = ({
               <option value={10}>10</option>
               <option value={11}>11</option>
               <option value={12}>12</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col relative">
+            <label
+              className="text-sm font-secondary text-gray-600 mb-1"
+              htmlFor="songTuning"
+            >
+              Tuning:
+            </label>
+            <select
+              className="p-[10px] primary-input"
+              name="songTuning"
+              id="songTuning"
+            >
+              {
+                tuning_List.map((tuning, index) => {
+                  return (
+                    <option key={index} value={tuning}>{tuning}</option>
+                  )
+                })
+              }
             </select>
           </div>
         </div>
