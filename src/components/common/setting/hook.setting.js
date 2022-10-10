@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import * as Scroll from "react-scroll";
+import { useDispatch } from "react-redux";
+
+/* action */
+import { sendToggleChordBoard } from "../../../store/mainGenSlice";
 
 const Hook = (printRef, speedOfScroll, selected, setSelected) => {
+
+  const dispatch = useDispatch();
+
   const handleDownloadImage = async () => {
     const element = printRef.current;
     const canvas = await html2canvas(element);
@@ -35,12 +42,17 @@ const Hook = (printRef, speedOfScroll, selected, setSelected) => {
 
   // console.log({ selected, scrollSpeed });
 
+  const handleToggleChordBoard = () => {
+    dispatch(sendToggleChordBoard())
+  }
+
   return {
     scrollSpeed,
     ScrollLink,
     /* actions */
     setScrollSpeed,
     handleDownloadImage,
+    handleToggleChordBoard
   };
 };
 

@@ -6,7 +6,8 @@ export const mainGenSlice = createSlice({
         loading : false,
         detectedChords : [],
         transposedChords : [],
-        isFlat : true
+        isFlat : true,
+        showChordBoard : false
     },
     reducers : {
         setStartLoading : (state) => {
@@ -26,9 +27,12 @@ export const mainGenSlice = createSlice({
         },
         sendSharpType : (state) => {
             state.isFlat = false
+        },
+        sendToggleChordBoard : (state) => {
+            state.showChordBoard = !state.showChordBoard
         }
     }
 });
 
-export const { setStartLoading, setStopLoading, sendDetectedChords, sendTransposedChords, sendFlatType, sendSharpType } = mainGenSlice.actions;
+export const { setStartLoading, setStopLoading, sendDetectedChords, sendTransposedChords, sendFlatType, sendToggleChordBoard, sendSharpType } = mainGenSlice.actions;
 export default mainGenSlice.reducer;

@@ -14,6 +14,7 @@ import {
   CheckCircledIcon,
   CaretSortIcon,
 } from "@radix-ui/react-icons";
+import { BsBoundingBox } from "react-icons/bs";
 
 import { SharpSymbol, FlatSymbol } from "../../../assets";
 
@@ -43,6 +44,7 @@ const Setting = ({
     /* actions */
     setScrollSpeed,
     handleDownloadImage,
+    handleToggleChordBoard
   } = Hook(printRef, speedOfScroll, selected, setSelected);
 
   return (
@@ -179,6 +181,12 @@ const Setting = ({
           </button>
         </div>
 
+        <div>
+          <button onClick={handleToggleChordBoard} className="cursor-pointer border rounded-md bg-white shadow flex gap-x-1 p-2 justify-center items-center text-sm font-secondary text-info w-full">
+            <BsBoundingBox /> Chord Board
+          </button>
+        </div>
+
         <div
           className={`mx-auto relative inline-flex items-center justify-center gap-x-4 shadow-md px-5 py-3 rounded-lg bg-white ${
             detectedChords.length === 0 &&
@@ -193,7 +201,9 @@ const Setting = ({
 
           <button
             disabled={transposeLvl === 0}
-            className={`bg-white text-lg text-light-md shadow w-7 h-7 flex justify-center items-center rounded-full ${transposeLvl === 0 && 'opacity-30'}`}
+            className={`bg-white text-lg text-light-md shadow w-7 h-7 flex justify-center items-center rounded-full ${
+              transposeLvl === 0 && "opacity-30"
+            }`}
             onClick={handleTransposeDown}
           >
             <MinusIcon />
@@ -206,7 +216,9 @@ const Setting = ({
           </button>
           <button
             disabled={transposeLvl === 11}
-            className={`bg-white text-lg text-light-md shadow w-7 h-7 flex justify-center items-center rounded-full ${transposeLvl === 11 && 'opacity-30'}`}
+            className={`bg-white text-lg text-light-md shadow w-7 h-7 flex justify-center items-center rounded-full ${
+              transposeLvl === 11 && "opacity-30"
+            }`}
             onClick={handleTransposeUp}
           >
             <PlusIcon />

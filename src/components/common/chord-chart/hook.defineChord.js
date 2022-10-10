@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 /* Util */
 import extractChord_beta from "../../../chordDB";
@@ -9,8 +9,12 @@ import {
   setChordPositions,
   togglePresentChords
 } from "../../../store/chordChartSlice";
+import { sendToggleChordBoard } from "../../../store/mainGenSlice";
 
 const Hook = () => {
+
+  const { showChordBoard } = useSelector((state)=> state.mainGen)
+
   const dispatch = useDispatch();
   const handleClickChord = (chord) => {
     const { wantedPositions } = extractChord_beta(chord, true);
@@ -24,9 +28,15 @@ const Hook = () => {
     dispatch(togglePresentChords());
   } 
 
+  const handleToggleChordBoard = () => {
+    dispatch(sendToggleChordBoard())
+  }
+
   return {
+    showChordBoard,
     handleClickChord,
-    closePresentChords
+    closePresentChords,
+    handleToggleChordBoard
   };
 };
 

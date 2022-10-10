@@ -7,33 +7,45 @@ import DefineChord from "./DefineChord";
 /* Icons */
 import { BsArrowsMove, BsFillXCircleFill } from "react-icons/bs";
 
+/* Hook */
+import Hook from "./hook.defineChord";
+
 const ChordBoard = ({
   detectedChords,
   transposeLvl,
   transposedChords,
   isFlat,
 }) => {
+  const { showChordBoard, handleToggleChordBoard } = Hook();
   return (
-    <Draggable handle="span">
-      <div className="chordBoard flex gap-3 fixed top-0 left-[30%] translate-x-[-50%] p-5 shadow flex-wrap">
-        <div className="absolute left-[-40px] top-5 flex flex-col gap-3">
-          <span className="w-8 h-8 text-white flex justify-center items-center cursor-move bg-info  rounded-full">
-            <BsArrowsMove />
-          </span>
+    <>
+      {showChordBoard && (
+        <Draggable handle="span">
+          <div className="chordBoard flex gap-3 fixed top-0 left-[30%] translate-x-[-50%] p-5 shadow flex-wrap">
+            <div className="absolute left-[-40px] top-5 flex flex-col gap-3">
+              <span className="w-8 h-8 text-white flex justify-center items-center cursor-move bg-info  rounded-full">
+                <BsArrowsMove />
+              </span>
 
-          <div className="w-8 h-8 text-white flex justify-center items-center cursor-move bg-danger  rounded-full">
-            <BsFillXCircleFill />
+              <button onClick={handleToggleChordBoard} className="w-8 h-8 text-white flex justify-center items-center cursor-pointer bg-danger  rounded-full">
+                <BsFillXCircleFill />
+              </button>
+            </div>
+            {transposeLvl !== 0
+              ? transposedChords.map((chord, index) => {
+                  return (
+                    <DefineChord key={index} chord={chord} isFlat={isFlat} />
+                  );
+                })
+              : detectedChords.map((chord, index) => {
+                  return (
+                    <DefineChord key={index} chord={chord} isFlat={isFlat} />
+                  );
+                })}
           </div>
-        </div>
-        {transposeLvl !== 0
-          ? transposedChords.map((chord, index) => {
-              return <DefineChord key={index} chord={chord} isFlat={isFlat} />;
-            })
-          : detectedChords.map((chord, index) => {
-              return <DefineChord key={index} chord={chord} isFlat={isFlat} />;
-            })}
-      </div>
-    </Draggable>
+        </Draggable>
+      )}
+    </>
   );
 };
 
