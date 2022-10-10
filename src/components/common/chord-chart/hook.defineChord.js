@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 /* Util */
@@ -13,7 +14,9 @@ import { sendToggleChordBoard } from "../../../store/mainGenSlice";
 
 const Hook = () => {
 
-  const { showChordBoard } = useSelector((state)=> state.mainGen)
+  const { showChordBoard } = useSelector((state)=> state.mainGen);
+
+  const [ isHorizontal, setIsHorizontal ] = useState(true);
 
   const dispatch = useDispatch();
   const handleClickChord = (chord) => {
@@ -34,9 +37,13 @@ const Hook = () => {
 
   return {
     showChordBoard,
+    isHorizontal,
+
+    /* actions */
     handleClickChord,
     closePresentChords,
-    handleToggleChordBoard
+    handleToggleChordBoard,
+    setIsHorizontal
   };
 };
 
