@@ -82,6 +82,9 @@ const Hook = () => {
           sendEmailVerification(auth.currentUser)
             .then(() => {
               setIsEmailSent(true);
+              setTimeout(() => {
+                navigate(HOME);
+              }, 3000);
             })
             .catch((err) => alert("fail email"));
           setIsLoading(false);
