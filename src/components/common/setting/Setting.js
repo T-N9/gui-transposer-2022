@@ -192,7 +192,8 @@ const Setting = ({
           )}
 
           <button
-            className="bg-white text-lg shadow w-7 h-7 flex justify-center items-center rounded-full"
+            disabled={transposeLvl === 0}
+            className={`bg-white text-lg text-light-md shadow w-7 h-7 flex justify-center items-center rounded-full ${transposeLvl === 0 && 'opacity-30'}`}
             onClick={handleTransposeDown}
           >
             <MinusIcon />
@@ -204,7 +205,8 @@ const Setting = ({
             Reset
           </button>
           <button
-            className="bg-white text-lg shadow w-7 h-7 flex justify-center items-center rounded-full"
+            disabled={transposeLvl === 11}
+            className={`bg-white text-lg text-light-md shadow w-7 h-7 flex justify-center items-center rounded-full ${transposeLvl === 11 && 'opacity-30'}`}
             onClick={handleTransposeUp}
           >
             <PlusIcon />
