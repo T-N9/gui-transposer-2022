@@ -452,3 +452,26 @@ export const tuning_object = [
     tuning : ['D','A','D','G','A','D']
   },
 ]
+
+/* Keys */
+export const key_List = [
+  'C',
+  'G',
+  'D',
+  'A',
+  'E',
+  'Em',
+  'F',
+  'Am',
+  'Dm',
+  'B',
+  'Bm',
+  'Bb',
+  'Cm',
+  'Eb',
+  'Gm',
+  'Ab',
+  'F#m',
+  'C#m',
+  'Fm'
+]
