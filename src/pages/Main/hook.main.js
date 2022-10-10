@@ -29,7 +29,9 @@ import {
   chords_Arr_iii_sh,
   chords_Arr_iv_sh,
   chords_Arr_v,
-  chords_Arr_v_sh
+  chords_Arr_v_sh,
+  chords_Arr_vi,
+  chords_Arr_vi_sh
 } from "../../constants/constants";
 
 /* Util */
@@ -184,6 +186,14 @@ const Hook = () => {
             transposedChordArr.push(chords_Arr_v[indexDown]);
           }
 
+          if (chords_Arr_vi.indexOf(chord) !== -1) {
+            let indexDown = handleDownStrictLvl(
+              chords_Arr_vi.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_vi[indexDown]);
+          }
+
           return true;
         });
       } else {
@@ -234,6 +244,14 @@ const Hook = () => {
             transposedChordArr.push(chords_Arr_v[indexUp]);
           }
           
+          if (chords_Arr_vi.indexOf(chord) !== -1) {
+            let indexUp = handleUpStrictLvl(
+              chords_Arr_vi.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_vi[indexUp]);
+          }
+
           return true;
         });
       }
@@ -289,6 +307,13 @@ const Hook = () => {
             transposedChordArr.push(chords_Arr_v_sh[indexDown]);
           }
 
+          if (chords_Arr_vi_sh.indexOf(chord) !== -1) {
+            let indexDown = handleDownStrictLvl(
+              chords_Arr_vi_sh.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_vi_sh[indexDown]);
+          }
           return true;
         });
       } else {
@@ -337,6 +362,14 @@ const Hook = () => {
               transposeLvl
             );
             transposedChordArr.push(chords_Arr_v[indexUp]);
+          }
+
+          if (chords_Arr_vi.indexOf(chord) !== -1) {
+            let indexUp = handleUpStrictLvl(
+              chords_Arr_vi.indexOf(chord),
+              transposeLvl
+            );
+            transposedChordArr.push(chords_Arr_vi[indexUp]);
           }
           return true;
         });
