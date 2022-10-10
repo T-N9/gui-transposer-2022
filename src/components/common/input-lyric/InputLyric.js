@@ -36,6 +36,7 @@ const InputLyric = ({
     isNewBoard,
     isAdmin,
     capoOnFret,
+    songTuning,
     // isPersonal,
     /* action */
     megaFormSubmit,
@@ -50,6 +51,7 @@ const InputLyric = ({
     handleUpdatingPersonalBoard,
 
     setCapoOnFret,
+    setSongTuning,
   } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
 
   const [confirmAction, setConfirmAction] = useState(
@@ -237,17 +239,19 @@ const InputLyric = ({
               Tuning:
             </label>
             <select
+              value={songTuning}
               className="p-[10px] primary-input"
               name="songTuning"
               id="songTuning"
+              onChange={(e) => setSongTuning(e.target.value)}
             >
-              {
-                tuning_List.map((tuning, index) => {
-                  return (
-                    <option key={index} value={tuning}>{tuning}</option>
-                  )
-                })
-              }
+              {tuning_List.map((tuning, index) => {
+                return (
+                  <option key={index} value={tuning}>
+                    {tuning}
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>

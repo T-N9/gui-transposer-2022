@@ -24,7 +24,7 @@ const LyricBoard = ({
   /* actions */
   showLyricBoard,
 }) => {
-  const { songTitle, artistName, capoFret } = useSelector(
+  const { songTitle, artistName, capoFret, tuning } = useSelector(
     (state) => state.currentSongInfo
   );
 
@@ -87,6 +87,15 @@ const LyricBoard = ({
                 {capoFret === 0 || capoFret === "" || capoFret === undefined
                   ? "No capo"
                   : `${capoFret} fret`}
+              </span>
+            </div>
+
+            <div className="flex flex-col">
+              Tuning :
+              <span className="text-light-md font-bold">
+                {tuning === 0 || tuning === "" || tuning === undefined
+                  ? "Standard"
+                  : `${tuning}`}
               </span>
             </div>
           </div>
