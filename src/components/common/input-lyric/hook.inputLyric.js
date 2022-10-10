@@ -20,7 +20,8 @@ import {
   sendSongTitle,
   sendArtistName,
   sendCapoFret,
-  sendSongTuning
+  sendSongTuning,
+  sendSongKey,
 } from "../../../store/currentSongInfoSlice";
 import { setStartLoading, setStopLoading } from "../../../store/generalSlice";
 import { setCloseAlert } from "../../../store/alertBoxSlice";
@@ -49,6 +50,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
   const [isNewBoard, setIsNewBoard] = useState(true);
   const [capoOnFret, setCapoOnFret] = useState(0);
   const [songTuning, setSongTuning] = useState(0);
+  const [songKey, setSongKey] = useState(0);
 
   const {
     publicBoardsCollection,
@@ -76,9 +78,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
   const { isPersonal } = useSelector((state) => state.general);
 
-  const { songTitle, artistName, songInputLyric, capoFret, tuning } = useSelector(
-    (state) => state.currentSongInfo
-  );
+  const { songTitle, artistName, songInputLyric, capoFret, tuning, key } =
+    useSelector((state) => state.currentSongInfo);
 
   const currentInputtedLyric = currentBoardWithId?.lyricInput?.join("\n");
   const inputtedPublicLyric = inputLyric.split("\n");
@@ -90,6 +91,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     dispatch(sendArtistName(data.artistName));
     dispatch(sendCapoFret(capoOnFret));
     dispatch(sendSongTuning(songTuning));
+    dispatch(sendSongKey(songKey));
   };
 
   const megaFormSubmit = handleSubmit(onSubmit);
@@ -174,7 +176,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
           artistName: watch("artistName"),
           lyricInput: inputtedPublicLyric,
           capoFret: capoOnFret === undefined ? 0 : capoOnFret,
-          tuning : songTuning === undefined ? 'Standard' : songTuning,
+          tuning: songTuning === undefined ? "Standard" : songTuning,
+          key : songKey === undefined ? "---" : songKey,
           createdAt: serverTimestamp(),
         })
           .then(() => {
@@ -210,7 +213,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
       artistName: watch("artistName"),
       lyricInput: inputtedPublicLyric,
       capoFret: capoOnFret === undefined ? 0 : capoOnFret,
-      tuning : songTuning === undefined ? 'Standard' : songTuning,
+      tuning: songTuning === undefined ? "Standard" : songTuning,
+      key : songKey === undefined ? "---" : songKey,
       createdAt: serverTimestamp(),
     })
       .then(() => {
@@ -238,7 +242,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         artistName: watch("artistName"),
         lyricInput: inputtedPublicLyric,
         capoFret: capoOnFret === undefined ? 0 : capoOnFret,
-        tuning : songTuning === undefined ? 'Standard' : songTuning,
+        tuning: songTuning === undefined ? "Standard" : songTuning,
+        key : songKey === undefined ? "---" : songKey,
         createdAt: serverTimestamp(),
       })
         .then(() => {
@@ -277,7 +282,8 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
         artistName: watch("artistName"),
         lyricInput: inputtedPublicLyric,
         capoFret: capoOnFret === undefined ? 0 : capoOnFret,
-        tuning : songTuning === undefined ? 'Standard' : songTuning,
+        tuning: songTuning === undefined ? "Standard" : songTuning,
+        key : songKey === undefined ? "---" : songKey,
         createdAt: serverTimestamp(),
       })
         .then(() => {
@@ -303,6 +309,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     : inputLyric;
   let formCapoFret = capoFret ? capoFret : currentBoardWithId?.capoFret;
   let formSongTuning = tuning ? tuning : currentBoardWithId?.tuning;
+  let formKey = key ? key : currentBoardWithId?.key;
 
   useEffect(() => {
     setValue("songTitle", formSongTitle);
@@ -310,6 +317,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     setCapoOnFret(formCapoFret);
     setSongTuning(formSongTuning);
     setInputLyric(formSongInputLyric);
+    setSongKey(formKey)
   }, [currentInputtedLyric, currentBoardWithId]);
 
   return {
@@ -327,6 +335,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
     isPersonal,
     capoOnFret,
     songTuning,
+    songKey,
     /* action */
     megaFormSubmit,
     handleAddingBoardList,
@@ -340,6 +349,7 @@ const Hook = (formSubmit, currentBoard, inputLyric, setInputLyric, boardId) => {
 
     setCapoOnFret,
     setSongTuning,
+    setSongKey,
   };
 };
 

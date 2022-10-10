@@ -9,7 +9,8 @@ const initialState = {
     key : '',
     tuning : '0',
     songInputLyric : [],
-    tuning : ''
+    tuning : '',
+    key : ''
 }
 
 export const currentSongInfoSlice = createSlice({
@@ -42,6 +43,9 @@ export const currentSongInfoSlice = createSlice({
         },
         sendSongTuning : (state, action) => {
             state.tuning = action.payload
+        },
+        sendSongKey : (state, action) => {
+            state.key = action.payload
         },
         resetSongInfo : () => {
             return initialState

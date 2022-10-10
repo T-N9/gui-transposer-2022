@@ -7,7 +7,7 @@ import Hook from "./hook.inputLyric";
 import { TrashIcon } from "@radix-ui/react-icons";
 
 /* Constants */
-import { tuning_List } from "../../../constants/constants";
+import { tuning_List, key_List } from "../../../constants/constants";
 
 import AlertBox from "../alert-box/AlertBox";
 
@@ -37,6 +37,7 @@ const InputLyric = ({
     isAdmin,
     capoOnFret,
     songTuning,
+    songKey,
     // isPersonal,
     /* action */
     megaFormSubmit,
@@ -52,6 +53,7 @@ const InputLyric = ({
 
     setCapoOnFret,
     setSongTuning,
+    setSongKey,
   } = Hook(handleSubmit, currentBoard, inputLyric, setInputLyric, boardId);
 
   const [confirmAction, setConfirmAction] = useState(
@@ -249,6 +251,30 @@ const InputLyric = ({
                 return (
                   <option key={index} value={tuning}>
                     {tuning}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
+          <div className="flex flex-col relative">
+            <label
+              className="text-sm font-secondary text-gray-600 mb-1"
+              htmlFor="songKey"
+            >
+              Key:
+            </label>
+            <select
+              value={songKey}
+              className="p-[10px] primary-input"
+              name="songKey"
+              id="songKey"
+              onChange={(e) => setSongKey(e.target.value)}
+            >
+              {key_List.map((key, index) => {
+                return (
+                  <option key={index} value={key}>
+                    {key}
                   </option>
                 );
               })}
