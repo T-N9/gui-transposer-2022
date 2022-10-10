@@ -156,130 +156,138 @@ const InputLyric = ({
           <span>GO</span>
         </button>
 
-        <div className="mb-6 flex gap-x-3 gap-y-5 items-center flex-wrap">
-          <div className="flex flex-col relative">
-            <label
-              className="text-sm font-secondary text-gray-600 mb-1"
-              htmlFor="song-title"
-            >
-              Song title:
-            </label>
-            <input
-              className="primary-input"
-              defaultValue={formSongTitle}
-              type="text"
-              id="song-title"
-              name="song-title"
-              {...register("songTitle", { required: true })}
-            />
-            {errors.songTitle && (
-              <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">
-                *This field is required
-              </span>
-            )}
+        <div className="mb-6 flex flex-col gap-x-3 gap-y-5 items-start flex-wrap">
+          <div className="flex flex-col md:flex-row gap-x-3 gap-y-5 w-full">
+            <div className="flex flex-1 flex-col relative">
+              <label
+                className="text-sm font-secondary text-gray-600 mb-1"
+                htmlFor="song-title"
+              >
+                Song title:
+              </label>
+              <input
+                className="primary-input"
+                defaultValue={formSongTitle}
+                type="text"
+                id="song-title"
+                name="song-title"
+                {...register("songTitle", { required: true })}
+              />
+              {errors.songTitle && (
+                <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">
+                  *This field is required
+                </span>
+              )}
+            </div>
+            
+            <div className="flex flex-1 flex-col relative">
+              <label
+                className="text-sm font-secondary text-gray-600 mb-1"
+                htmlFor="artist-name"
+              >
+                Artist name:
+              </label>
+              <input
+                className="primary-input"
+                defaultValue={formArtistName}
+                type="text"
+                id="artist-name"
+                name="artist-name"
+                {...register("artistName", { required: true })}
+              />
+              {errors.artistName && (
+                <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">
+                  *This field is required
+                </span>
+              )}
+            </div>
           </div>
 
-          <div className="flex flex-col relative">
-            <label
-              className="text-sm font-secondary text-gray-600 mb-1"
-              htmlFor="artist-name"
-            >
-              Artist name:
-            </label>
-            <input
-              className="primary-input"
-              defaultValue={formArtistName}
-              type="text"
-              id="artist-name"
-              name="artist-name"
-              {...register("artistName", { required: true })}
-            />
-            {errors.artistName && (
-              <span className="text-danger text-xs mt-2 absolute -bottom-5 left-0">
-                *This field is required
-              </span>
-            )}
+          <div className="flex flex-col md:flex-row gap-x-3 gap-y-5 w-full">
+            <div className="flex-[5] flex gap-x-3">
+              <div className="flex flex-[6] flex-col relative">
+                <label
+                  className="text-sm font-secondary text-gray-600 mb-1"
+                  htmlFor="capoFret"
+                >
+                  Capo on:
+                </label>
+                <select
+                  value={capoOnFret}
+                  onChange={(e) => {
+                    setCapoOnFret(e.target.value);
+                  }}
+                  className="p-[10px] primary-input"
+                  name="capoFret"
+                  id="capoFret"
+                >
+                  <option value={0}>No Capo</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
+                  <option value={7}>7</option>
+                  <option value={8}>8</option>
+                  <option value={9}>9</option>
+                  <option value={10}>10</option>
+                  <option value={11}>11</option>
+                  <option value={12}>12</option>
+                </select>
+              </div>
+              
+              <div className="flex flex-[4] flex-col relative">
+                <label
+                  className="text-sm font-secondary text-gray-600 mb-1"
+                  htmlFor="songKey"
+                >
+                  Key:
+                </label>
+                <select
+                  value={songKey}
+                  className="p-[10px] primary-input"
+                  name="songKey"
+                  id="songKey"
+                  onChange={(e) => setSongKey(e.target.value)}
+                >
+                  {key_List.map((key, index) => {
+                    return (
+                      <option key={index} value={key}>
+                        {key}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+            
+            <div className="flex flex-[5] flex-col relative">
+              <label
+                className="text-sm font-secondary text-gray-600 mb-1"
+                htmlFor="songTuning"
+              >
+                Tuning:
+              </label>
+              <select
+                value={songTuning}
+                className="p-[10px] primary-input"
+                name="songTuning"
+                id="songTuning"
+                onChange={(e) => setSongTuning(e.target.value)}
+              >
+                {tuning_List.map((tuning, index) => {
+                  return (
+                    <option key={index} value={tuning}>
+                      {tuning}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
           </div>
 
-          <div className="flex flex-col relative">
-            <label
-              className="text-sm font-secondary text-gray-600 mb-1"
-              htmlFor="capoFret"
-            >
-              Capo on:
-            </label>
-            <select
-              value={capoOnFret}
-              onChange={(e) => {
-                setCapoOnFret(e.target.value);
-              }}
-              className="p-[10px] primary-input"
-              name="capoFret"
-              id="capoFret"
-            >
-              <option value={0}>No Capo</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-              <option value={9}>9</option>
-              <option value={10}>10</option>
-              <option value={11}>11</option>
-              <option value={12}>12</option>
-            </select>
-          </div>
 
-          <div className="flex flex-col relative">
-            <label
-              className="text-sm font-secondary text-gray-600 mb-1"
-              htmlFor="songTuning"
-            >
-              Tuning:
-            </label>
-            <select
-              value={songTuning}
-              className="p-[10px] primary-input"
-              name="songTuning"
-              id="songTuning"
-              onChange={(e) => setSongTuning(e.target.value)}
-            >
-              {tuning_List.map((tuning, index) => {
-                return (
-                  <option key={index} value={tuning}>
-                    {tuning}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-
-          <div className="flex flex-col relative">
-            <label
-              className="text-sm font-secondary text-gray-600 mb-1"
-              htmlFor="songKey"
-            >
-              Key:
-            </label>
-            <select
-              value={songKey}
-              className="p-[10px] primary-input"
-              name="songKey"
-              id="songKey"
-              onChange={(e) => setSongKey(e.target.value)}
-            >
-              {key_List.map((key, index) => {
-                return (
-                  <option key={index} value={key}>
-                    {key}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
         </div>
 
         <div className="relative">

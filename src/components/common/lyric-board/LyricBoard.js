@@ -44,7 +44,7 @@ const LyricBoard = ({
 
         {/* Detected chords /  Capo */}
         {showLyricBoard && (
-          <div className="flex container mx-auto justify-start gap-x-7 items-start font-secondary">
+          <div className="flex container flex-wrap mx-auto justify-start gap-7 items-start font-secondary">
             <div>
               <span>Chords :</span>
               {detectedChords.length === 0 && (
