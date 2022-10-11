@@ -9,16 +9,16 @@ import Hook from "./hook.publicBoards";
 
 const PublicBoards = () => {
   const { boardList, handleBoardType } = Hook();
-
+  
   return (
     <div
       className="p-4 rounded-md shadow"
       style={{
-        backgroundImage: "linear-gradient(60deg, #29323c 0%, #485563 100%)",
+        backgroundImage: "linear-gradient(60deg, #ffffff 0%, #abbaab50 100%)",
       }}
     >
       {/* Title */}
-      <h1 className="font-secondary flex items-center gap-2 text-2xl mb-4 font-bold text-white">
+      <h1 className="font-secondary flex items-center gap-2 text-2xl mb-4 font-bold text-dark">
         Demo songs <GlobeIcon />
       </h1>
 

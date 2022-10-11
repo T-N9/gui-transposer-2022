@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { AiFillFolderOpen } from "react-icons/ai";
 import { Pencil2Icon } from "@radix-ui/react-icons";
 
+/* Images */
+import { ManGuitar} from '../../../assets/'
+
 /* Util */
 import { formattedTime } from '../../../util/timeFormat';
 
@@ -27,9 +30,12 @@ const PersonalBoard = () => {
 
       {/* No boards */}
       {personalBoardList.length === 0 && (
-        <p className="my-3 text-white text-center font-secondary">
-          You currently have no boards.
-        </p>
+       <>
+        <img className="mx-auto" src={ManGuitar} alt="man plays guitar"/>
+         <p className="my-3 text-white text-center font-secondary">
+           You currently have no boards.
+         </p>
+       </>
       )}
 
       {/* Board listing */}
