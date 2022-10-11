@@ -151,7 +151,7 @@ const InputLyric = ({
       >
         <button
           type="submit"
-          className="bg-secondary border-2 border-secondary text-light w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] shadow-md font-secondary flex justify-center items-center font-bold text-lg transition-all hover:bg-opacity-90"
+          className="bg-secondary border-2 border-secondary text-success w-16 h-16 rounded-full fixed bottom-10 right-10 z-[1000] shadow-md font-secondary flex justify-center items-center font-bold text-lg transition-all hover:bg-opacity-90"
         >
           <span>GO</span>
         </button>
@@ -324,7 +324,7 @@ const InputLyric = ({
 
         <button
           type="submit"
-          className=" bg-secondary text-light font-bold text-xl rounded-md py-2 px-8 shadow-md font-secondary mx-auto table mt-11 transition-all hover:bg-opacity-90"
+          className=" bg-secondary text-success font-bold text-xl rounded-md py-2 px-8 shadow-md font-secondary mx-auto table mt-11 transition-all hover:bg-opacity-90"
         >
           Generate
         </button>

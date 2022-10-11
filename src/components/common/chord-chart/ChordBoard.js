@@ -32,7 +32,7 @@ const ChordBoard = ({
       {showChordBoard && (
         <Draggable handle="span">
           <div
-            className={`chordBoard flex gap-3 fixed top-0 left-[30%] translate-x-[-50%] p-5 shadow flex-wrap ${isHorizontal && 'flex-col max-h-[80vh]'}`}
+            className={`chordBoard flex gap-3 fixed top-0 left-[30%] translate-x-[-50%] p-5 flex-wrap ${isHorizontal && 'flex-col max-h-[80vh]'}`}
           >
             {/* adjust btns */}
             <div className="absolute left-[-40px] top-5 flex flex-col gap-3">
@@ -51,7 +51,7 @@ const ChordBoard = ({
                 onClick={() => {
                   setIsHorizontal((prev) => !prev);
                 }}
-                className="p-2 rounded flex justify-center items-center text-light-md shadow"
+                className="p-2 bg-white rounded flex justify-center items-center text-light-md shadow"
               >
                 {isHorizontal ? <BsGripHorizontal /> : <BsGripVertical />}
               </button>
