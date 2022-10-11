@@ -20,15 +20,15 @@ const AlertBox = ({
           className="absolute top-0 left-0 bottom-0 right-0 bg-gray-700 bg-opacity-70"
         ></div>
 
-        <div className="relative z-[2000] bg-white p-5 rounded">
-          <p>{message}</p>
+        <div className="relative z-[2000] bg-white px-5 py-8 w-[90%] lg:w-[25%] rounded">
+          <p className="text-center">{message}</p>
 
           <div className="flex justify-center items-center gap-4 mt-4">
-            <button className="px-3 py-2 rounded bg-danger text-white text-sm" onClick={closeAlertBox}>
+            <button className="px-6 py-2 rounded bg-danger text-white text-sm shadow" onClick={closeAlertBox}>
               Cancel
             </button>
 
-            <button onClick={confirmAction} className="px-3 py-2 rounded bg-info text-white text-sm">
+            <button onClick={confirmAction} className="px-6 py-2 rounded bg-info text-white text-sm shadow">
               Confirm
             </button>
           </div>
