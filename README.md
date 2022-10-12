@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Gui-Transpo | Chord transposer and Lyric gernerator
+![enter image description here](https://guitranspo.tenyain.com/meta.png)
+# Introduction
+Are you a newbie guitarist or a composer? Sometimes we have to manage a song to customize matching our vocal range or find a perfect version of a song to play with a guitar. Gui-Transpo is a place to generate or customize guitar chords and lyrics with storing the data so that you can access it and sing along with it.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Development
+I have seen many online guitar chord transposers with different features and usabilities. Among them, only 2 or 3 have effective characteristics and user interfaces. My goal in building Gui-Transpo is to deliver easily generated lyric board and chord information in a short time.
 
-## Available Scripts
+# Planning and preparation
+## Researching concepts
 
-In the project directory, you can run:
+I am just an amateur campfire guitarist while implementing this project. Guitar chords theory can sometimes be tricky for beginners. I have to research many other applications to understand their user flows, concepts, and how they manage the inputted possibilities to reduce the rate of logical error occurrence. My first challenge is making a formula of a regular expression to detect all the common guitar chords among the inputted text. When all the chords are separated into an array, I prepared the chord data for transposing and implemented the transposing logic.
 
-### `npm start`
+## Chord data from Chord Database
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+I use ChordDB to generate chord data which is used in displaying chord charts. In current beta version, only (major, minor, 7 and minor7) chord data are generated. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**What are the techs?**
+ - React
+ - Firebase
+ - TailwindCSS
+ - ChordDB
+ - Redux Toolkit
+ - React Router
+ 
+ Version - Beta version
