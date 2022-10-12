@@ -143,7 +143,7 @@ const LyricBoard = ({
       {/* Main Lyrics area */}
       {showLyricBoard && (
         <pre className="lyric-board min-h-[40vh] container mx-auto font-primary p-0 md:p-5 md:px-30 lg:px-48 overflow-x-auto">
-          <div className="px-0 md:px-4 pb-5 shadow lyric-bg">
+          <div className="px-0 md:px-4 py-5 shadow lyric-bg">
             {lyricBoard.length > 0 &&
               lyricBoard.map((line, index) => {
                 return (
