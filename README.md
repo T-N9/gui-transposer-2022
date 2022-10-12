@@ -1,4 +1,5 @@
-# Gui-Tranpo | Chord transposer and Lyric gernerator
+# Gui-Transpo | Chord transposer and Lyric gernerator
+![enter image description here](https://guitranspo.tenyain.com/meta.png)
 # Introduction
 Are you a newbie guitarist or a composer? Sometimes we have to manage a song to customize matching our vocal range or find a perfect version of a song to play with a guitar. Gui-Transpo is a place to generate or customize guitar chords and lyrics with storing the data so that you can access it and sing along with it.
 
@@ -21,3 +22,5 @@ I use ChordDB to generate chord data which is used in displaying chord charts. I
  - ChordDB
  - Redux Toolkit
  - React Router
+ 
+ Version - Beta version
