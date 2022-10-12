@@ -103,9 +103,9 @@ const extract_B_chord = (suffix, isFamily) => {
       case "m":
         return B_minor[0].positions;
       case "7":
-        return B_7[0].positions[0];
+        return B_7[0].positions;
       case "m7":
-        return B_m7[0].positions[0];
+        return B_m7[0].positions;
       default:
         break;
     }
@@ -165,7 +165,7 @@ const extract_C_chord = (suffix, isFamily) => {
       case "7":
         return C_7[0].positions;
       case "m7":
-        return C_m7[0].positions[0];
+        return C_m7[0].positions;
       default:
         break;
     }

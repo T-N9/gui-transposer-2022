@@ -19,7 +19,7 @@ const DefineChord = ({ chord, isFlat }) => {
     <>
       <div
         onClick={() => handleClickChord(chord)}
-        onTouchEnd={() => handleClickChord(chord)}
+        // onTouchEnd={() => handleClickChord(chord)}
         className="flex flex-col cursor-pointer justify-center shadow-md items-center bg-white rounded-md"
       >
         <ChordChart position={wantedChord} />
