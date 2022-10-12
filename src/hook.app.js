@@ -8,14 +8,13 @@ import { getDocs } from "firebase/firestore";
 import HookFirebaseAssets from "./hook.firebaseAssets";
 
 /* Constants */
-import { SIGN_UP } from './constants/routeNames';
+import { SIGN_UP } from "./constants/routeNames";
 
 /* Local */
 import { GUI_ISADMIN, GUI_USERINFO } from "./constants/localAttributes";
 
 const Hook = () => {
-  const { auth, userCollection, getSessionUserInfo } =
-    HookFirebaseAssets();
+  const { auth, userCollection, getSessionUserInfo } = HookFirebaseAssets();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,7 +39,7 @@ const Hook = () => {
           alert(err.message);
         });
     } else {
-      navigate(SIGN_UP);
+      // navigate(SIGN_UP);
     }
   }, []);
 
