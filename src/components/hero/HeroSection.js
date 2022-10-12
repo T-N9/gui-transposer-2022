@@ -5,9 +5,9 @@ import { HeroGui } from "../../assets";
 
 const HeroSection = () => {
   return (
-    <section className="flex justify-center items-center min-h-[500px]">
-      <div className="flex-1 flex justify-center items-start flex-col gap-4">
-        <h1 className="font-secondary text-[3rem] font-bold text-dark">Transpose <span className="text-light-md">
+    <section className="flex flex-col-reverse lg:flex-row justify-center items-center min-h-[500px]">
+      <div className="flex-1 flex justify-center items-center lg:items-start flex-col gap-4">
+        <h1 className="font-secondary text-center lg:text-left text-[2.3rem] lg:text-[3rem] font-bold text-dark">Transpose <span className="text-light-md">
         Chords</span>  and sing along with <span className="text-light-md">lyrics</span>.</h1>
 
         <Link to="/sign-in">
