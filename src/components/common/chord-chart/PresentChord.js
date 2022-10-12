@@ -29,15 +29,15 @@ const PresentChord = ({ isFlat}) => {
         onClick={closePresentChords}
         className=" absolute top-0 bottom-0 left-0 right-0 bg-dark bg-opacity-75 z-30 flex justify-center  items-center"
       ></div>
-      <div className="presentChord flex gap-3 relative z-50 w-[70%] lg:w-[40%]">
+      <div className="presentChord flex gap-3 relative z-50 w-[85%] lg:w-[40%]">
         {presentChords && (
           <SwiperFree>
             {chordPositions.length !== 0 &&
               chordPositions.map((position, index) => {
                 return (
                   <SwiperSlide key={index}>
-                    <div className="bg-white px-3 py-5 rounded-md select-none">
-                      <h1 className="text-center text-xl font-bold text-light-md">{changeChordType(chordToShow, isFlat)} - {index +1}</h1>
+                    <div className="bg-white px-3 pb-5 pt-10 rounded-md select-none">
+                      <h1 className="text-center absolute top-2 left-1/2 transform -translate-x-1/2 text-2xl font-bold text-info">{changeChordType(chordToShow, isFlat)} - {index +1}</h1>
                       <ChordChart position={position} id={index} />
                     </div>
                   </SwiperSlide>
