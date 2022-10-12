@@ -73,7 +73,7 @@ const UserProfile = () => {
             </div>
             <div className="w-full">
               {!isAdmin && (
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center mb-10">
                   <div className="mt-5 w-full">
                     <PersonalBoards />
 
