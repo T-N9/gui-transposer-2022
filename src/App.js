@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router";
 
 /* Components */
 import NavBar from "./components/common/nav-bar/NavBar";
+import Footer from "./components/footer/Footer";
 import { Loading, AlertMessage } from "./components/common";
 
 /* Pages */
@@ -34,7 +35,7 @@ const App = () => {
   const { location } = Hook();
 
   return (
-    <>
+    <main className="min-h-[100vh] flex flex-col justify-between">
       {location.pathname !== SIGN_UP &&
         location.pathname !== SIGN_IN &&
         location.pathname !== RESET_PASSWORD && <NavBar />}
@@ -57,7 +58,11 @@ const App = () => {
 
       <Loading />
       <AlertMessage />
-    </>
+
+      {location.pathname !== SIGN_UP &&
+        location.pathname !== SIGN_IN &&
+        location.pathname !== RESET_PASSWORD && <Footer />}
+    </main>
   );
 };
 
