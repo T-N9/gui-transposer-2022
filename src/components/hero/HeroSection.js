@@ -5,7 +5,7 @@ import { HeroGui } from "../../assets";
 
 const HeroSection = () => {
   return (
-    <section className="flex flex-col-reverse lg:flex-row justify-center items-center min-h-[500px]">
+    <section className="flex flex-col-reverse lg:flex-row justify-center items-center min-h-[500px] mb-10">
       <div className="flex-1 flex justify-center items-center lg:items-start flex-col gap-4">
         <h1 className="font-secondary text-center lg:text-left text-[2.3rem] lg:text-[3rem] font-bold text-dark">Transpose <span className="text-light-md">
         Chords</span>  and sing along with <span className="text-light-md">lyrics</span>.</h1>

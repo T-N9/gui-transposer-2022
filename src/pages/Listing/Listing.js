@@ -25,7 +25,10 @@ const Listing = () => {
   return (
     <section className="container mx-auto my-5 p-5">
       {getSessionUserInfo === null ? (
-        <HeroSection/>
+        <>
+          <HeroSection/>
+          <PublicBoards />
+        </>
       ) : (
         <>
           <PublicBoards />
