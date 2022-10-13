@@ -32,7 +32,7 @@ const ChordBoard = ({
       {showChordBoard && (
         <Draggable handle="span">
           <div
-            className={`chordBoard flex gap-3 fixed top-0 left-[30%] translate-x-[-50%] p-5 flex-wrap ${isHorizontal && 'flex-col max-h-[80vh]'}`}
+            className={`chordBoard flex gap-3 fixed top-0 left-[70%] translate-x-[-50%] p-5 flex-wrap ${isHorizontal && 'flex-col max-h-[80vh]'}`}
           >
             {/* adjust btns */}
             <div className="absolute left-[-40px] top-5 flex flex-col gap-3">
