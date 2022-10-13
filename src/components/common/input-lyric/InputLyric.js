@@ -297,8 +297,11 @@ const InputLyric = ({
           </label>
 
           <div className="relative">
+            <span className="absolute hidden md:block top-5 md:left-[44%] lg:left-[37%] 2xl:left-[25%] bg-gray-50 p-1 rounded shadow text-info font-secondary">
+              Lyric area &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Tab notes or other
+            </span>
             <textarea
-              className="lyric-input min-h-[500px] w-full bg-white bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 transition-all outline-none focus:shadow-2xl"
+              className="lyric-input mt-10 min-h-[500px] w-full bg-white bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 transition-all outline-none focus:shadow-2xl"
               // defaultValue={inputLyric}
               tabIndex={-1}
               value={inputLyric}
