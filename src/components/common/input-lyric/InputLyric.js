@@ -179,7 +179,7 @@ const InputLyric = ({
                 </span>
               )}
             </div>
-            
+
             <div className="flex flex-1 flex-col relative">
               <label
                 className="text-sm font-secondary text-gray-600 mb-1"
@@ -236,7 +236,7 @@ const InputLyric = ({
                   <option value={12}>12</option>
                 </select>
               </div>
-              
+
               <div className="flex flex-[4] flex-col relative">
                 <label
                   className="text-sm font-secondary text-gray-600 mb-1"
@@ -261,7 +261,7 @@ const InputLyric = ({
                 </select>
               </div>
             </div>
-            
+
             <div className="flex flex-[5] flex-col relative">
               <label
                 className="text-sm font-secondary text-gray-600 mb-1"
@@ -286,8 +286,6 @@ const InputLyric = ({
               </select>
             </div>
           </div>
-
-
         </div>
 
         <div className="relative">
@@ -297,22 +295,27 @@ const InputLyric = ({
           >
             Lyrics and chords:
           </label>
-          <textarea
-            className="lyric-input min-h-[500px] w-full bg-white bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 transition-all outline-none focus:shadow-2xl"
-            // defaultValue={inputLyric}
-            tabIndex={-1}
-            value={inputLyric}
-            onChange={(e) => {
-              setInputLyric(e.target.value);
-            }}
-            ref={textArea}
-            onKeyDown={(e) => handleCombineKey(e)}
-            name="lyric-input"
-            id="lyric-input"
-            cols="30"
-            rows="10"
-            placeholder="Type chords and lyric"
-          ></textarea>
+
+          <div className="relative">
+            <textarea
+              className="lyric-input min-h-[500px] w-full bg-white bg-opacity-50 p-2 md:p-3 border-solid border-2 border-blue-100 focus:outline-none focus:border-blue-300 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 transition-all outline-none focus:shadow-2xl"
+              // defaultValue={inputLyric}
+              tabIndex={-1}
+              value={inputLyric}
+              onChange={(e) => {
+                setInputLyric(e.target.value);
+              }}
+              ref={textArea}
+              onKeyDown={(e) => handleCombineKey(e)}
+              name="lyric-input"
+              id="lyric-input"
+              cols="30"
+              rows="10"
+              placeholder="Type chords and lyric"
+            ></textarea>
+            <span className="absolute top-0 bottom-0 w-[2px] md:left-[60%] lg:left-[50%] 2xl:left-[35%] hidden md:block opacity-30 bg-danger"></span>
+          </div>
+
           <span className="absolute hidden lg:block top-1 font-secondary right-2 text-xs text-gray-400">
             Ctrl + SPACE = Tab, at least a space between chords
           </span>
