@@ -19,8 +19,10 @@ I use ChordDB to generate chord data which is used in displaying chord charts. I
  - React
  - Firebase
  - TailwindCSS
- - ChordDB
+ - [ChordDB](https://github.com/tombatossals/chords-db)
  - Redux Toolkit
  - React Router
  
  Version - Beta version
+ 
+ Illustration by <a href="https://undraw.co/search">Undraw</a>
