@@ -32,7 +32,7 @@ const SignIn = () => {
           className="w-[85%] lg:w-[25%] font-secondary gui-form"
         >
           <img className="w-[200px] mx-auto mb-5" src={Logo} alt="gui logo" />
-          <h1 className="my-5 text-light-md text-xl font-bold">
+          <h1 className="my-5 text-dark text-xl font-bold">
             Sign In and rock.
           </h1>
 
@@ -105,13 +105,13 @@ const SignIn = () => {
 
               <p className="mt-3">
                 Don't have an account?{" "}
-                <Link to={SIGN_UP} className="text-light-md font-bold">
+                <Link to={SIGN_UP} className="text-info font-bold">
                   Register Here.
                 </Link>
               </p>
 
               <p className="mt-1">
-                <Link to={RESET_PASSWORD} className="text-light-md font-bold">
+                <Link to={RESET_PASSWORD} className="text-info font-bold">
                   Forget your password?
                 </Link>
               </p>

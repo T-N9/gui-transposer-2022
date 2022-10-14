@@ -35,7 +35,7 @@ const SignUp = () => {
         >
           <img className="w-[200px] mx-auto mb-5" src={Logo} alt="gui logo" />
 
-          <h1 className="my-5 text-light-md text-xl font-bold">
+          <h1 className="my-5 text-dark text-xl font-bold">
             Create an account.
           </h1>
           <div className="flex flex-col gap-y-4">
@@ -155,7 +155,7 @@ const SignUp = () => {
 
               <p className="mt-3">
                 Already have an account?{" "}
-                <Link to={SIGN_IN} className="text-light-md font-bold">
+                <Link to={SIGN_IN} className="text-info font-bold">
                   Sign in.
                 </Link>
               </p>
