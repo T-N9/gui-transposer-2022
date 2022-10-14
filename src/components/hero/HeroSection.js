@@ -18,7 +18,7 @@ const HeroSection = () => {
       </div>
 
       <div className="flex-1 flex justify-center items-center">
-        <img className="w-[500px]" src={HeroGui} alt="man with guitar" />
+        <img width={500} height={430.73} className="w-[500px]" src={HeroGui} alt="man with guitar" />
       </div>
     </section>
   );

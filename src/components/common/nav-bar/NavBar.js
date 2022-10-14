@@ -14,7 +14,7 @@ const NavBar = () => {
     <nav className="shadow px-4 md:px-0">
       <div className="container mx-auto flex justify-between items-center">
         <Link to={"/"}>
-          <img className="w-44" src={Logo} alt="gui-transpo-logo" />
+          <img width={176} height={57.91} className="w-44" src={Logo} alt="gui-transpo-logo" />
         </Link>
 
         <div>
