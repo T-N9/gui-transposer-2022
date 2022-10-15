@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,6 +9,7 @@ import { getDocs, collection, query, where } from "firebase/firestore";
 
 import { clearAllBoardLists } from "../../store/boardListSlice";
 import { setStartLoading, setStopLoading, setIsPersonalBoard } from "../../store/generalSlice";
+import { resetSongInfo } from "../../store/currentSongInfoSlice";
 
 /* Constants */
 import { SIGN_UP } from '../../constants/routeNames';
@@ -38,6 +39,10 @@ const Hook = () => {
 
   let matches = userName && userName?.match(/\b(\w)/g); 
   let profileName = userName && matches.join("").slice(0, 2);
+
+  useEffect(() => {
+    dispatch(resetSongInfo());
+  }, [dispatch]);
 
   const handleLogOut = () => {
     dispatch(setStartLoading());
