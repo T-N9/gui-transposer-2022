@@ -4,7 +4,7 @@
 Are you a newbie guitarist or a composer? Sometimes we have to manage a song to customize matching our vocal range or find a perfect version of a song to play with a guitar. Gui-Transpo is a place to generate or customize guitar chords and lyrics with storing the data so that you can access it and sing along with it.
 
 # Development
-I have seen many online guitar chord transposers with different features and usabilities. Among them, only 2 or 3 have effective characteristics and user interfaces. My goal in building Gui-Transpo is to deliver easily generated lyric board and chord information in a short time.
+I have seen many online guitar chord transposers with different features and usabilities. Among them, only 2 or 3 have effective characteristics and user interfaces. For example, Ultimate Guitar has a massive community and it can be used on all platforms. In this project, I imitate some of the features and customizations of the Ultimate Guitar. My goal in building Gui-Transpo is to deliver easily generated lyric board and chord information in a short time.
 
 # Planning and preparation
 ## Researching concepts
